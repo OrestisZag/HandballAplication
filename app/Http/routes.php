@@ -11,6 +11,10 @@
 |
 */
 
+//Pages routes
 Route::get('/', function () {
     return view('pages.welcome');
 });
+
+//Athlete routes
+Route::resource('athlete', 'AthletesController');
