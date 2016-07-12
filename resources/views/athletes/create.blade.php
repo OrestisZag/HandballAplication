@@ -22,6 +22,9 @@
             {{ Form::label('weight', 'Weight:') }}
             {{ Form::number('weight', null, ['class' => 'vale bs class']) }}
 
+            {{ Form::label('mobile', 'Mobile Phone:') }}
+            {{ Form::tel('mobile', null, ['class' => 'vale bs class']) }}
+
             {{ Form::label('telephone1', 'Telephone1:') }}
             {{ Form::tel('telephone1', null, ['class' => 'vale bs class']) }}
 
@@ -52,7 +55,7 @@
             {{ Form::label('postalCode', 'Postal Code:') }}
             {{ Form::text('postalCode', null, ['class' => 'vale bs class']) }}
 
-            {{ Form::label('passportNumber', 'Passport No.:') }}
+            {{ Form::label('passportNumber', 'Passport No:') }}
             {{ Form::text('passportNumber', null, ['class' => 'vale bs class']) }}
 
             {{ Form::label('passportExpDate', 'Passport Expiration Date:') }}
@@ -69,6 +72,8 @@
             {{ Form::label('comments', 'Comments:') }}
             {{ Form::textarea('comments', null, ['class' => 'vale bs class']) }}
 
+            {{ Form::submit('Create PLayer', ['class' => 'vale bs class']) }}
+
             {!! Form::close() !!}
         </div>
     </div>
@@ -77,8 +82,8 @@
 @section('script')
     <script>
     $(function() {
-        $( "#birthday" ).datepicker({dateFormat: 'yy-mm-dd' });
-        $( "#passportExpDate" ).datepicker({ dateFormat: 'yy-mm-dd' });
+        $( "#birthday" ).datepicker({dateFormat: 'dd-mm-yy' }).keydown(false);
+        $( "#passportExpDate" ).datepicker({ dateFormat: 'dd-mm-yy' }).keydown(false);
     });
     </script>
 @endsection

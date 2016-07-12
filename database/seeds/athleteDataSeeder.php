@@ -22,6 +22,7 @@ class athleteDataSeeder extends Seeder
                 'birthday' => $faker->date(),
                 'height' => $faker->randomFloat(1.50, 2.3),
                 'weight' => $faker->randomFloat(50, 120.00),
+                'mobile' => $faker->unique()->phoneNumber,
                 'telephone1' => $faker->unique()->phoneNumber,
                 'telephone2' => $faker->unique()->phoneNumber,
                 'fax' => $faker->unique()->phoneNumber,

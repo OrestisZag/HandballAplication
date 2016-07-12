@@ -19,6 +19,7 @@ class CreateAthleteDatasTable extends Migration
             $table->date('birthday');
             $table->double('height', 3, 2);
             $table->decimal('weight', 6, 3);
+            $table->string('mobile');
             $table->string('telephone1');
             $table->string('telephone2');
             $table->string('fax');
