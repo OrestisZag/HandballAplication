@@ -14,7 +14,7 @@
             {{ Form::text('firstName', null, ['class' => 'vale bs class']) }}
 
             {{ Form::label('birthday', 'Birthday:') }}
-            {{ Form::date('birthday', null, ['class' => 'vale bs class']) }}
+            {{ Form::text('birthday', null, ['class' => 'vale bs class']) }}
 
             {{ Form::label('height', 'Height:') }}
             {{ Form::number('height', null, ['class' => 'vale bs class']) }}
@@ -56,7 +56,7 @@
             {{ Form::text('passportNumber', null, ['class' => 'vale bs class']) }}
 
             {{ Form::label('passportExpDate', 'Passport Expiration Date:') }}
-            {{ Form::date('passportExpDate', null, ['class' => 'vale bs class']) }}
+            {{ Form::text('passportExpDate', null, ['class' => 'vale bs class']) }}
 
             {{ Form::label('passportLastName', 'Passport Last Name:') }}
             {{ Form::text('passportLastName', null, ['class' => 'vale bs class']) }}
