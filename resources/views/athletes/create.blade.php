@@ -73,3 +73,12 @@
         </div>
     </div>
 @endsection
+
+@section('script')
+    <script>
+    $(function() {
+        $( "#birthday" ).datepicker({dateFormat: 'yy-mm-dd' });
+        $( "#passportExpDate" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    });
+    </script>
+@endsection
