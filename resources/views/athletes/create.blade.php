@@ -75,6 +75,8 @@
             {{ Form::submit('Create PLayer', ['class' => 'vale bs class']) }}
 
             {!! Form::close() !!}
+
+            <a href="{{ route('athlete.index') }}">Back</a>
         </div>
     </div>
 @endsection
