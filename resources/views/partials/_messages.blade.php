@@ -9,7 +9,7 @@
         <strong>Errors:</strong>
         <ul>
             @foreach($errors->all() as $error)
-                <li>{{ Session::get($error) }}</li>
+                <li>{{ ($error) }}</li>
             @endforeach
         </ul>
     </div>

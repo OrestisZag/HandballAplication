@@ -3,6 +3,7 @@
 @section('title', '| Create')
 
 @section('content')
+    <h1>Create Athlete Profile</h1>
     <div class="row">
         <div class="col-md-12">
             {!! Form::open(['route' => 'athlete.store']) !!}
@@ -34,7 +35,7 @@
             {{ Form::label('fax', 'Fax:') }}
             {{ Form::tel('fax', null, ['class' => 'vale bs class']) }}
 
-            {{ Form::label('teamFax', 'Fax:') }}
+            {{ Form::label('teamFax', 'Team Fax:') }}
             {{ Form::tel('teamFax', null, ['class' => 'vale bs class']) }}
 
             {{ Form::label('email1', 'Email1:') }}
@@ -84,8 +85,10 @@
 @section('script')
     <script>
     $(function() {
-        $( "#birthday" ).datepicker({dateFormat: 'dd-mm-yy' }).keydown(false);
-        $( "#passportExpDate" ).datepicker({ dateFormat: 'dd-mm-yy' }).keydown(false);
+        $( "#birthday" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: "1920:2100"})
+                .keydown(false);
+        $( "#passportExpDate" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,
+            yearRange: "1920:2100"}).keydown(false);
     });
     </script>
 @endsection

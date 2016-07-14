@@ -45,11 +45,11 @@ class AthletesController extends Controller
             'birthday' => 'required|date',
             'height' => 'required|numeric',
             'weight' => 'required|numeric',
-            'mobile' => 'required|min:10|max:13|numeric',
-            'telephone1' => 'required|min:10|max:13|numeric',
-            'telephone2' => 'min:10|max:13|numeric',
-            'fax' => 'min:10|max:13|numeric',
-            'teamFax' => 'required|min:10|max:13|numeric',
+            'mobile' => 'min:1111111111|max:9999999999999|numeric',
+            'telephone1' => 'min:1111111111|max:9999999999999|numeric',
+            'telephone2' => 'min:1111111111|max:9999999999999|numeric',
+            'fax' => 'min:1111111111|max:9999999999999|numeric',
+            'teamFax' => 'min:1111111111|max:9999999999999|numeric',
             'email1' => 'email',
             'email2' => 'email',
             'country' => 'required|min:4|max:30',
@@ -100,7 +100,8 @@ class AthletesController extends Controller
      */
     public function show($id)
     {
-        //
+        $athlete = AthleteData::find($id);
+        return view('athletes.show')->withAthlete($athlete);
     }
 
     /**
@@ -111,7 +112,8 @@ class AthletesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $athlete = AthleteData::find($id);
+        return route('athletes.edit')->withAthlete($athlete);
     }
 
     /**
