@@ -18,10 +18,10 @@
             {{ Form::text('birthday', null, ['class' => 'vale bs class']) }}
 
             {{ Form::label('height', 'Height:') }}
-            {{ Form::number('height', null, ['class' => 'vale bs class']) }}
+            {{ Form::number('height', null, ['class' => 'vale bs class', 'step' => '0.1']) }}
 
             {{ Form::label('weight', 'Weight:') }}
-            {{ Form::number('weight', null, ['class' => 'vale bs class']) }}
+            {{ Form::number('weight', null, ['class' => 'vale bs class', 'step' => '0.1']) }}
 
             {{ Form::label('mobile', 'Mobile Phone:') }}
             {{ Form::tel('mobile', null, ['class' => 'vale bs class']) }}
