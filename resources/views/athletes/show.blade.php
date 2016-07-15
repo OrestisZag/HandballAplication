@@ -71,8 +71,8 @@
             {{ $athlete->region }}<br>
             <label>Address:</label>
             {{ $athlete->address }}<br>
+            <label>Postal Code:</label>
             @if($athlete->postalCode)
-                <label>Postal Code:</label>
                 {{ $athlete->postalCode }}<br>
             @else
                 -<br>
