@@ -18,7 +18,7 @@
             {{ Form::text('birthday', null, ['class' => 'vale bs class']) }}
 
             {{ Form::label('height', 'Height:') }}
-            {{ Form::number('height', null, ['class' => 'vale bs class', 'step' => '0.1']) }}
+            {{ Form::number('height', null, ['class' => 'vale bs class', 'step' => '0.01']) }}
 
             {{ Form::label('weight', 'Weight:') }}
             {{ Form::number('weight', null, ['class' => 'vale bs class', 'step' => '0.1']) }}

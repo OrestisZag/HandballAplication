@@ -59,7 +59,7 @@ class AthletesController extends Controller
             'passportNumber' => 'max:50',
             'passportExpDate' => 'date',
             'passportLastName' => 'min:2|max:30|alpha',
-            'IDNumber' => 'required|max:10',
+            'IDNumber' => 'max:10',
             'comments' => 'max:255'
         ]);
 
