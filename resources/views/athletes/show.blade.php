@@ -94,7 +94,7 @@
             <label>Passport Days To Expire:</label>
             @if($athlete->passportExpDate == 0000-00-00)
                 -<br>
-            @else($athlete->passportExpDate)
+            @elseif($athlete->passportExpDate)
                 {{ date_diff(date_create($athlete->passportExpDate), date_create(date('Y-m-d')))->format("%R%a") < 0 ?
                  date_diff(date_create($athlete->passportExpDate), date_create(date('Y-m-d')))->format("%a") : "Expired"}}<br>
             @endif
