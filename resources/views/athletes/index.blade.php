@@ -1,13 +1,16 @@
 @extends('main')
 
-@section('title', '| Athletes');
+@section('title', '| Athletes')
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <a href="{{ route('athlete.create') }}">Create Athlete Profile</a>
             @foreach($athletes as $athlete)
-                <li>{{ $athlete->lastName }} {{ $athlete->firstName }}</li>
+                <li>{{ $athlete->lastName }} {{ $athlete->firstName }}
+                    <a href="{{ route('athlete.show', $athlete->id) }}">View</a>
+                    <a href="{{ route('athlete.edit', $athlete->id) }}">Edit</a>
+                </li>
             @endforeach
             <div class="text-center">
                 {{ $athletes->links() }}

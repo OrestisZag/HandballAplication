@@ -3,5 +3,5 @@
    Institute of Central Macedonia</a> <a href="http://informatics.teicm.gr/">IT Department</a>.<br>
    Created by <a href="https://gr.linkedin.com/in/orestis-zagkoumidis-7a4071b6">Orestis Zagkoumidis</a> and
    <a href="https://gr.linkedin.com/in/konstantina-avgeri-189b82121">Konstantina Avgeri</a>.
-   Supervisor <a href="https://gr.linkedin.com/in/alkiviadis-tsimpiris-18784433">Alkiviadis Tsimpiris</a>
+   Supervisor <a href="https://gr.linkedin.com/in/alkiviadis-tsimpiris-18784433">Alkiviadis Tsimpiris</a>.
 </p>

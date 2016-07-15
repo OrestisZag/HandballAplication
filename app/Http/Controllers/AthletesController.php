@@ -113,7 +113,7 @@ class AthletesController extends Controller
     public function edit($id)
     {
         $athlete = AthleteData::find($id);
-        return route('athletes.edit')->withAthlete($athlete);
+        return view('athletes.edit')->withAthlete($athlete);
     }
 
     /**
