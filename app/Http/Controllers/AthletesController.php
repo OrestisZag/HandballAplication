@@ -125,7 +125,57 @@ class AthletesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'lastName' => 'required|min:2|max:30|alpha',
+            'firstName' => 'required|min:2|max:30|alpha',
+            'birthday' => 'required|date',
+            'height' => 'required|numeric|min:0.5|max:2.50',
+            'weight' => 'required|numeric|min:30|max:150',
+            'mobile' => 'min:1111111111|max:9999999999999|numeric',
+            'telephone1' => 'min:1111111111|max:9999999999999|numeric',
+            'telephone2' => 'min:1111111111|max:9999999999999|numeric',
+            'fax' => 'min:1111111111|max:9999999999999|numeric',
+            'teamFax' => 'min:1111111111|max:9999999999999|numeric',
+            'email1' => 'email',
+            'email2' => 'email',
+            'country' => 'required|min:4|max:30',
+            'region' => 'required|min:4|max:30',
+            'address' => 'required|min:5|max:50',
+            'postalCode' => 'max:10',
+            'passportNumber' => 'max:50',
+            'passportExpDate' => 'date',
+            'passportLastName' => 'min:2|max:30|alpha',
+            'IDNumber' => 'max:10',
+            'comments' => 'max:255'
+        ]);
+
+        $athlete = AthleteData::find($id);
+        $athlete->lastName = $request->input('lastName');
+        $athlete->firstName = $request->input('firstName');
+        $athlete->birthday = $request->input('birthday');
+        $athlete->height = $request->input('height');
+        $athlete->weight = $request->input('weight');
+        $athlete->mobile = $request->input('mobile');
+        $athlete->telephone1 = $request->input('telephone1');
+        $athlete->telephone2 = $request->input('telephone2');
+        $athlete->fax = $request->input('fax');
+        $athlete->teamFax = $request->input('teamFax');
+        $athlete->email1 = $request->input('email1');
+        $athlete->email2 = $request->input('email2');
+        $athlete->country = $request->input('country');
+        $athlete->region = $request->input('region');
+        $athlete->address = $request->input('address');
+        $athlete->postalCode = $request->input('postalCode');
+        $athlete->passportNumber = $request->input('passportNumber');
+        $athlete->passportExpDate = $request->input('passportExpDate');
+        $athlete->passportLastName = $request->input('passportLastName');
+        $athlete->IDNumber = $request->input('IDNumber');
+        $athlete->comments = $request->input('comments');
+        $athlete->save();
+
+        Session::flash('success', 'Player info updated successfully!');
+
+        return redirect()->route('athlete.show', $athlete->id);
     }
 
     /**
