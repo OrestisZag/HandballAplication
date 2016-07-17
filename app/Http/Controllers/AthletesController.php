@@ -89,13 +89,15 @@ class AthletesController extends Controller
         $athlete->comments = $request->comments;
         $athlete->save();
 
-        DB::table('athlete_datas')
-            ->where('id', $athlete->id)
-            ->update(['photo' => base_path().'/public/athletePhoto/'.$athlete->id.'.png']);
+        if(Input::file('photo')) {
+            DB::table('athlete_datas')
+                ->where('id', $athlete->id)
+                ->update(['photo' => base_path().'/public/athletePhoto/'.$athlete->id.'.png']);
+        }
 
         if(isset($athlete->photo) != null) {
             $imageName = $athlete->id.'.png';
-            $request->file('photo')->move(base_path() . '/public/athletePhoto', $imageName);
+            $request->file('photo')->move(base_path().'/public/athletePhoto', $imageName);
         }
 
         Session::flash('success', 'Player info added successfully!');
@@ -184,7 +186,7 @@ class AthletesController extends Controller
         if(Input::hasFile('photo'))
         {
             $file = Input::file('photo');
-            $imageName = $athlete->id.'.png';
+            $imageName = base_path().'/public/athletePhoto/'.$athlete->id.'.png';
             $file = $file->move(base_path().'/public/athletePhoto', $imageName);
             $athlete->photo = $imageName;
         }
