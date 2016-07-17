@@ -204,7 +204,10 @@ class AthletesController extends Controller
      */
     public function destroy($id)
     {
+        $athlete = AthleteData::find($id);
+        $athlete->delete();
 
+        Session::flash('success', 'Athlete deleted successfully!');
 
         return redirect()->route('athlete.index');
     }
