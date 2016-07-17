@@ -69,7 +69,7 @@
                 {{ Form::label('IDNumber', 'ID Number:') }}
                 {{ Form::text('IDNumber', null, ['class' => 'vale bs class']) }}
 
-                {{ Form::label('photo', 'Upload Athlete\'s photo:') }}
+                {{ Form::label('photo', 'Upload New Athlete\'s photo:') }}
                 {{ Form::file('photo') }}
 
                 {{ Form::label('comments', 'Comments:') }}
