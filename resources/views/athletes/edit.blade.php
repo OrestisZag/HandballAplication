@@ -80,3 +80,14 @@
         </div>
     </div>
 @endsection
+
+@section('script')
+    <script>
+        $(function() {
+            $( "#birthday" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: "1920:2100"})
+                    .keydown(false);
+            $( "#passportExpDate" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,
+                yearRange: "1920:2100"}).keydown(false);
+        });
+    </script>
+@endsection
