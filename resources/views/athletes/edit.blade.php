@@ -75,7 +75,14 @@
                 {{ Form::label('comments', 'Comments:') }}
                 {{ Form::textarea('comments', null, ['class' => 'vale bs class']) }}
 
-                {{ Form::submit('Update Athlete\'s Info', ['class' => 'vale bs class']) }}
+                {{ Form::submit('Update Athlete\'s Info', ['class' => 'btn btn-success btn-block']) }}
+            {!! Form::close() !!}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {!! Form::open(['route' => ['athlete.destroy', $athlete->id], 'method' => 'DELETE']) !!}
+                {{ Form::submit('Delete Athlete', ['class' => 'btn btn-danger btn-block space-top']) }}
             {!! Form::close() !!}
         </div>
     </div>

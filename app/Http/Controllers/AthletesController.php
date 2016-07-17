@@ -204,6 +204,8 @@ class AthletesController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+
+        return redirect()->route('athlete.index');
     }
 }

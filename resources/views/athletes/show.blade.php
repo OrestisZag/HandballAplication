@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-3">
             @if($athlete->photo == null)
-                <p>{{ $athlete->lastName }} {{ $athlete->firstName }}'s not set yet!</p>
+                <p>{{ $athlete->lastName }} {{ $athlete->firstName }}'s photo is not set yet!</p>
             @else
                 {{ Html::image("athletePhoto/$athlete->id.png", null, ['width' => '300', 'height' => '380']) }}
             @endif
