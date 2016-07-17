@@ -36,6 +36,7 @@ class CreateAthleteDatasTable extends Migration
             $table->string('IDNumber');
             $table->string('photo');
             $table->text('comments');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

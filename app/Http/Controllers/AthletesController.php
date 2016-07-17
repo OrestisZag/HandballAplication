@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\AthleteData;
 use Session;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 
 class AthletesController extends Controller
 {
@@ -85,10 +86,15 @@ class AthletesController extends Controller
         $athlete->passportExpDate = $request->passportExpDate;
         $athlete->passportLastName = $request->passportLastName;
         $athlete->IDNumber = $request->IDNumber;
-        $imageName = $athlete->id.'.png';
-        $athlete->photo = $request->file('photo')->move(base_path().'/public/athletePhoto', $imageName);
         $athlete->comments = $request->comments;
         $athlete->save();
+
+        DB::table('athlete_datas')
+            ->where('id', $athlete->id)
+            ->update(['photo' => base_path().'/public/athletePhoto/'.$athlete->id.'.png']);
+
+        $imageName = $athlete->id.'.png';
+        $request->file('photo')->move(base_path().'/public/athletePhoto', $imageName);
 
         Session::flash('success', 'Player info added successfully!');
 
