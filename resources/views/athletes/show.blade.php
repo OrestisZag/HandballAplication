@@ -7,7 +7,8 @@
     <a href="{{ route('athlete.index') }}">Back To Athletes</a>
     <div class="row">
         <div class="col-md-3">
-            {{--photo will go here--}}
+            {{ Html::image("athletePhoto/$athlete->id.png",
+            "$athlete->lastName $athlete->firstName's photo isn't set yet!", ['width' => '300', 'height' => '400']) }}
         </div>
         <div class="col-md-3 col-md-offset-1">
             <h3>Personal Info:</h3>

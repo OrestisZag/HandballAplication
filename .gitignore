@@ -8,7 +8,7 @@ Homestead.json
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
-
+/public/athletePhoto/*
 # Folder config file
 Desktop.ini
 
@@ -93,3 +93,4 @@ fabric.properties
 
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
+/.gitignore

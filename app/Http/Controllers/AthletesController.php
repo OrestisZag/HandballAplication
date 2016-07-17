@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\AthleteData;
 use Session;
+use Illuminate\Support\Facades\Input;
 
 class AthletesController extends Controller
 {
@@ -84,6 +85,8 @@ class AthletesController extends Controller
         $athlete->passportExpDate = $request->passportExpDate;
         $athlete->passportLastName = $request->passportLastName;
         $athlete->IDNumber = $request->IDNumber;
+        $imageName = $athlete->id.'.png';
+        $athlete->photo = $request->file('photo')->move(base_path().'/public/athletePhoto', $imageName);
         $athlete->comments = $request->comments;
         $athlete->save();
 
@@ -170,6 +173,13 @@ class AthletesController extends Controller
         $athlete->passportExpDate = $request->input('passportExpDate');
         $athlete->passportLastName = $request->input('passportLastName');
         $athlete->IDNumber = $request->input('IDNumber');
+        if(Input::hasFile('photo'))
+        {
+            $file = Input::file('photo');
+            $imageName = $athlete->id.'.png';
+            $file = $file->move(base_path().'/public/athletePhoto', $imageName);
+            $athlete->photo = $imageName;
+        }
         $athlete->comments = $request->input('comments');
         $athlete->save();
 

@@ -6,7 +6,7 @@
     <h1>Create Athlete Profile</h1>
     <div class="row">
         <div class="col-md-12">
-            {!! Form::open(['route' => 'athlete.store']) !!}
+            {!! Form::open(['route' => ['athlete.store'], 'files' => true]) !!}
                 {{ Form::label('lastName', 'Last Name:') }}
                 {{ Form::text('lastName', null, ['class' => 'vale bs class']) }}
 
@@ -67,7 +67,8 @@
                 {{ Form::label('IDNumber', 'ID Number:') }}
                 {{ Form::text('IDNumber', null, ['class' => 'vale bs class']) }}
 
-                {{--photo will go here!--}}
+                {{ Form::label('photo', 'Upload Athlete\'s photo:') }}
+                {{ Form::file('photo') }}
 
                 {{ Form::label('comments', 'Comments:') }}
                 {{ Form::textarea('comments', null, ['class' => 'vale bs class']) }}
