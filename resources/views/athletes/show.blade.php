@@ -10,7 +10,7 @@
             @if($athlete->photo == null)
                 <p>{{ $athlete->lastName }} {{ $athlete->firstName }}'s not set yet!</p>
             @else
-                {{ Html::image("athletePhoto/$athlete->id.png", null, ['width' => '300', 'height' => '400']) }}
+                {{ Html::image("athletePhoto/$athlete->id.png", null, ['width' => '300', 'height' => '380']) }}
             @endif
         </div>
         <div class="col-md-3 col-md-offset-1">
