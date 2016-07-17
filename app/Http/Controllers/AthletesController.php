@@ -90,14 +90,12 @@ class AthletesController extends Controller
         $athlete->save();
 
         if(Input::file('photo')) {
+            $imageName = $athlete->id.'.png';
+            $request->file('photo')->move(base_path().'/public/athletePhoto', $imageName);
+
             DB::table('athlete_datas')
                 ->where('id', $athlete->id)
                 ->update(['photo' => base_path().'/public/athletePhoto/'.$athlete->id.'.png']);
-        }
-
-        if(isset($athlete->photo) != null) {
-            $imageName = $athlete->id.'.png';
-            $request->file('photo')->move(base_path().'/public/athletePhoto', $imageName);
         }
 
         Session::flash('success', 'Player info added successfully!');
