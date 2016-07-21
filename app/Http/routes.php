@@ -18,3 +18,6 @@ Route::get('/', function () {
 
 //Athlete routes
 Route::resource('athlete', 'AthletesController');
+
+//Team routes
+Route::resource('team', 'TeamsController');
