@@ -69,7 +69,13 @@
                 {{ Form::label('IDNumber', 'ID Number:') }}
                 {{ Form::text('IDNumber', null, ['class' => 'vale bs class']) }}
 
-                {{ Form::label('photo', 'Upload New Athlete\'s photo:') }}
+                @if($athlete->photo == null)
+                    {{ Form::label('photo', 'Upload Athlete\'s photo:') }}
+                    <p>{{ $athlete->lastName }} {{ $athlete->firstName }}'s photo is not set yet!</p>
+                @else
+                    {{ Form::label('photo', 'Upload New Athlete\'s photo:') }}
+                    {{ Html::image("athletePhoto/$athlete->id.png", null, ['width' => '200', 'height' => '280'])}}
+                @endif
                 {{ Form::file('photo') }}
 
                 {{ Form::label('comments', 'Comments:') }}
