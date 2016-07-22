@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Team;
 use App\Http\Requests;
+use Session;
 
 class TeamsController extends Controller
 {
@@ -15,7 +16,8 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        //
+        $teams = Team::orderBy('id')->paginate(10);
+        return view('team.index')->withTeams($teams);
     }
 
     /**
@@ -25,7 +27,8 @@ class TeamsController extends Controller
      */
     public function create()
     {
-        //
+        $teams = Team::all();
+        return view('team.create')->withTeams($teams);
     }
 
     /**
@@ -36,7 +39,29 @@ class TeamsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:2|max:80',
+            'level' => 'required',
+            'place' => 'required',
+            'telephone' => 'min:1111111111|max:9999999999999|numeric',
+            'fax' => 'min:1111111111|max:9999999999999|numeric',
+            'email' => 'email',
+            'website' => 'url'
+        ]);
+
+        $team = new Team();
+        $team->name = $request->name;
+        $team->level = $request->level;
+        $team->place = $request->place;
+        $team->telephone = $request->telephone;
+        $team->fax = $request->fax;
+        $team->email = $request->email;
+        $team->website = $request->website;
+        $team->save();
+
+        Session::flash('success', 'Team added successfully!');
+
+        return redirect()->route('team.show', $team->id);
     }
 
     /**
@@ -47,7 +72,8 @@ class TeamsController extends Controller
      */
     public function show($id)
     {
-        //
+        $team = Team::find($id);
+        return view('team.show')->withTeam($team);
     }
 
     /**
