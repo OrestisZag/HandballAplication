@@ -30,6 +30,6 @@ class AthleteDataTeam extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('athleteData_team');
     }
 }
