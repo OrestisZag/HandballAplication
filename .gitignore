@@ -8,7 +8,7 @@ Homestead.json
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
-/public/athletePhoto/*
+/public/athletePhoto/*.png
 # Folder config file
 Desktop.ini
 
