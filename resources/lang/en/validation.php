@@ -110,4 +110,17 @@ return [
 
     'attributes' => [],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Validation Rules
+    |--------------------------------------------------------------------------
+    |
+    |
+    | Custom validation rules are created in app/Providers/AppServiceProvider.php
+    |
+    |
+    */
+
+    'telephone' => "The :attribute may only contain numbers, '+', '-', '(' and ')'.",
+    'mobile' => "The :attribute may only contain '+' at beginning if necessary, numbers and '-'.",
 ];

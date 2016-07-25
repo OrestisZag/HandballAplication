@@ -43,8 +43,8 @@ class TeamsController extends Controller
             'name' => 'required|min:2|max:80',
             'level' => 'required',
             'place' => 'required',
-            'telephone' => 'min:1111111111|max:9999999999999|numeric',
-            'fax' => 'min:1111111111|max:9999999999999|numeric',
+            'telephone' => 'telephone|min:10|max:15',
+            'fax' => 'telephone|min:10|max:15',
             'email' => 'email',
             'website' => 'url'
         ]);
@@ -101,13 +101,13 @@ class TeamsController extends Controller
             'name' => 'required|min:2|max:80',
             'level' => 'required',
             'place' => 'required',
-            'telephone' => 'min:1111111111|max:9999999999999|numeric',
-            'fax' => 'min:1111111111|max:9999999999999|numeric',
+            'telephone' => 'telephone|min:10|max:15',
+            'fax' => 'telephone|min:10|max:15',
             'email' => 'email',
             'website' => 'url'
         ]);
 
-        $team = new Team();
+        $team = Team::find($id);
         $team->name = $request->input('name');
         $team->level = $request->input('level');
         $team->place = $request->input('place');
