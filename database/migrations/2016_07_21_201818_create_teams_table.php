@@ -21,6 +21,7 @@ class CreateTeamsTable extends Migration
             $table->string('fax');
             $table->string('email');
             $table->string('website');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

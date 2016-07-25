@@ -84,7 +84,8 @@ class TeamsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $team = Team::find($id);
+        return view('team.edit')->withTeam($team);
     }
 
     /**
@@ -96,7 +97,29 @@ class TeamsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:2|max:80',
+            'level' => 'required',
+            'place' => 'required',
+            'telephone' => 'min:1111111111|max:9999999999999|numeric',
+            'fax' => 'min:1111111111|max:9999999999999|numeric',
+            'email' => 'email',
+            'website' => 'url'
+        ]);
+
+        $team = new Team();
+        $team->name = $request->input('name');
+        $team->level = $request->input('level');
+        $team->place = $request->input('place');
+        $team->telephone = $request->input('telephone');
+        $team->fax = $request->input('fax');
+        $team->email = $request->input('email');
+        $team->website = $request->input('website');
+        $team->save();
+
+        Session::flash('success', 'Team updated successfully!');
+
+        return redirect()->route('team.show', $team->id);
     }
 
     /**
@@ -107,6 +130,11 @@ class TeamsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $team = Team::find($id);
+        $team->delete();
+
+        Session::flash('success', 'Team deleted successfully!');
+
+        return redirect()->route('team.index');
     }
 }

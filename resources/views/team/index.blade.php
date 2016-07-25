@@ -11,6 +11,7 @@
                     <li>
                         {{ $team->name }}
                         <a href="{{ route('team.show', $team->id) }}">View</a>
+                        <a href="{{ route('team.edit', $team->id) }}">Edit</a>
                     </li>
                 @endforeach
             </ul>
