@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', "| Editing $team->name")
+@section('title', "| Edit Team")
 
 @section('content')
     <div class="row">

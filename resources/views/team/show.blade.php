@@ -1,6 +1,6 @@
 @extends('main)
-
-@section('title', "| $team->name")
+<?php $teamShow = $team->name ?>
+@section('title', "| $teamShow")
 
 @section('content')
     <div class="row">

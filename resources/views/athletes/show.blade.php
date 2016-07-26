@@ -1,6 +1,6 @@
 @extends('main')
-
-@section('title', "| $athlete->lastName $athlete->firstName")
+<?php $athleteShow = $athlete->lastName.' '.$athlete->firstName?>
+@section('title', "| $athleteShow")
 
 @section('content')
     <h1>{{ $athlete->lastName }} {{ $athlete->firstName }}</h1>
