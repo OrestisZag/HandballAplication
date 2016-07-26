@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\AthleteData;
+use App\Team;
 use Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,8 @@ class AthletesController extends Controller
     public function create()
     {
         $athletes = AthleteData::all();
-        return view('athletes.create')->withAthletes($athletes);
+        $teams = Team::all();
+        return view('athletes.create')->withAthletes($athletes)->withTeams($teams);
     }
 
     /**
@@ -88,6 +90,7 @@ class AthletesController extends Controller
         $athlete->IDNumber = $request->IDNumber;
         $athlete->comments = $request->comments;
         $athlete->save();
+        $athlete->team()->sync($request->team, false);
 
         if(Input::file('photo')) {
             $imageName = $athlete->id.'.png';

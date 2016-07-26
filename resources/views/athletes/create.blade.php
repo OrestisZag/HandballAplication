@@ -70,6 +70,13 @@
                 {{ Form::label('photo', 'Upload Athlete\'s photo:') }}
                 {{ Form::file('photo') }}
 
+                {{ Form::label('teams', 'Athlete\'s Current Team:') }}
+                <select class="vale bs class" name="teams[]">
+                    @foreach($teams as $team)
+                        <option value="{{ $team->id }}">{{ $team->name }}</option>
+                    @endforeach
+                </select>
+
                 {{ Form::label('comments', 'Comments:') }}
                 {{ Form::textarea('comments', null, ['class' => 'vale bs class']) }}
 
