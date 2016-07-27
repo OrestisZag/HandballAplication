@@ -10,6 +10,6 @@ class Team extends Model
     use SoftDeletes;
 
     public function athleteData() {
-        $this->belongsToMany('App\AthleteData');
+        return $this->belongsToMany('App\AthleteData');
     }
 }

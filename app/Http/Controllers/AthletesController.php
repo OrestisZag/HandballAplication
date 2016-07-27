@@ -90,7 +90,7 @@ class AthletesController extends Controller
         $athlete->IDNumber = $request->IDNumber;
         $athlete->comments = $request->comments;
         $athlete->save();
-        $athlete->team()->sync($request->team, false);
+        $athlete->teams()->sync($request->teams, false);
 
         if(Input::file('photo')) {
             $imageName = $athlete->id.'.png';

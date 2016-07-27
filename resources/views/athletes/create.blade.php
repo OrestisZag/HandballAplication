@@ -6,7 +6,7 @@
     <h1>Create Athlete Profile</h1>
     <div class="row">
         <div class="col-md-12">
-            {!! Form::open(['route' => ['athlete.store'], 'files' => true]) !!}
+            {!! Form::open(['route' => 'athlete.store', 'files' => true]) !!}
                 {{ Form::label('lastName', 'Last Name:') }}
                 {{ Form::text('lastName', null, ['class' => 'vale bs class']) }}
 
@@ -71,7 +71,7 @@
                 {{ Form::file('photo') }}
 
                 {{ Form::label('teams', 'Athlete\'s Current Team:') }}
-                <select class="vale bs class" name="teams[]">
+                <select class="vale bs class" name="teams[]" title="teams">
                     @foreach($teams as $team)
                         <option value="{{ $team->id }}">{{ $team->name }}</option>
                     @endforeach

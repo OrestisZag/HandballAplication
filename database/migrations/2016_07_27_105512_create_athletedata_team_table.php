@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAthleteDataTeamTable extends Migration
+class CreateAthletedataTeamTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,12 @@ class CreateAthleteDataTeamTable extends Migration
      */
     public function up()
     {
-        Schema::create('athleteData_team', function (Blueprint $table) {
+        Schema::create('athlete_data_team', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('athlete_id')->unsigned();
-            $table->foreign('athlete_id')->references('id')->on('athlete_datas');
+            $table->integer('athlete_data_id')->unsigned();
+            $table->foreign('athlete_data_id')->references('id')->on('athlete_datas');
             $table->integer('team_id')->unsigned();
             $table->foreign('team_id')->references('id')->on('teams');
-            $table->date('confirmationDate');
-            $table->string('status');
         });
     }
 
@@ -30,6 +28,6 @@ class CreateAthleteDataTeamTable extends Migration
      */
     public function down()
     {
-        Schema::drop('athleteData_team');
+        Schema::drop('athlete_data_team');
     }
 }
