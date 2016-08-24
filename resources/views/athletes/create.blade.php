@@ -77,6 +77,12 @@
                     @endforeach
                 </select>
 
+                {{ Form::label('from_date', 'From:') }}
+                {{ Form::text('from_date'), null, ['class' => 'vale bs class'] }}
+
+                {{ Form::label('to_date', 'To:') }}
+                {{ Form::text('to_date'), null, ['class' => 'vale bs class'] }}
+
                 {{ Form::label('comments', 'Comments:') }}
                 {{ Form::textarea('comments', null, ['class' => 'vale bs class']) }}
 
@@ -94,6 +100,10 @@
         $( "#birthday" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: "1920:2100"})
             .keydown(false);
         $( "#passportExpDate" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,
+            yearRange: "1920:2100"}).keydown(false);
+        $( "#from_date" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,
+            yearRange: "1920:2100"}).keydown(false);
+        $( "#to_date" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,
             yearRange: "1920:2100"}).keydown(false);
     });
     </script>

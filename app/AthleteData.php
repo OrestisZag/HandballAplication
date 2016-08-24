@@ -10,6 +10,6 @@ class AthleteData extends Model
     use SoftDeletes;
 
     public function teams() {
-        return $this->belongsToMany('App\Team');
+        return $this->belongsToMany('App\Team')->withPivot('from_date', 'to_date');
     }
 }

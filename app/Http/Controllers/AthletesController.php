@@ -91,7 +91,7 @@ class AthletesController extends Controller
         $athlete->IDNumber = $request->IDNumber;
         $athlete->comments = $request->comments;
         $athlete->save();
-        $athlete->teams()->sync($request->teams, false);
+        $athlete->teams()->attach($request->teams, ['from_date' => $request->from_date, 'to_date' => $request->to_date]);
 
         if(Input::file('photo')) {
             $imageName = $athlete->id.'.png';

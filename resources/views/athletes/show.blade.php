@@ -122,4 +122,23 @@
             @endif
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12 col-md-offset-4">
+            <h3>Team</h3>
+            <label>From Date:</label>
+            @foreach($athlete->teams as $team)
+                {{ $team->pivot->from_date }}
+            @endforeach
+            <br>
+            <label>To Date:</label>
+            @foreach($athlete->teams as $team)
+                {{ $team->pivot->to_date }}
+            @endforeach
+            <br>
+            <label>Current Team:</label>
+            @foreach($athlete->teams as $team)
+                {{ $team->name }}
+            @endforeach
+        </div>
+    </div>
 @endsection
