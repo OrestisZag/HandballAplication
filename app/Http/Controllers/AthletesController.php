@@ -58,14 +58,14 @@ class AthletesController extends Controller
             'email2' => 'email',
             'country' => 'required|min:4|max:30',
             'region' => 'required|min:4|max:30',
-            'address' => 'required|min:5|max:50',
+            'address' => 'required|min:5|max:255',
             'postalCode' => 'max:10',
             'passportNumber' => 'max:50',
             'passportExpDate' => 'date',
             'passportLastName' => 'min:2|max:30|alpha',
             'IDNumber' => 'max:10',
             'photo' => 'sometimes|required|image',
-            'comments' => 'max:255'
+            'comments' => 'max:500'
         ]);
 
         $athlete = new AthleteData();
