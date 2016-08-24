@@ -1,4 +1,4 @@
-@extends('main)
+@extends('main')
 <?php $teamShow = $team->name ?>
 @section('title', "| $teamShow")
 
