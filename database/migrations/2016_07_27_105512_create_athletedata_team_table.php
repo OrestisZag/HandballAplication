@@ -18,8 +18,8 @@ class CreateAthletedataTeamTable extends Migration
             $table->foreign('athlete_data_id')->references('id')->on('athlete_datas');
             $table->integer('team_id')->unsigned();
             $table->foreign('team_id')->references('id')->on('teams');
-            $table->text('from_date');
-            $table->text('to_date');
+            $table->boolean('current');
+            $table->boolean('old');
         });
     }
 

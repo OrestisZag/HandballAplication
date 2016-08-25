@@ -47,8 +47,8 @@ class AthletesController extends Controller
             'lastName' => 'required|min:2|max:30|alpha',
             'firstName' => 'required|min:2|max:30|alpha',
             'birthday' => 'required|date',
-            'height' => 'required|numeric|min:0.5|max:2.50',
-            'weight' => 'required|numeric|min:30|max:150',
+            'height' => 'numeric|min:0.5|max:2.50',
+            'weight' => 'numeric|min:30|max:150',
             'mobile' => 'mobile|min:10|max:15',
             'telephone1' => 'telephone|min:10|max:15',
             'telephone2' => 'telephone|min:10|max:15',
@@ -91,7 +91,8 @@ class AthletesController extends Controller
         $athlete->IDNumber = $request->IDNumber;
         $athlete->comments = $request->comments;
         $athlete->save();
-        $athlete->teams()->attach($request->teams, ['from_date' => $request->from_date, 'to_date' => $request->to_date]);
+        $athlete->teams()->attach($request->teams, ['current' => true, 'old' => false]);
+        $athlete->teams()->attach($request->oldTeams, ['current' => false, 'old' => true]);
 
         if(Input::file('photo')) {
             $imageName = $athlete->id.'.png';

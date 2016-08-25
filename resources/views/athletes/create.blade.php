@@ -84,21 +84,12 @@
                     @endforeach
                 </select>
 
-                {{ Form::label('from_date', 'From:') }}
-                {{ Form::text('from_date', null, ['class' => 'form-control input-sm']) }}
-
                 {{ Form::label('oldTeams', 'Athlete\'s Previous Teams:') }}
-                <select class="form-control input-sm select2-old-team" name="teams[]" title="oldTeams" multiple="multiple">
+                <select class="form-control input-sm select2-old-team" name="oldTeams[]" title="oldTeams" multiple="multiple">
                     @foreach($teams as $team)
                         <option value="{{ $team->id }}">{{ $team->name }}</option>
                     @endforeach
                 </select>
-
-                {{ Form::label('old_from_date', 'From:') }}
-                {{ Form::text('old_from_date', null, ['class' => 'form-control input-sm']) }}
-
-                {{ Form::label('to_date', 'To:') }}
-                {{ Form::text('to_date', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('comments', 'Comments:') }}
                 {{ Form::textarea('comments', null, ['class' => 'form-control']) }}
@@ -118,10 +109,6 @@
         $( "#birthday" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: "1920:2100"})
             .keydown(false);
         $( "#passportExpDate" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,
-            yearRange: "1920:2100"}).keydown(false);
-        $( "#from_date" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,
-            yearRange: "1920:2100"}).keydown(false);
-        $( "#to_date" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,
             yearRange: "1920:2100"}).keydown(false);
     });
     $('.select2-team').select2({

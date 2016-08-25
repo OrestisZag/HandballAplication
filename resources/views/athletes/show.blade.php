@@ -125,19 +125,25 @@
     <div class="row">
         <div class="col-md-12 col-md-offset-4">
             <h3>Team</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
             <label>Current Team:</label>
-            @foreach($athlete->teams as $team)
-                {{ $team->name }}
-            @endforeach
             <br>
-            <label>From Date:</label>
-            @foreach($athlete->teams as $team)
-                {{ $team->pivot->from_date }}
-            @endforeach
+                @foreach($athlete->teams as $team)
+                    @if($team->pivot->current == true)
+                        <a href="{{ route('team.show', $team->id) }}">{{ $team->name }}</a>
+                    @endif
+                @endforeach
+        </div>
+        <div class="col-md-4">
+            <label>Old Team:</label>
             <br>
-            <label>To Date:</label>
             @foreach($athlete->teams as $team)
-                {{ $team->pivot->to_date }}
+                @if($team->pivot->old == true)
+                    <a href="{{ route('team.show', $team->id) }}">{{ $team->name }}</a><br>
+                @endif
             @endforeach
         </div>
     </div>
