@@ -3,7 +3,7 @@
 @section('title', '| Edit Player')
 
 @section('style')
-    {{--{!! Html::style('css/select2.min.css') !!}--}}
+    {!! Html::style('css/select2.min.css') !!}
 @endsection
 
 @section('content')
@@ -82,20 +82,29 @@
                 @endif
                 {{ Form::file('photo') }}
 
-                {{--{{ Form::label('teams', 'Current Team:') }}--}}
-                {{--@foreach($athlete->teams as $team)--}}
-                    {{--@if($team->pivot->current == true)--}}
-                        {{--{{ $team->name }}--}}
-                    {{--@endif--}}
-                {{--@endforeach--}}
-                {{--{{ Form::select('teams[]', $teams , null, ['class' => 'form-control select2-team', 'multiple' => 'multiple']) }}--}}
+                {{ Form::label('teams', 'Athlete\'s Current Team:') }}
+                @foreach($athlete->athleteDataTeams as $team)
+                    @if($team->currentTeam == true)
+                        {{ $team->team->name }}
+                    @endif
+                @endforeach
+                <select class="form-control input-sm select2-team" name="teams" title="team" multiple="multiple">
+                    @foreach($teams as $team)
+                        <option value="{{ $team->id }}">{{ $team->name }}</option>
+                    @endforeach
+                </select>
 
-                {{--{{ Form::label('oldTeams', 'Old Teams:') }}--}}
-                {{--@foreach($athlete->teams as $team)--}}
-                    {{--@if($team->pivot->old == true)--}}
-                        {{--{{ $team->name }}--}}
-                    {{--@endif--}}
-                {{--@endforeach--}}
+                {{ Form::label('oldTeams', 'Old Teams:') }}
+                @foreach($athlete->athleteDataTeams as $team)
+                    @if($team->currentTeam == false)
+                        {{ $team->team->name }} <strong>|</strong>
+                    @endif
+                @endforeach
+                <select class="form-control input-sm select2-old" name="oldTeams[]" title="team" multiple="multiple">
+                    @foreach($teams as $team)
+                        <option value="{{ $team->id }}">{{ $team->name }}</option>
+                    @endforeach
+                </select>
                 {{--{{ Form::select('oldTeams[]', $teams , null, ['class' => 'form-control select2-old', 'multiple' => 'multiple']) }}--}}
 
                 {{ Form::label('comments', 'Comments:') }}
@@ -115,7 +124,7 @@
 @endsection
 
 @section('script')
-    {{--{!! Html::script('js/select2.min.js') !!}--}}
+    {!! Html::script('js/select2.min.js') !!}
     <script>
         $(function() {
             $( "#birthday" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: "1920:2100"})
@@ -123,12 +132,12 @@
             $( "#passportExpDate" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,
                 yearRange: "1920:2100"}).keydown(false);
         });
-        {{--$('.select2-team').select2({--}}
-            {{--maximumSelectionLength: 1--}}
-        {{--});--}}
-        {{--$('.select2-team').select2().val({!! json_encode($athlete->teams()->getRelatedIds()) !!}).trigger('change');--}}
-        {{--$('.select2-old').select2();--}}
-        {{--$('.select2-old').select2().val({!! json_encode($athlete->teams()->getRelatedIds()) !!}).trigger('change');--}}
+        $('.select2-team').select2({
+            maximumSelectionLength: 1
+        });
+        {{--$('.select2-team').select2().val({!! json_encode($athlete->athleteDataTeams->team()->getRelatedIds()) !!}).trigger('change');--}}
+        $('.select2-old').select2();
+        {{--$('.select2-old').select2().val({!! json_encode($athlete->athleteDataTeams()->getRelatedIds()) !!}).trigger('change');--}}
     </script>
 
 @endsection

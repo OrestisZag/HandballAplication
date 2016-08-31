@@ -146,7 +146,9 @@ class AthletesController extends Controller
     public function edit($id)
     {
         $athlete = AthleteData::find($id);
-        return view('athletes.edit')->withAthlete($athlete);
+        $teams = Team::all();
+
+        return view('athletes.edit')->withAthlete($athlete)->withTeams($teams);
     }
 
     /**
@@ -214,25 +216,26 @@ class AthletesController extends Controller
         $athlete->comments = $request->input('comments');
         $athlete->save();
 
-//        if(isset($request->teams)) {
-//            $data = [];
-//            foreach($request->input('teams') as $id) {
-//                $data[$id] = [ 'current' => true ];
-//            }
-//            $athlete->teams()->sync($data);
-//        } else {
-//            $athlete->teams()->sync(array());
-//        }
-//
-//        if(isset($request->oldTeams)) {
-//            $data = [];
-//            foreach($request->input('oldTeams') as $id) {
-//                $data[$id] = [ 'old' => true ];
-//            }
-//            $athlete->teams()->sync($data);
-//        } else {
-//            $athlete->teams()->sync(array());
-//        }
+        if(isset($request->teams)) {
+            $athleteTeam = AthleteData_Team::where('athlete_id', '=', "$id")->where('currentTeam', '=', '1')->first();
+            $athleteTeam->currentTeam = false;
+            $athleteTeam->save();
+            $athleteTeam = new AthleteData_Team();
+            $athleteTeam->athlete_id = $id;
+            $athleteTeam->team_id = $request->teams;
+            $athleteTeam->currentTeam = true;
+            $athleteTeam->save();
+        }
+
+        if(isset($request->oldTeams)) {
+            foreach ($request->oldTeams as $team) {
+                $athleteTeam = new AthleteData_Team();
+                $athleteTeam->athlete_id = $athlete->id;
+                $athleteTeam->team_id = $team;
+                $athleteTeam->currentTeam = false;
+                $athleteTeam->save();
+            }
+        }
 
         Session::flash('success', 'Player info updated successfully!');
 
