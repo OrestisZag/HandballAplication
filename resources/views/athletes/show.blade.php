@@ -20,9 +20,17 @@
             <label>Age:</label>
             {{ date_diff(date_create($athlete->birthday), date_create(date("Y-m-d")))->format("%y") }}<br>
             <label>Height:</label>
-            {{ $athlete->height }}<strong>m</strong><br>
+            @if($athlete->height > 0)
+                {{ $athlete->height }}<strong>m</strong><br>
+            @else
+                -<br>
+            @endif
             <label>Weight:</label>
-            {{ $athlete->weight }}<strong>kg</strong>
+            @if($athlete->weight > 0)
+                {{ $athlete->weight }}<strong>kg</strong><br>
+            @else
+                -<br>
+            @endif
             <h3>Contact Info:</h3>
             <label>Mobile:</label>
             @if($athlete->mobile)
@@ -122,29 +130,29 @@
             @endif
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12 col-md-offset-4">
-            <h3>Team</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <label>Current Team:</label>
-            <br>
-                @foreach($athlete->teams as $team)
-                    @if($team->pivot->current == true)
-                        <a href="{{ route('team.show', $team->id) }}">{{ $team->name }}</a>
-                    @endif
-                @endforeach
-        </div>
-        <div class="col-md-4">
-            <label>Old Team:</label>
-            <br>
-            @foreach($athlete->teams as $team)
-                @if($team->pivot->old == true)
-                    <a href="{{ route('team.show', $team->id) }}">{{ $team->name }}</a><br>
-                @endif
-            @endforeach
-        </div>
-    </div>
+    {{--<div class="row">--}}
+        {{--<div class="col-md-12 col-md-offset-4">--}}
+            {{--<h3>Team</h3>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+    {{--<div class="row">--}}
+        {{--<div class="col-md-4 col-md-offset-4">--}}
+            {{--<label>Current Team:</label>--}}
+            {{--<br>--}}
+            {{--@foreach($athlete->teams as $team)--}}
+                    {{--@if($team->pivot->current == true)--}}
+                        {{--<a href="{{ route('team.show', $team->id) }}">{{ $team->name }}</a>--}}
+                    {{--@endif--}}
+            {{--@endforeach--}}
+        {{--</div>--}}
+        {{--<div class="col-md-4">--}}
+            {{--<label>Old Team:</label>--}}
+            {{--<br>--}}
+            {{--@foreach($athlete->teams as $team)--}}
+                {{--@if($team->pivot->old == true)--}}
+                    {{--<a href="{{ route('team.show', $team->id) }}">{{ $team->name }}</a><br>--}}
+                {{--@endif--}}
+            {{--@endforeach--}}
+        {{--</div>--}}
+    {{--</div>--}}
 @endsection

@@ -2,6 +2,10 @@
 
 @section('title', '| Edit Player')
 
+@section('style')
+    {{--{!! Html::style('css/select2.min.css') !!}--}}
+@endsection
+
 @section('content')
     <h1>Edit {{ $athlete->lastName }} {{ $athlete->firstName }}'s Info:</h1>
     <div class="row">
@@ -78,6 +82,22 @@
                 @endif
                 {{ Form::file('photo') }}
 
+                {{--{{ Form::label('teams', 'Current Team:') }}--}}
+                {{--@foreach($athlete->teams as $team)--}}
+                    {{--@if($team->pivot->current == true)--}}
+                        {{--{{ $team->name }}--}}
+                    {{--@endif--}}
+                {{--@endforeach--}}
+                {{--{{ Form::select('teams[]', $teams , null, ['class' => 'form-control select2-team', 'multiple' => 'multiple']) }}--}}
+
+                {{--{{ Form::label('oldTeams', 'Old Teams:') }}--}}
+                {{--@foreach($athlete->teams as $team)--}}
+                    {{--@if($team->pivot->old == true)--}}
+                        {{--{{ $team->name }}--}}
+                    {{--@endif--}}
+                {{--@endforeach--}}
+                {{--{{ Form::select('oldTeams[]', $teams , null, ['class' => 'form-control select2-old', 'multiple' => 'multiple']) }}--}}
+
                 {{ Form::label('comments', 'Comments:') }}
                 {{ Form::textarea('comments', null, ['class' => 'vale bs class']) }}
 
@@ -95,6 +115,7 @@
 @endsection
 
 @section('script')
+    {{--{!! Html::script('js/select2.min.js') !!}--}}
     <script>
         $(function() {
             $( "#birthday" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: "1920:2100"})
@@ -102,5 +123,12 @@
             $( "#passportExpDate" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,
                 yearRange: "1920:2100"}).keydown(false);
         });
+        {{--$('.select2-team').select2({--}}
+            {{--maximumSelectionLength: 1--}}
+        {{--});--}}
+        {{--$('.select2-team').select2().val({!! json_encode($athlete->teams()->getRelatedIds()) !!}).trigger('change');--}}
+        {{--$('.select2-old').select2();--}}
+        {{--$('.select2-old').select2().val({!! json_encode($athlete->teams()->getRelatedIds()) !!}).trigger('change');--}}
     </script>
+
 @endsection

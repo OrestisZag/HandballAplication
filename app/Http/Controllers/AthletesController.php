@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AthleteData_Team;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\AthleteData;
@@ -91,8 +92,6 @@ class AthletesController extends Controller
         $athlete->IDNumber = $request->IDNumber;
         $athlete->comments = $request->comments;
         $athlete->save();
-        $athlete->teams()->attach($request->teams, ['current' => true, 'old' => false]);
-        $athlete->teams()->attach($request->oldTeams, ['current' => false, 'old' => true]);
 
         if(Input::file('photo')) {
             $imageName = $athlete->id.'.png';
@@ -101,6 +100,24 @@ class AthletesController extends Controller
             DB::table('athlete_datas')
                 ->where('id', $athlete->id)
                 ->update(['photo' => base_path().'/public/athletePhoto/'.$athlete->id.'.png']);
+        }
+
+        if(isset($request->teams)) {
+            $athleteTeam = new AthleteData_Team();
+            $athleteTeam->athlete_id = $athlete->id;
+            $athleteTeam->team_id = $request->teams;
+            $athleteTeam->currentTeam = true;
+            $athleteTeam->save();
+        }
+
+        if(isset($request->oldTeams)) {
+            foreach ($request->oldTeams as $team) {
+                $athleteTeam = new AthleteData_Team();
+                $athleteTeam->athlete_id = $athlete->id;
+                $athleteTeam->team_id = $team;
+                $athleteTeam->currentTeam = false;
+                $athleteTeam->save();
+            }
         }
 
         Session::flash('success', 'Player info added successfully!');
@@ -129,6 +146,14 @@ class AthletesController extends Controller
     public function edit($id)
     {
         $athlete = AthleteData::find($id);
+//        $teams = Team::all();
+//        $teams2 = array();
+//        foreach ($teams as $team) {
+//            $teams2[$team->id] = $team->name;
+//        }
+
+//        dd($teams);
+
         return view('athletes.edit')->withAthlete($athlete);
     }
 
@@ -196,6 +221,26 @@ class AthletesController extends Controller
         }
         $athlete->comments = $request->input('comments');
         $athlete->save();
+
+//        if(isset($request->teams)) {
+//            $data = [];
+//            foreach($request->input('teams') as $id) {
+//                $data[$id] = [ 'current' => true ];
+//            }
+//            $athlete->teams()->sync($data);
+//        } else {
+//            $athlete->teams()->sync(array());
+//        }
+//
+//        if(isset($request->oldTeams)) {
+//            $data = [];
+//            foreach($request->input('oldTeams') as $id) {
+//                $data[$id] = [ 'old' => true ];
+//            }
+//            $athlete->teams()->sync($data);
+//        } else {
+//            $athlete->teams()->sync(array());
+//        }
 
         Session::flash('success', 'Player info updated successfully!');
 

@@ -78,7 +78,7 @@
                 {{ Form::file('photo') }}
 
                 {{ Form::label('teams', 'Athlete\'s Current Team:') }}
-                <select class="form-control input-sm select2-team" name="teams[]" title="team" multiple="multiple">
+                <select class="form-control input-sm select2-team" name="teams" title="team" multiple="multiple">
                     @foreach($teams as $team)
                         <option value="{{ $team->id }}">{{ $team->name }}</option>
                     @endforeach
