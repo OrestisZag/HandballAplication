@@ -146,14 +146,6 @@ class AthletesController extends Controller
     public function edit($id)
     {
         $athlete = AthleteData::find($id);
-//        $teams = Team::all();
-//        $teams2 = array();
-//        foreach ($teams as $team) {
-//            $teams2[$team->id] = $team->name;
-//        }
-
-//        dd($teams);
-
         return view('athletes.edit')->withAthlete($athlete);
     }
 

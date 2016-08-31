@@ -9,11 +9,7 @@ class AthleteData extends Model
 {
     use SoftDeletes;
 
-//    public function teams() {
-//        return $this->belongsToMany('App\Team');
-//    }
-
-    public function athleteDataTeam() {
-        return $this->hasMany('App\AthleteData_Team');
+    public function athleteDataTeams() {
+        return $this->hasMany('App\AthleteData_Team', 'athlete_id');
     }
 }
