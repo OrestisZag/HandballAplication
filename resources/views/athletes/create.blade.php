@@ -78,18 +78,45 @@
                 {{ Form::file('photo') }}
 
                 {{ Form::label('teams', 'Athlete\'s Current Team:') }}
-                <select class="form-control input-sm select2-team" name="teams" title="team" multiple="multiple">
+                <select class="form-control input-sm select2-team" name="teams" title="teams" multiple="multiple">
                     @foreach($teams as $team)
                         <option value="{{ $team->id }}">{{ $team->name }}</option>
                     @endforeach
                 </select>
 
-                {{ Form::label('oldTeams', 'Athlete\'s Previous Teams:') }}
-                <select class="form-control input-sm select2-old-team" name="oldTeams[]" title="oldTeams" multiple="multiple">
+                {{ Form::label('signed', 'Sign Year:') }}
+                <select name="signed" title="signed">
+                    @for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y');
+                        $starting_year++)
+                        <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option>
+                    @endfor
+                </select><br>
+
+                {{ Form::label('oldTeams[]', 'Athlete\'s Previous Teams:') }}
+                <select class="form-control input-sm select2-old-team" name="oldTeams0" title="oldTeams" multiple="multiple">
                     @foreach($teams as $team)
                         <option value="{{ $team->id }}">{{ $team->name }}</option>
                     @endforeach
                 </select>
+
+                {{ Form::label('signed-_ld', 'Sign Year:') }}
+                <select name="signed_old" title="signed_old">
+                    @for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y');
+                        $starting_year++)
+                        <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option>
+                    @endfor
+                </select>
+
+                {{ Form::label('left', 'Left Year:') }}
+                <select name="left" title="left">
+                    @for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y');
+                        $starting_year++)
+                        <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option>
+                    @endfor
+                </select>
+
+                <div id="select"></div>
+                <input type="button" onclick="addInput();" name="add" value="+ Add" class="btn btn-success pull-right"/><br>
 
                 {{ Form::label('comments', 'Comments:') }}
                 {{ Form::textarea('comments', null, ['class' => 'form-control']) }}
@@ -105,15 +132,39 @@
 @section('script')
     {!! Html::script('js/select2.min.js') !!}
     <script>
-    $(function() {
-        $( "#birthday" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: "1920:2100"})
-            .keydown(false);
-        $( "#passportExpDate" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,
-            yearRange: "1920:2100"}).keydown(false);
-    });
-    $('.select2-team').select2({
-        maximumSelectionLength: 1
-    });
-    $('.select2-old-team').select2();
+        $(function() {
+            $( "#birthday" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: "1920:2100"})
+                .keydown(false);
+            $( "#passportExpDate" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,
+                yearRange: "1920:2100"}).keydown(false);
+        });
+
+        $('.select2-team').select2({
+            maximumSelectionLength: 1
+        });
+        $('.select2-old-team').select2();
+
+        var fields = 1;
+        function addInput() {
+            document.getElementById('select').innerHTML +=
+                    '<select class="form-control input-sm select2-team" name="oldTeams'+ fields +'" title="oldTeams">' +
+                    '@foreach($teams as $team)
+                        <option value="{{ $team->id }}">{{ $team->name }}</option> ' +
+                    '@endforeach '+
+                    '</select>'+
+                    '<label id="signed">Sign Year &nbsp;</label>'+
+                    '<select name="signed" title="signed">' +
+                    '@for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y'); $starting_year++)
+                        <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option> ' +
+                    '@endfor '+
+                    '</select>'+
+                    '<label id="left" style="margin-left: 10px;">Left Year &nbsp;</label>'+
+                    '<select name="left" title="left">' +
+                    '@for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y'); $starting_year++)
+                            <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option> ' +
+                    '@endfor '+
+                    '</select>';
+                    fields += 1;
+        }
     </script>
 @endsection

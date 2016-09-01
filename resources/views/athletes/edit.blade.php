@@ -94,6 +94,14 @@
                     @endforeach
                 </select>
 
+                {{ Form::label('signed', 'Sign Year:') }}
+                <select name="signed" title="signed">
+                    @for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y');
+                        $starting_year++)
+                        <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option>
+                    @endfor
+                </select>
+
                 {{ Form::label('oldTeams', 'Old Teams:') }}
                 @foreach($athlete->athleteDataTeams as $team)
                     @if($team->currentTeam == false)

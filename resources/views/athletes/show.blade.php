@@ -138,21 +138,57 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <label>Current Team:</label>
-            <br>
-            @foreach($athlete->athleteDataTeams as $team)
-                @if($team->currentTeam == 1)
-                    <a href="{{ route('team.show', $team->team_id) }}">{{ $team->team->name }}</a>
-                @endif
-            @endforeach
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Team Name</th>
+                        <th>Sign Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @foreach($athlete->athleteDataTeams as $team)
+                            @if($team->currentTeam == 1)
+                                <td>
+                                    <a href="{{ route('team.show', $team->team_id) }}">{{ $team->team->name }}</a>
+                                </td>
+                                <td>
+                                    {{ $team->signed }}
+                                </td>
+                            @endif
+                        @endforeach
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="col-md-4">
             <label>Old Team:</label>
-            <br>
-            @foreach($athlete->athleteDataTeams as $team)
-                @if($team->currentTeam == 0)
-                    <a href="{{ route('team.show', $team->team_id) }}">{{ $team->team->name }}</a><br>
-                @endif
-            @endforeach
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Team Name</th>
+                    <th>Sign Year</th>
+                    <th>Left Year</th>
+                </tr>
+                </thead>
+                <tbody>
+                    @foreach($athlete->athleteDataTeams as $team)
+                        @if($team->currentTeam == 0)
+                            <tr>
+                                <td>
+                                    <a href="{{ route('team.show', $team->team_id) }}">{{ $team->team->name }}</a>
+                                </td>
+                                <td>
+                                    {{ $team->signed }}
+                                </td>
+                                <td>
+                                    {{ $team->left }}
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection

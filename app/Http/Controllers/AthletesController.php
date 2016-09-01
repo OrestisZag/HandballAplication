@@ -107,6 +107,7 @@ class AthletesController extends Controller
             $athleteTeam->athlete_id = $athlete->id;
             $athleteTeam->team_id = $request->teams;
             $athleteTeam->currentTeam = true;
+            $athleteTeam->signed = $request->signed;
             $athleteTeam->save();
         }
 
@@ -116,6 +117,8 @@ class AthletesController extends Controller
                 $athleteTeam->athlete_id = $athlete->id;
                 $athleteTeam->team_id = $team;
                 $athleteTeam->currentTeam = false;
+                $athleteTeam->signed = $request->signed_old;
+                $athleteTeam->left = $request->left;
                 $athleteTeam->save();
             }
         }
@@ -219,11 +222,13 @@ class AthletesController extends Controller
         if(isset($request->teams)) {
             $athleteTeam = AthleteData_Team::where('athlete_id', '=', "$id")->where('currentTeam', '=', '1')->first();
             $athleteTeam->currentTeam = false;
+            $athleteTeam->left = date('Y');
             $athleteTeam->save();
             $athleteTeam = new AthleteData_Team();
             $athleteTeam->athlete_id = $id;
             $athleteTeam->team_id = $request->teams;
             $athleteTeam->currentTeam = true;
+            $athleteTeam->signed = $request->signed;
             $athleteTeam->save();
         }
 

@@ -19,6 +19,8 @@ class CreateAthleteDataTeamsTable extends Migration
             $table->integer('team_id')->unsigned();
             $table->foreign('team_id')->references('id')->on('teams');
             $table->boolean('currentTeam');
+            $table->string('signed');
+            $table->string('left');
             $table->timestamps();
         });
     }

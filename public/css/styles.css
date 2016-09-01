@@ -1,3 +1,7 @@
 .space-top{
   margin-top: 10px;
 }
+
+.limit-space-top{
+  margin-top: -20px;
+}
