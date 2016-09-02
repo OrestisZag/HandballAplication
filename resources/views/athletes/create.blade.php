@@ -92,23 +92,23 @@
                     @endfor
                 </select><br>
 
-                {{ Form::label('oldTeams[]', 'Athlete\'s Previous Teams:') }}
-                <select class="form-control input-sm select2-old-team" name="oldTeams0" title="oldTeams" multiple="multiple">
+                {{ Form::label('oldTeams0', 'Athlete\'s Previous Teams:') }}
+                <select class="form-control input-sm select2-team" name="oldTeams0" title="oldTeams0" multiple="multiple">
                     @foreach($teams as $team)
                         <option value="{{ $team->id }}">{{ $team->name }}</option>
                     @endforeach
                 </select>
 
-                {{ Form::label('signed-_ld', 'Sign Year:') }}
-                <select name="signed_old" title="signed_old">
+                {{ Form::label('signed_old0', 'Sign Year:') }}
+                <select name="signed_old0" title="signed_old0">
                     @for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y');
                         $starting_year++)
                         <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option>
                     @endfor
                 </select>
 
-                {{ Form::label('left', 'Left Year:') }}
-                <select name="left" title="left">
+                {{ Form::label('left0', 'Left Year:') }}
+                <select name="left0" title="left0">
                     @for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y');
                         $starting_year++)
                         <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option>
@@ -147,19 +147,20 @@
         var fields = 1;
         function addInput() {
             document.getElementById('select').innerHTML +=
-                    '<select class="form-control input-sm select2-team" name="oldTeams'+ fields +'" title="oldTeams">' +
+                    '<label id="oldTeams'+ fields +'">Other</label>'+
+                    '<select class="form-control input-sm select2-team" name="oldTeams'+ fields +'" title="oldTeams'+ fields +'">' +
                     '@foreach($teams as $team)
                         <option value="{{ $team->id }}">{{ $team->name }}</option> ' +
                     '@endforeach '+
                     '</select>'+
-                    '<label id="signed">Sign Year &nbsp;</label>'+
-                    '<select name="signed" title="signed">' +
+                    '<label id="signed_old'+ fields +'">Sign Year &nbsp;</label>'+
+                    '<select name="signed_old'+ fields +'" title="signed'+ fields +'">' +
                     '@for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y'); $starting_year++)
                         <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option> ' +
                     '@endfor '+
                     '</select>'+
                     '<label id="left" style="margin-left: 10px;">Left Year &nbsp;</label>'+
-                    '<select name="left" title="left">' +
+                    '<select name="left'+ fields +'" title="left'+ fields +'">' +
                     '@for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y'); $starting_year++)
                             <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option> ' +
                     '@endfor '+
