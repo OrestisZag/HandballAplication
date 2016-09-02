@@ -113,18 +113,20 @@ class AthletesController extends Controller
 
         if(isset($request->oldTeams0)) {
 //            foreach ($request->oldTeams as $team) {
-            dd($request->{'oldTeams'.'1'});
-            for($i = 0; $i <= 1; $i++) {
-//                dd($request->{'oldTeams'.$i});
-                $athleteTeam = new AthleteData_Team();
-                $athleteTeam->athlete_id = $athlete->id;
-                $athleteTeam->team_id = $request->{'oldTeams'.$i};
-                $athleteTeam->currentTeam = false;
-                $athleteTeam->signed = '2015';
-                $athleteTeam->left = '1000';
-//                $athleteTeam->signed = $request->{'signed_old'.$i};
-//                $athleteTeam->left = $request->{'left'.$i};
-                $athleteTeam->save();
+//            dd($request->{'oldTeams'.'1'});
+            $max = 1;
+            for($i = 0; $i < $max; $i++) {
+                if(isset($request->{'oldTeams'.$i})){
+                    $athleteTeam = new AthleteData_Team();
+                    $athleteTeam->athlete_id = $athlete->id;
+                    $athleteTeam->team_id = $request->{'oldTeams'.$i};
+                    $athleteTeam->currentTeam = false;
+                    $athleteTeam->signed = $request->{'signed_old'.$i};
+                    $athleteTeam->left = $request->{'left'.$i};
+                    $athleteTeam->save();
+                }else {
+                    $max = $i;
+                }
             }
         }
 
