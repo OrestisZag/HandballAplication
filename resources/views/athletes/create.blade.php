@@ -11,7 +11,7 @@
     <a href="{{ route('athlete.index') }}" class="text-right">Back To Athletes</a>
     <div class="row">
         <div class="col-md-4">
-            {!! Form::open(['route' => 'athlete.store', 'files' => true]) !!}
+            {!! Form::open(['route' => 'athlete.store', 'files' => true, 'class' => 'form']) !!}
                 {{ Form::label('lastName', 'Last Name:') }}
                 {{ Form::text('lastName', null, ['class' => 'form-control input-sm']) }}
 
@@ -92,39 +92,38 @@
                     @endfor
                 </select><br>
 
-                {{ Form::label('oldTeams0', 'Athlete\'s Previous Teams:') }}
-                <select class="form-control input-sm select2-team" name="oldTeams0" title="oldTeams0" multiple="multiple">
+                {{ Form::label('oldTeams', 'Athlete\'s Previous Teams:') }}
+                <select class="form-control input-sm select2-old-team" name="oldTeams[]" title="oldTeams[]" multiple="multiple">
                     @foreach($teams as $team)
                         <option value="{{ $team->id }}">{{ $team->name }}</option>
                     @endforeach
                 </select>
 
-                {{ Form::label('signed_old0', 'Sign Year:') }}
-                <select name="signed_old0" title="signed_old0">
-                    @for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y');
-                        $starting_year++)
-                        <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option>
-                    @endfor
-                </select>
+                <!--TODO this part is for old teams with signed and left date. I will create it later -->
+                {{--{{ Form::label('signed_old', 'Sign Year:') }}--}}
+                {{--<select name="signed_old[]" title="signed_old[]">--}}
+                    {{--@for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y');--}}
+                        {{--$starting_year++)--}}
+                        {{--<option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option>--}}
+                    {{--@endfor--}}
+                {{--</select>--}}
 
-                {{ Form::label('left0', 'Left Year:') }}
-                <select name="left0" title="left0">
-                    @for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y');
-                        $starting_year++)
-                        <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option>
-                    @endfor
-                </select>
+                {{--{{ Form::label('left', 'Left Year:') }}--}}
+                {{--<select name="left[]" title="left[]">--}}
+                    {{--@for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y');--}}
+                        {{--$starting_year++)--}}
+                        {{--<option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option>--}}
+                    {{--@endfor--}}
+                {{--</select>--}}
 
-                <div id="select"></div>
-                <input type="button" onclick="addInput();" name="add" value="+ Add" class="btn btn-success pull-right"/><br>
+                {{--<div id="select"></div>--}}
+                {{--<input type="button" onclick="addInput();" name="add" value="+ Add" class="btn btn-success pull-right"/><br>--}}
 
                 {{ Form::label('comments', 'Comments:') }}
                 {{ Form::textarea('comments', null, ['class' => 'form-control']) }}
 
                 {{ Form::submit('Create Player\'s Profile', ['class' => 'bnt btn-success btn-block btn-lg']) }}
             {!! Form::close() !!}
-
-
         </div>
     </div>
 @endsection
@@ -144,28 +143,27 @@
         });
         $('.select2-old-team').select2();
 
-        var fields = 1;
-        function addInput() {
-            document.getElementById('select').innerHTML +=
-                    '<label id="oldTeams'+ fields +'">Other</label>'+
-                    '<select class="form-control input-sm select2-team" name="oldTeams'+ fields +'" title="oldTeams'+ fields +'">' +
-                    '@foreach($teams as $team)
-                        <option value="{{ $team->id }}">{{ $team->name }}</option> ' +
-                    '@endforeach '+
-                    '</select>'+
-                    '<label id="signed_old'+ fields +'">Sign Year &nbsp;</label>'+
-                    '<select name="signed_old'+ fields +'" title="signed'+ fields +'">' +
-                    '@for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y'); $starting_year++)
-                        <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option> ' +
-                    '@endfor '+
-                    '</select>'+
-                    '<label id="left" style="margin-left: 10px;">Left Year &nbsp;</label>'+
-                    '<select name="left'+ fields +'" title="left'+ fields +'">' +
-                    '@for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y'); $starting_year++)
-                            <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option> ' +
-                    '@endfor '+
-                    '</select>';
-                    fields += 1;
-        }
+//        var fields = 1;
+        {{--function addInput() {--}}
+            {{--document.getElementById('select').innerHTML +=--}}
+                    {{--'<select class="form-control input-sm select2-team" name="oldTeams[]" title="oldTeams[]">' +--}}
+                    {{--'@foreach($teams as $team)--}}
+                            {{--<option value="{{ $team->id }}">{{ $team->name }}</option> ' +--}}
+                    {{--'@endforeach '+--}}
+                    {{--'</select>'+--}}
+                    {{--'<label id="signed_old">Sign Year &nbsp;</label>'+--}}
+                    {{--'<select name="signed_old[]" title="signed_old[]">' +--}}
+                    {{--'@for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y'); $starting_year++)--}}
+                            {{--<option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option> ' +--}}
+                    {{--'@endfor '+--}}
+                    {{--'</select>'+--}}
+                    {{--'<label id="left" style="margin-left: 10px;">Left Year &nbsp;</label>'+--}}
+                    {{--'<select name="left[]" title="left[]">' +--}}
+                    {{--'@for($starting_year = date('Y', strtotime('-20 year')); $starting_year <= date('Y'); $starting_year++)--}}
+                            {{--<option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option> ' +--}}
+                    {{--'@endfor '+--}}
+                    {{--'</select>';--}}
+//            fields += 1;
+//        }
     </script>
 @endsection

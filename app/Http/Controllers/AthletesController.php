@@ -111,22 +111,35 @@ class AthletesController extends Controller
             $athleteTeam->save();
         }
 
-        if(isset($request->oldTeams0)) {
-//            foreach ($request->oldTeams as $team) {
-//            dd($request->{'oldTeams'.'1'});
-            $max = 1;
-            for($i = 0; $i < $max; $i++) {
-                if(isset($request->{'oldTeams'.$i})){
-                    $athleteTeam = new AthleteData_Team();
-                    $athleteTeam->athlete_id = $athlete->id;
-                    $athleteTeam->team_id = $request->{'oldTeams'.$i};
-                    $athleteTeam->currentTeam = false;
-                    $athleteTeam->signed = $request->{'signed_old'.$i};
-                    $athleteTeam->left = $request->{'left'.$i};
-                    $athleteTeam->save();
-                }else {
-                    $max = $i;
-                }
+//        TODO this part is for oldTeams with sign and left date. I will create it later
+//        if(isset($request->oldTeams)) {
+//
+//            $max = 1;
+//            for($i = 0; $i < $max; $i++) {
+//                if(isset($request->{'oldTeams'.$i})){
+//                    $athleteTeam = new AthleteData_Team();
+//                    $athleteTeam->athlete_id = $athlete->id;
+//                    $athleteTeam->team_id = $request->{'oldTeams'.$i};
+//                    $athleteTeam->currentTeam = false;
+//                    $athleteTeam->signed = $request->{'signed_old'.$i};
+//                    $athleteTeam->left = $request->{'left'.$i};
+//                    $athleteTeam->save();
+//                }else {
+//                    $max = $i;
+//                }
+//            }
+//        }
+
+//      this part is temp till I fix the part above
+        if(isset($request->oldTeams)) {
+            foreach ($request->oldTeams as $team) {
+                $athleteTeam = new AthleteData_Team();
+                $athleteTeam->athlete_id = $athlete->id;
+                $athleteTeam->team_id = $team;
+                $athleteTeam->currentTeam = false;
+//                $athleteTeam->signed = $request->signed_old;
+//                $athleteTeam->left = $request->left;
+                $athleteTeam->save();
             }
         }
 
