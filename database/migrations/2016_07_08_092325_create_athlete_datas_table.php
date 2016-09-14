@@ -23,7 +23,6 @@ class CreateAthleteDatasTable extends Migration
             $table->string('telephone1');
             $table->string('telephone2');
             $table->string('fax');
-            $table->string('teamFax');
             $table->string('email1');
             $table->string('email2');
             $table->string('country');

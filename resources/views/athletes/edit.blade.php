@@ -40,9 +40,6 @@
                 {{ Form::label('fax', 'Fax:') }}
                 {{ Form::tel('fax', null, ['class' => 'vale bs class']) }}
 
-                {{ Form::label('teamFax', 'Team Fax:') }}
-                {{ Form::tel('teamFax', null, ['class' => 'vale bs class']) }}
-
                 {{ Form::label('email1', 'Email1:') }}
                 {{ Form::email('email1', null, ['class' => 'vale bs class']) }}
 

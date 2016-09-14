@@ -26,7 +26,6 @@ class athleteDataSeeder extends Seeder
                 'telephone1' => $faker->unique()->phoneNumber,
                 'telephone2' => $faker->unique()->phoneNumber,
                 'fax' => $faker->unique()->phoneNumber,
-                'teamFax' => $faker->unique()->phoneNumber,
                 'email1' => $faker->unique()->email,
                 'email2' => $faker->unique()->email,
                 'country' => $faker->country,

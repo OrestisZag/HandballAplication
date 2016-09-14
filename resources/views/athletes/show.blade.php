@@ -56,12 +56,6 @@
             @else
                 -<br>
             @endif
-            <label>Team's Fax:</label>
-            @if($athlete->teamFax)
-                {{ $athlete->teamFax }}<br>
-            @else
-                -<br>
-            @endif
             <label>Email 1:</label>
             @if($athlete->email1)
                 {{ $athlete->email1 }}<br>

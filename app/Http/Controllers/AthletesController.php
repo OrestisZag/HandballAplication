@@ -45,8 +45,8 @@ class AthletesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'lastName' => 'required|min:2|max:30|alpha',
-            'firstName' => 'required|min:2|max:30|alpha',
+            'lastName' => 'required|min:2|max:40|alpha',
+            'firstName' => 'required|min:2|max:40|alpha',
             'birthday' => 'required|date',
             'height' => 'numeric|min:0.5|max:2.50',
             'weight' => 'numeric|min:30|max:150',
@@ -54,16 +54,15 @@ class AthletesController extends Controller
             'telephone1' => 'telephone|min:10|max:15',
             'telephone2' => 'telephone|min:10|max:15',
             'fax' => 'telephone|min:10|max:15',
-            'teamFax' => 'telephone|min:10|max:15',
             'email1' => 'email',
             'email2' => 'email',
-            'country' => 'required|min:4|max:30',
-            'region' => 'required|min:4|max:30',
+            'country' => 'required|min:4|max:40',
+            'region' => 'required|min:4|max:40',
             'address' => 'required|min:5|max:255',
             'postalCode' => 'max:10',
             'passportNumber' => 'max:50',
             'passportExpDate' => 'date',
-            'passportLastName' => 'min:2|max:30|alpha',
+            'passportLastName' => 'min:2|max:40|alpha',
             'IDNumber' => 'max:10',
             'photo' => 'sometimes|required|image',
             'comments' => 'max:500'
@@ -79,7 +78,6 @@ class AthletesController extends Controller
         $athlete->telephone1 = $request->telephone1;
         $athlete->telephone2 = $request->telephone2;
         $athlete->fax = $request->fax;
-        $athlete->teamFax = $request->teamFax;
         $athlete->email1 = $request->email1;
         $athlete->email2 = $request->email2;
         $athlete->country = $request->country;
@@ -111,35 +109,21 @@ class AthletesController extends Controller
             $athleteTeam->save();
         }
 
-//        TODO this part is for oldTeams with sign and left date. I will create it later
-//        if(isset($request->oldTeams)) {
-//
-//            $max = 1;
-//            for($i = 0; $i < $max; $i++) {
-//                if(isset($request->{'oldTeams'.$i})){
-//                    $athleteTeam = new AthleteData_Team();
-//                    $athleteTeam->athlete_id = $athlete->id;
-//                    $athleteTeam->team_id = $request->{'oldTeams'.$i};
-//                    $athleteTeam->currentTeam = false;
-//                    $athleteTeam->signed = $request->{'signed_old'.$i};
-//                    $athleteTeam->left = $request->{'left'.$i};
-//                    $athleteTeam->save();
-//                }else {
-//                    $max = $i;
-//                }
-//            }
-//        }
-
-//      this part is temp till I fix the part above
-        if(isset($request->oldTeams)) {
-            foreach ($request->oldTeams as $team) {
-                $athleteTeam = new AthleteData_Team();
-                $athleteTeam->athlete_id = $athlete->id;
-                $athleteTeam->team_id = $team;
-                $athleteTeam->currentTeam = false;
-//                $athleteTeam->signed = $request->signed_old;
-//                $athleteTeam->left = $request->left;
-                $athleteTeam->save();
+        if(isset($request->oldTeams[0])) {
+            $max = 1;
+            for($i=0; $i<$max; $i++){
+                if (isset($request->oldTeams[$i])) {
+                    $athleteTeam = new AthleteData_Team();
+                    $athleteTeam->athlete_id = $athlete->id;
+                    $athleteTeam->team_id = $request->oldTeams[$i];
+                    $athleteTeam->currentTeam = false;
+                    $athleteTeam->signed = $request->signed_old[$i];
+                    $athleteTeam->left = $request->left[$i];
+                    $athleteTeam->save();
+                    $max++;
+                } else{
+                    $max = $i;
+                }
             }
         }
 
@@ -193,7 +177,6 @@ class AthletesController extends Controller
             'telephone1' => 'telephone|min:10|max:15',
             'telephone2' => 'telephone|min:10|max:15',
             'fax' => 'telephone|min:10|max:15',
-            'teamFax' => 'telephone|min:10|max:15',
             'email1' => 'email',
             'email2' => 'email',
             'country' => 'required|min:4|max:30',
@@ -218,7 +201,6 @@ class AthletesController extends Controller
         $athlete->telephone1 = $request->input('telephone1');
         $athlete->telephone2 = $request->input('telephone2');
         $athlete->fax = $request->input('fax');
-        $athlete->teamFax = $request->input('teamFax');
         $athlete->email1 = $request->input('email1');
         $athlete->email2 = $request->input('email2');
         $athlete->country = $request->input('country');
