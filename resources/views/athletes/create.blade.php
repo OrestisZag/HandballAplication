@@ -105,7 +105,7 @@
                 </select><br>
 
                 {{ Form::label('oldTeams', 'Athlete\'s Previous Teams:') }}
-                <select class="form-control input-sm select2-old-team" name="oldTeams[]" title="oldTeams[]" multiple="multiple">
+                <select class="form-control input-sm select2-team" name="oldTeams[]" title="oldTeams[]" multiple="multiple">
                     @foreach($teams as $team)
                         <option value="{{ $team->id }}">{{ $team->name }}</option>
                     @endforeach
@@ -146,7 +146,6 @@
     {!! Html::script('js/select2.min.js') !!}
     {!! Html::script('js/parsley.min.js') !!}
     <script>
-        //        var fields = 1;
         function addInput() {
             document.getElementById('select').innerHTML +=
                     '<select class="form-control input-sm select2-team" name="oldTeams[]" title="oldTeams[]">' +
@@ -166,7 +165,6 @@
                             <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option> ' +
                     '@endfor '+
                     '</select>';
-//            fields += 1;
         }
 
         $(function() {
