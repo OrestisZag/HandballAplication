@@ -11,7 +11,7 @@
     <h1>Create Athlete Profile</h1>
     <a href="{{ route('athlete.index') }}" class="text-right">Back To Athletes</a>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 col-md-offset-4">
             {!! Form::open(['route' => 'athlete.store', 'data-parsley-validate' => '', 'files' => true,
                 'class' => 'form']) !!}
 
@@ -132,11 +132,11 @@
 
                 {{ Form::label('comments', 'Comments:') }}
                 {{ Form::textarea('comments', null, ['class' => 'form-control', 'maxlength' => '500']) }}
-        </div>
-        <div class="row">
-            <div class="col-md-12">
+        {{--</div>--}}
+        {{--<div class="row">--}}
+            {{--<div class="col-md-12">--}}
                 {{ Form::submit('Create Player\'s Profile', ['class' => 'bnt btn-success btn-block btn-lg space-top']) }}
-            </div>
+            {{--</div>--}}
         </div>
             {!! Form::close() !!}
     </div>
@@ -177,6 +177,6 @@
         $('.select2-team').select2({
             maximumSelectionLength: 1
         });
-        $('.select2-old-team').select2();
+//        $('.select2-old-team').select2();
     </script>
 @endsection

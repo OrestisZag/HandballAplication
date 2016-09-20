@@ -7,68 +7,68 @@
 @endsection
 
 @section('content')
-    <h1>Edit {{ $athlete->lastName }} {{ $athlete->firstName }}'s Info:</h1>
+    <h1 class="text-center">Edit {{ $athlete->lastName }} {{ $athlete->firstName }}'s Info:</h1>
     <div class="row">
-        <div class="col-md-12">
-            <a href="{{ route('athlete.index') }}">Back To Athletes</a>
+        <div class="col-md-4 col-md-offset-4">
+            <a href="{{ route('athlete.index') }}" class="btn btn-primary btn-block">Back To Athletes</a>
             {!! Form::model($athlete, ['route' => ['athlete.update', $athlete->id], 'method' => 'PUT',
-             'files' => true]) !!}
-                {{ Form::label('lastName', 'Last Name:') }}
-                {{ Form::text('lastName', null, ['class' => 'vale bs class']) }}
+             'files' => true, 'class' => 'form']) !!}
+                {{ Form::label('lastName', 'Last Name:', ['class' => 'space-top']) }}
+                {{ Form::text('lastName', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('firstName', 'First Name:') }}
-                {{ Form::text('firstName', null, ['class' => 'vale bs class']) }}
+                {{ Form::text('firstName', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('birthday', 'Birthday:') }}
-                {{ Form::text('birthday', null, ['class' => 'vale bs class']) }}
+                {{ Form::text('birthday', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('height', 'Height:') }}
-                {{ Form::number('height', null, ['class' => 'vale bs class', 'step' => '0.01']) }}
+                {{ Form::number('height', null, ['class' => 'form-control input-sm', 'step' => '0.01']) }}
 
                 {{ Form::label('weight', 'Weight:') }}
-                {{ Form::number('weight', null, ['class' => 'vale bs class', 'step' => '0.1']) }}
+                {{ Form::number('weight', null, ['class' => 'form-control input-sm', 'step' => '0.1']) }}
 
                 {{ Form::label('mobile', 'Mobile Phone:') }}
-                {{ Form::tel('mobile', null, ['class' => 'vale bs class']) }}
+                {{ Form::tel('mobile', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('telephone1', 'Telephone1:') }}
-                {{ Form::tel('telephone1', null, ['class' => 'vale bs class']) }}
+                {{ Form::tel('telephone1', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('telephone2', 'Telephone2:') }}
-                {{ Form::tel('telephone2', null, ['class' => 'vale bs class']) }}
+                {{ Form::tel('telephone2', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('fax', 'Fax:') }}
-                {{ Form::tel('fax', null, ['class' => 'vale bs class']) }}
+                {{ Form::tel('fax', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('email1', 'Email1:') }}
-                {{ Form::email('email1', null, ['class' => 'vale bs class']) }}
+                {{ Form::email('email1', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('email2', 'Email2:') }}
-                {{ Form::email('email2', null, ['class' => 'vale bs class']) }}
+                {{ Form::email('email2', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('country', 'Country:') }}
-                {{ Form::text('country', null, ['class' => 'vale bs class']) }}
+                {{ Form::text('country', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('region', 'Region:') }}
-                {{ Form::text('region', null, ['class' => 'vale bs class']) }}
+                {{ Form::text('region', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('address', 'Address:') }}
-                {{ Form::text('address', null, ['class' => 'vale bs class']) }}
+                {{ Form::text('address', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('postalCode', 'Postal Code:') }}
-                {{ Form::text('postalCode', null, ['class' => 'vale bs class']) }}
+                {{ Form::text('postalCode', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('passportNumber', 'Passport No:') }}
-                {{ Form::text('passportNumber', null, ['class' => 'vale bs class']) }}
+                {{ Form::text('passportNumber', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('passportExpDate', 'Passport Expiration Date:') }}
-                {{ Form::text('passportExpDate', '', ['class' => 'vale bs class']) }}
+                {{ Form::text('passportExpDate', '', ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('passportLastName', 'Passport Last Name:') }}
-                {{ Form::text('passportLastName', null, ['class' => 'vale bs class']) }}
+                {{ Form::text('passportLastName', null, ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('IDNumber', 'ID Number:') }}
-                {{ Form::text('IDNumber', null, ['class' => 'vale bs class']) }}
+                {{ Form::text('IDNumber', null, ['class' => 'form-control input-sm']) }}
 
                 @if($athlete->photo == null)
                     {{ Form::label('photo', 'Upload Athlete\'s photo:') }}
@@ -97,7 +97,7 @@
                         $starting_year++)
                         <option value="{{ $starting_year }}" selected="{{ date('Y') }}">{{ $starting_year }}</option>
                     @endfor
-                </select>
+                </select><br>
 
                 {{ Form::label('oldTeams', 'Old Teams:') }}
                 @foreach($athlete->athleteDataTeams as $team)
@@ -105,22 +105,21 @@
                         {{ $team->team->name }} <strong>|</strong>
                     @endif
                 @endforeach
-                <select class="form-control input-sm select2-old" name="oldTeams[]" title="team" multiple="multiple">
+                <select class="form-control input-sm select2-team" name="oldTeams[]" title="team" multiple="multiple">
                     @foreach($teams as $team)
                         <option value="{{ $team->id }}">{{ $team->name }}</option>
                     @endforeach
                 </select>
-                {{--{{ Form::select('oldTeams[]', $teams , null, ['class' => 'form-control select2-old', 'multiple' => 'multiple']) }}--}}
 
                 {{ Form::label('comments', 'Comments:') }}
-                {{ Form::textarea('comments', null, ['class' => 'vale bs class']) }}
+                {{ Form::textarea('comments', null, ['class' => 'form-control input-sm']) }}
 
-                {{ Form::submit('Update Athlete\'s Info', ['class' => 'btn btn-success btn-block']) }}
+                {{ Form::submit('Update Athlete\'s Info', ['class' => 'btn btn-success btn-block space-top']) }}
             {!! Form::close() !!}
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4 col-md-offset-4">
             {!! Form::open(['route' => ['athlete.destroy', $athlete->id], 'method' => 'DELETE']) !!}
                 {{ Form::submit('Delete Athlete', ['class' => 'btn btn-danger btn-block space-top']) }}
             {!! Form::close() !!}
@@ -141,7 +140,7 @@
             maximumSelectionLength: 1
         });
         {{--$('.select2-team').select2().val({!! json_encode($athlete->athleteDataTeams->team()->getRelatedIds()) !!}).trigger('change');--}}
-        $('.select2-old').select2();
+//        $('.select2-old').select2();
         {{--$('.select2-old').select2().val({!! json_encode($athlete->athleteDataTeams()->getRelatedIds()) !!}).trigger('change');--}}
     </script>
 
