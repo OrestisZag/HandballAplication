@@ -222,10 +222,11 @@ class AthletesController extends Controller
         $athlete->save();
 
         if(isset($request->teams)) {
-            $athleteTeam = AthleteData_Team::where('athlete_id', '=', "$id")->where('currentTeam', '=', '1')->first();
-            $athleteTeam->currentTeam = false;
-            $athleteTeam->left = date('Y');
-            $athleteTeam->save();
+            if($athleteTeam = AthleteData_Team::where('athlete_id', '=', "$id")->where('currentTeam', '=', '1')->first()){
+                $athleteTeam->currentTeam = false;
+                $athleteTeam->left = date('Y');
+                $athleteTeam->save();
+            }
             $athleteTeam = new AthleteData_Team();
             $athleteTeam->athlete_id = $id;
             $athleteTeam->team_id = $request->teams;
@@ -234,13 +235,21 @@ class AthletesController extends Controller
             $athleteTeam->save();
         }
 
-        if(isset($request->oldTeams)) {
-            foreach ($request->oldTeams as $team) {
-                $athleteTeam = new AthleteData_Team();
-                $athleteTeam->athlete_id = $athlete->id;
-                $athleteTeam->team_id = $team;
-                $athleteTeam->currentTeam = false;
-                $athleteTeam->save();
+        if(isset($request->oldTeams[0])) {
+            $max = 1;
+            for($i=0; $i<$max; $i++){
+                if (isset($request->oldTeams[$i])) {
+                    $athleteTeam = new AthleteData_Team();
+                    $athleteTeam->athlete_id = $athlete->id;
+                    $athleteTeam->team_id = $request->oldTeams[$i];
+                    $athleteTeam->currentTeam = false;
+                    $athleteTeam->signed = $request->signed_old[$i];
+                    $athleteTeam->left = $request->left[$i];
+                    $athleteTeam->save();
+                    $max++;
+                } else{
+                    $max = $i;
+                }
             }
         }
 
