@@ -13,14 +13,13 @@
             {!! Form::open(['route' => 'team.store', 'data-parsley-validate' => '', 'class' => 'form']) !!}
                 {{ Form::label('name', 'Name:') }}
                 {{ Form::text('name', null, ['class' => 'form-control input-sm', 'required' => '',
-                   'minlength' => '2', 'maxlength' => '50']) }}
+                   'minlength' => '2', 'maxlength' => '80']) }}
 
                 {{ Form::label('level', 'Level:') }}
                 {{ Form::text('level', null, ['class' => 'form-control input-sm', 'required' => '']) }}
 
                 {{ Form::label('place', 'Place:') }}
-                {{ Form::text('place', null, ['class' => 'form-control input-sm', 'required' => '',
-                   'minlength' => '2', 'maxlength' => '100']) }}
+                {{ Form::text('place', null, ['class' => 'form-control input-sm', 'required' => '']) }}
 
                 {{ Form::label('telephone', 'Telephone:') }}
                 {{ Form::tel('telephone', null, ['class' => 'form-control input-sm', 'minlength' => '10',
@@ -31,10 +30,12 @@
                    'maxlength' => '15']) }}
 
                 {{ Form::label('email', 'Email:') }}
-                {{ Form::email('email', null, ['class' => 'form-control input-sm', 'email' => '']) }}
+                {{ Form::email('email', null, ['class' => 'form-control input-sm', 'email' => '',
+                 'placeholder' => 'myMail@example.com']) }}
 
                 {{ Form::label('website', 'Website') }}
-                {{ Form::text('website', null, ['class' => 'form-control input-sm', 'url' => '']) }}
+                {{ Form::text('website', null, ['class' => 'form-control input-sm', 'url' => '',
+                 'placeholder' => 'http://www.example.com']) }}
 
                 {{ Form::submit('Add Team', ['class' => 'btn btn-success btn-block space-top']) }}
             {!! Form::close() !!}

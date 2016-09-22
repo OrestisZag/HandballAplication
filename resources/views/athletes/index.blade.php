@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <a href="{{ route('athlete.create') }}" class="btn btn-sm btn-primary">Create New Athlete's Profile</a>
             @foreach($athletes as $athlete)
-                <li>{{ $athlete->lastName }} {{ $athlete->firstName }}
+                <li class="space-top">{{ $athlete->lastName }} {{ $athlete->firstName }}
                     <a href="{{ route('athlete.show', $athlete->id) }}">View</a>
                     <a href="{{ route('athlete.edit', $athlete->id) }}">Edit</a>
                 </li>

@@ -8,14 +8,14 @@
 @endsection
 
 @section('content')
-    <h1>Create Athlete Profile</h1>
-    <a href="{{ route('athlete.index') }}" class="text-right">Back To Athletes</a>
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
+            <h1>Create Athlete Profile</h1>
+            <a href="{{ route('athlete.index') }}" class="btn btn-primary btn-block">Back To Athletes</a>
             {!! Form::open(['route' => 'athlete.store', 'data-parsley-validate' => '', 'files' => true,
                 'class' => 'form']) !!}
 
-                {{ Form::label('lastName', 'Last Name: *') }}
+                {{ Form::label('lastName', 'Last Name: *', ['class' => 'space-top']) }}
                 {{ Form::text('lastName', null, ['class' => 'form-control input-sm', 'required' => '',
                    'minlength' => '2', 'maxlength' => '40']) }}
 

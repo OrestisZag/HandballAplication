@@ -5,8 +5,8 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ route('team.create') }}">Add New Team</a>
-            <ul>
+            <a href="{{ route('team.create') }}" class="btn btn-primary">Add New Team</a>
+            <ul class="space-top">
                 @foreach($teams as $team)
                     <li>
                         {{ $team->name }}

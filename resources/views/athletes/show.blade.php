@@ -4,9 +4,9 @@
 
 @section('content')
     <h1>{{ $athlete->lastName }} {{ $athlete->firstName }}</h1>
-    <a href="{{ route('athlete.index') }}">Back To Athletes</a>
+    <a href="{{ route('athlete.index') }}" class="btn btn-primary">Back To Athletes</a>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 space-top">
             @if($athlete->photo == null)
                 <p>{{ $athlete->lastName }} {{ $athlete->firstName }}'s photo is not set yet!</p>
             @else
