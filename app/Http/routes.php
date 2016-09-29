@@ -21,3 +21,6 @@ Route::resource('athlete', 'AthletesController');
 
 //Team routes
 Route::resource('team', 'TeamsController');
+
+//Camp routes
+Route::resource('camp', 'CampsController');

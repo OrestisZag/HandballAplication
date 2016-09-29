@@ -14,14 +14,21 @@ use Illuminate\Support\Facades\DB;
 class AthletesController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return mixed
      */
-    public function index()
+    public function index(Request $request)
     {
-        $athletes = AthleteData::orderBy('id')->paginate(10);
+        $athletes = AthleteData::where(function ($query) use ($request) {
+            if ($term = $request->get('term')) {
+                $query->orwhere('lastName', 'like', '%' .$term. '%');
+                $query->orwhere('firstName', 'like', '%' .$term. '%');
+                $query->orwhere();
+            }
+        })->orderBy('id')->paginate(10);
+
         return view('athletes.index')->withAthletes($athletes);
+
     }
 
     /**

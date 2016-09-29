@@ -23,7 +23,7 @@
                    'minlength' => '2', 'maxlength' => '40']) }}
 
                 {{ Form::label('birthday', 'Birthday:*') }}
-                {{ Form::text('birthday', null, ['class' => 'form-control input-sm', 'required' => '']) }}
+                {{ Form::date('birthday', null, ['class' => 'form-control input-sm', 'required' => '']) }}
 
                 {{ Form::label('height', 'Height:') }}
                 {{ Form::number('height', null, ['class' => 'form-control input-sm', 'step' => '0.01', 'required' => '',
@@ -74,7 +74,7 @@
                 {{ Form::text('passportNumber', null, ['class' => 'form-control input-sm', 'maxlength' => '50']) }}
 
                 {{ Form::label('passportExpDate', 'Passport Expiration Date:') }}
-                {{ Form::text('passportExpDate', '', ['class' => 'form-control input-sm']) }}
+                {{ Form::date('passportExpDate', '', ['class' => 'form-control input-sm']) }}
 
                 {{ Form::label('passportLastName', 'Passport Last Name:') }}
                 {{ Form::text('passportLastName', null, ['class' => 'form-control input-sm', 'minlength' => '2',
@@ -207,12 +207,12 @@
             });
         }
 
-        $(function() {
-            $( "#birthday" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: "1920:2100"})
-                    .keydown(false);
-            $( "#passportExpDate" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,
-                yearRange: "1920:2100"}).keydown(false);
-        });
+//        $(function() {
+//            $( "#birthday" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: "1920:2100"})
+//                    .keydown(false);
+//            $( "#passportExpDate" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true,
+//                yearRange: "1920:2100"}).keydown(false);
+//        });
         $('.select2-team').select2({
             maximumSelectionLength: 1
         });

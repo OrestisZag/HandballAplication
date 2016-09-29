@@ -40,13 +40,13 @@
             {!! Form::close() !!}
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            {!! Form::open(['route' => ['team.destroy', $team->id], 'method' => 'DELETE']) !!}
-                {{ Form::submit('Delete Team', ['class' => 'btn btn-danger btn-block space-top']) }}
-            {!! Form::close() !!}
-        </div>
-    </div>
+    {{--<div class="row">--}}
+        {{--<div class="col-md-4 col-md-offset-4">--}}
+            {{--{!! Form::open(['route' => ['team.destroy', $team->id], 'method' => 'DELETE']) !!}--}}
+                {{--{{ Form::submit('Delete Team', ['class' => 'btn btn-danger btn-block space-top']) }}--}}
+            {{--{!! Form::close() !!}--}}
+        {{--</div>--}}
+    {{--</div>--}}
 @endsection
 
 @section('script')

@@ -29,12 +29,12 @@
                     </ul>
                 </li>
             </ul>
-            <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+            {{--<form class="navbar-form navbar-left" role="search">--}}
+                {{--<div class="form-group">--}}
+                    {{--<input type="text" class="form-control" placeholder="Search">--}}
+                {{--</div>--}}
+                {{--<button type="submit" class="btn btn-default">Submit</button>--}}
+            {{--</form>--}}
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Link</a></li>
                 <li class="dropdown">
@@ -42,7 +42,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('athlete.index') }}">Athletes</a></li>
                         <li><a href="{{ route('team.index') }}">Teams</a></li>
-                        {{--<li><a href="#">Something else here</a></li>--}}
+                        <li><a href="{{ route('camp.index') }}">Camp</a></li>
                         {{--<li role="separator" class="divider"></li>--}}
                         {{--<li><a href="#">Separated link</a></li>--}}
                     </ul>

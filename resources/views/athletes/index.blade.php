@@ -4,14 +4,41 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
-            <a href="{{ route('athlete.create') }}" class="btn btn-sm btn-primary">Create New Athlete's Profile</a>
-            @foreach($athletes as $athlete)
-                <li class="space-top">{{ $athlete->lastName }} {{ $athlete->firstName }}
-                    <a href="{{ route('athlete.show', $athlete->id) }}">View</a>
-                    <a href="{{ route('athlete.edit', $athlete->id) }}">Edit</a>
-                </li>
-            @endforeach
+        <div class="col-md-6 col-md-offset-4">
+            {!! Form::open(['route' => 'athlete.index', 'method' => 'GET', 'role' => 'search', 'class' => 'navbar-form']) !!}
+                <div class="input-group text-center">
+                    {{ Form::text('term', Request::get('term'), ['class' => 'form-control', 'placeholder' => 'Search']) }}
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
+            {!! Form::close() !!}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <a href="{{ route('athlete.create') }}" class="btn btn-primary center-block">Create New Athlete's Profile</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($athletes as $athlete)
+                        <tr>
+                            <td>{{ $athlete->lastName }}</td>
+                            <td>{{ $athlete->firstName }}</td>
+                            <td>
+                                <a href="{{ route('athlete.show', $athlete->id) }}"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                <a href="{{ route('athlete.edit', $athlete->id) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
             <div class="text-center">
                 {{ $athletes->links() }}
             </div>
