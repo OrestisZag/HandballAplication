@@ -161,7 +161,30 @@
                 <div id="select"></div>
                 <input type="button" onclick="addInput();" name="add" value="+ Add" class="btn btn-success pull-right"/><br>
 
-                {{ Form::label('comments', 'Comments:') }}
+                {{ Form::label('camps', 'Camps that athlete took part:') }}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Place</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($athlete->athleteDataCamps as $camp)
+                        <tr>
+                            <td>{{ $camp->camp->title }}</td>
+                            <td>{{ $camp->camp->place }}</td>
+                            <td>{{ $camp->camp->date }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+
+                {{ Form::label('camps', 'Add more camps that athlete took part:') }}
+                {{ Form::select('camps[]', $camps, null, ['class' => 'form-control select2-multi', 'multiple'=>'multiple']) }}
+
+                {{ Form::label('comments', 'Comments:', ['class' => 'space-top']) }}
                 {{ Form::textarea('comments', null, ['class' => 'form-control input-sm', 'maxlength' => '500']) }}
 
                 {{ Form::submit('Update Athlete\'s Info', ['class' => 'btn btn-success btn-block space-top']) }}
@@ -216,6 +239,7 @@
         $('.select2-team').select2({
             maximumSelectionLength: 1
         });
+        $('.select2-multi').select2();
     </script>
 
 @endsection

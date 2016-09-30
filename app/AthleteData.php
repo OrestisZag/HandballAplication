@@ -13,4 +13,8 @@ class AthleteData extends Model
         return $this->hasMany('App\AthleteData_Team', 'athlete_id');
     }
 
+    public function athleteDataCamps() {
+        return $this->hasMany('App\AthleteData_Camp', 'athlete_id');
+    }
+
 }

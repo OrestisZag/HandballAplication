@@ -130,6 +130,13 @@
                 <div id="select"></div>
                 <input type="button" onclick="addInput();" name="add" value="+ Add" class="btn btn-success pull-right"/><br>
 
+                {{ Form::label('camps', 'Camps that athlete took part:') }}
+                <select class="form-control select2-multi" name="camps[]" title="camps[]" multiple="multiple">
+                    @foreach($camps as $camp)
+                        <option value="{{ $camp->id }}">{{ $camp->title }}, {{ date('Y', strtotime($camp->date)) }}</option>
+                    @endforeach
+                </select>
+
                 {{ Form::label('comments', 'Comments:') }}
                 {{ Form::textarea('comments', null, ['class' => 'form-control', 'maxlength' => '500']) }}
         {{--</div>--}}
@@ -182,5 +189,6 @@
         $('.select2-team').select2({
             maximumSelectionLength: 1
         });
+        $('.select2-multi').select2();
     </script>
 @endsection

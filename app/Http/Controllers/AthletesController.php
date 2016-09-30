@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\AthleteData_Camp;
 use App\AthleteData_Team;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\AthleteData;
 use App\Team;
+use App\Camp;
 use Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
@@ -40,7 +42,8 @@ class AthletesController extends Controller
     {
         $athletes = AthleteData::all();
         $teams = Team::all();
-        return view('athletes.create')->withAthletes($athletes)->withTeams($teams);
+        $camps = Camp::all();
+        return view('athletes.create')->withAthletes($athletes)->withTeams($teams)->withCamps($camps);
     }
 
     /**
@@ -134,6 +137,15 @@ class AthletesController extends Controller
             }
         }
 
+        if (isset($request->camps)) {
+            foreach ($request->camps as $camp) {
+                $athleteCamp = new AthleteData_Camp();
+                $athleteCamp->athlete_id = $athlete->id;
+                $athleteCamp->camp_id = $camp;
+                $athleteCamp->save();
+            }
+        }
+
         Session::flash('success', 'Player info added successfully!');
 
         return redirect()->route('athlete.show', $athlete->id);
@@ -161,8 +173,13 @@ class AthletesController extends Controller
     {
         $athlete = AthleteData::find($id);
         $teams = Team::all();
+        $camps = Camp::all();
+        $camps2 = array();
+        foreach ($camps as $camp) {
+            $camps2[$camp->id] = $camp->title.', '.date('Y', strtotime($camp->date));
+        }
 
-        return view('athletes.edit')->withAthlete($athlete)->withTeams($teams);
+        return view('athletes.edit')->withAthlete($athlete)->withTeams($teams)->withCamps($camps2);
     }
 
     /**
@@ -257,6 +274,15 @@ class AthletesController extends Controller
                 } else{
                     $max = $i;
                 }
+            }
+        }
+
+        if (isset($request->camps)) {
+            foreach ($request->camps as $camp) {
+                $athleteCamp = new AthleteData_Camp();
+                $athleteCamp->athlete_id = $athlete->id;
+                $athleteCamp->camp_id = $camp;
+                $athleteCamp->save();
             }
         }
 

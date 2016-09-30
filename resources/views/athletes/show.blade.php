@@ -125,8 +125,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 col-md-offset-4">
-            <h3>Team</h3>
+        <div class="col-md-8 col-md-offset-4">
+            <h3>Teams</h3>
         </div>
     </div>
     <div class="row">
@@ -181,6 +181,39 @@
                             </tr>
                         @endif
                     @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-4">
+            <h3>Camps</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-4">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Place</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($athlete->athleteDataCamps as $camp)
+                    <tr>
+                        <td>
+                            {{ $camp->camp->title }}
+                        </td>
+                        <td>
+                            {{ $camp->camp->place }}
+                        </td>
+                        <td>
+                            {{ $camp->camp->date }}
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
