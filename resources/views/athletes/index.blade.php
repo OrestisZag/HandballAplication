@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-6 col-md-offset-4">
+        <div class="col-md-6 col-md-offset-5">
             {!! Form::open(['route' => 'athlete.index', 'method' => 'GET', 'role' => 'search', 'class' => 'navbar-form']) !!}
                 <div class="input-group text-center">
                     {{ Form::text('term', Request::get('term'), ['class' => 'form-control', 'placeholder' => 'Search']) }}
@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-7 col-md-offset-3">
             <a href="{{ route('athlete.create') }}" class="btn btn-primary center-block">Create New Athlete's Profile</a>
             <table class="table">
                 <thead>
