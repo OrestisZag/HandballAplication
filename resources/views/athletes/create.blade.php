@@ -128,7 +128,7 @@
                 </select>
 
                 <div id="select"></div>
-                <input type="button" onclick="addInput();" name="add" value="+ Add" class="btn btn-success pull-right"/><br>
+                <input type="button" onclick="addInput();" name="add" value="Add Previous Teams" class="btn btn-warning btn-block"/><br>
 
                 {{ Form::label('camps', 'Camps that athlete took part:') }}
                 <select class="form-control select2-multi" name="camps[]" title="camps[]" multiple="multiple">
@@ -137,7 +137,7 @@
                     @endforeach
                 </select>
 
-                {{ Form::label('comments', 'Comments:') }}
+                {{ Form::label('comments', 'Comments:', ['class' => 'space-top']) }}
                 {{ Form::textarea('comments', null, ['class' => 'form-control', 'maxlength' => '500']) }}
         {{--</div>--}}
         {{--<div class="row">--}}

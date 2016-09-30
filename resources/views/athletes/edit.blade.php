@@ -159,7 +159,7 @@
                 </select>
 
                 <div id="select"></div>
-                <input type="button" onclick="addInput();" name="add" value="+ Add" class="btn btn-success pull-right"/><br>
+                <input type="button" onclick="addInput();" name="add" value="Add Previous Teams" class="btn btn-warning btn-block"/><br>
 
                 {{ Form::label('camps', 'Camps that athlete took part:') }}
                 <table class="table">
