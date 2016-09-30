@@ -25,7 +25,6 @@ class AthletesController extends Controller
             if ($term = $request->get('term')) {
                 $query->orwhere('lastName', 'like', '%' .$term. '%');
                 $query->orwhere('firstName', 'like', '%' .$term. '%');
-                $query->orwhere();
             }
         })->orderBy('id')->paginate(10);
 

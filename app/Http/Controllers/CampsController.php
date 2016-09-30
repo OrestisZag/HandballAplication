@@ -10,13 +10,19 @@ use App\Http\Requests;
 class CampsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return mixed
      */
-    public function index()
+    public function index(Request $request)
     {
-        $camps = Camp::orderBy('id')->paginate(10);
+        $camps = Camp::where(function ($query) use ($request) {
+            if ($term = $request->get('term')) {
+                $query->orwhere('title', 'like', '%' .$term. '%');
+                $query->orwhere('place', 'like', '%' .$term. '%');
+                $query->orwhere('date', 'like', '%' .$term. '%');
+            }
+        })->orderBy('id')->paginate(10);
+
         return view('camps.index')->withCamps($camps);
     }
 

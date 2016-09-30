@@ -10,13 +10,18 @@ use Session;
 class TeamsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return mixed
      */
-    public function index()
+    public function index(Request $request)
     {
-        $teams = Team::orderBy('id')->paginate(10);
+        $teams = Team::where(function ($query) use ($request) {
+            if ($term = $request->get('term')) {
+                $query->orwhere('name', 'like', '%' .$term. '%');
+                $query->orwhere('place', 'like', '%' .$term. '%');
+            }
+        })->orderBy('id')->paginate(10);
+
         return view('team.index')->withTeams($teams);
     }
 
