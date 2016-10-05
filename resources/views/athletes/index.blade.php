@@ -23,6 +23,8 @@
                     <tr>
                         <th>Last Name</th>
                         <th>First Name</th>
+                        <th>Position</th>
+                        <th>Team</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -31,6 +33,13 @@
                         <tr>
                             <td>{{ $athlete->lastName }}</td>
                             <td>{{ $athlete->firstName }}</td>
+                            <td></td>
+                            <td>
+                                @foreach($athlete->athleteDataTeams as $team)
+                                    @if($team->currentTeam == 1)
+                                        {{ $team->team->name }}
+                                    @endif
+                                @endforeach
                             <td>
                                 <a href="{{ route('athlete.show', $athlete->id) }}"><span class="glyphicon glyphicon-info-sign"></span></a>
                                 <a href="{{ route('athlete.edit', $athlete->id) }}"><span class="glyphicon glyphicon-edit"></span></a>
