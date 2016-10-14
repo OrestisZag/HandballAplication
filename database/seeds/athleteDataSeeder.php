@@ -35,6 +35,7 @@ class athleteDataSeeder extends Seeder
                 'passportNumber' => $faker->creditCardNumber,
                 'passportExpDate' => $faker->date(),
                 'passportLastName' => $faker->lastName,
+                'passportFirstName' => $faker->firstNameMale,
                 'IDNumber' => $faker->ean8,
                 'comments' => $faker->sentence(8, true)
             ]);

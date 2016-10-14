@@ -32,6 +32,7 @@ class CreateAthleteDatasTable extends Migration
             $table->string('passportNumber');
             $table->date('passportExpDate');
             $table->string('passportLastName');
+            $table->string('passportFirstName');
             $table->string('IDNumber');
             $table->string('photo');
             $table->text('comments');

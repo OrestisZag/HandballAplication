@@ -110,6 +110,12 @@
             @else
                 -<br>
             @endif
+            <label>Passport First Name:</label>
+            @if($athlete->passportFirstName)
+                {{ $athlete->passportFirstName }}<br>
+            @else
+                -<br>
+            @endif
             <label>ID Number:</label>
             @if($athlete->IDNumber)
                 {{ $athlete->IDNumber }}<br>

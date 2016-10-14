@@ -72,6 +72,7 @@ class AthletesController extends Controller
             'passportNumber' => 'max:50',
             'passportExpDate' => 'date',
             'passportLastName' => 'min:2|max:40|alpha',
+            'passportFirstName' => 'min:2|max:40|alpha',
             'IDNumber' => 'max:10',
             'photo' => 'sometimes|required|image',
             'comments' => 'max:500'
@@ -96,6 +97,7 @@ class AthletesController extends Controller
         $athlete->passportNumber = $request->passportNumber;
         $athlete->passportExpDate = $request->passportExpDate;
         $athlete->passportLastName = $request->passportLastName;
+        $athlete->passportFirstName = $request->passportFirstName;
         $athlete->IDNumber = $request->IDNumber;
         $athlete->comments = $request->comments;
         $athlete->save();
@@ -191,8 +193,8 @@ class AthletesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'lastName' => 'required|min:2|max:30|alpha',
-            'firstName' => 'required|min:2|max:30|alpha',
+            'lastName' => 'required|min:2|max:40|alpha',
+            'firstName' => 'required|min:2|max:40|alpha',
             'birthday' => 'required|date',
             'height' => 'required|numeric|min:0.5|max:2.50',
             'weight' => 'required|numeric|min:30|max:150',
@@ -208,7 +210,8 @@ class AthletesController extends Controller
             'postalCode' => 'max:10',
             'passportNumber' => 'max:50',
             'passportExpDate' => 'date',
-            'passportLastName' => 'min:2|max:30|alpha',
+            'passportLastName' => 'min:2|max:40|alpha',
+            'passportFirstName' => 'min:2|max:40|alpha',
             'IDNumber' => 'max:10',
             'photo' => 'sometimes|required|image',
             'comments' => 'max:255'
@@ -233,6 +236,7 @@ class AthletesController extends Controller
         $athlete->passportNumber = $request->input('passportNumber');
         $athlete->passportExpDate = $request->input('passportExpDate');
         $athlete->passportLastName = $request->input('passportLastName');
+        $athlete->passportFirstName = $request->input('passportFirstName');
         $athlete->IDNumber = $request->input('IDNumber');
         if(Input::hasFile('photo'))
         {

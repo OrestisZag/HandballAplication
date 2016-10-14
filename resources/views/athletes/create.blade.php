@@ -81,6 +81,10 @@
                 {{ Form::label('passportLastName', 'Passport Last Name:') }}
                 {{ Form::text('passportLastName', null, ['class' => 'form-control input-sm', 'minlength' => '2',
                    'maxlength' => '40']) }}
+
+                {{ Form::label('passportFirstName', 'Passport First Name:') }}
+                {{ Form::text('passportFirstName', null, ['class' => 'form-control input-sm', 'minlength' => '2',
+                   'maxlength' => '40']) }}
         {{--</div>--}}
         {{--<div class="col-md-4">--}}
                 {{ Form::label('IDNumber', 'ID Number:') }}
