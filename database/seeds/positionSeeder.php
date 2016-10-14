@@ -17,48 +17,33 @@ class positionSeeder extends Seeder
         ]);
 
         DB::table('positions')->insert([
-            'sortName' => 'LB',
-            'fullName' => 'Left Back'
+            'sortName' => 'LE',
+            'fullName' => 'Left Extrem'
         ]);
 
         DB::table('positions')->insert([
-            'sortName' => 'RB',
-            'fullName' => 'Right Back/Playmaker'
+            'sortName' => 'RE',
+            'fullName' => 'Right Extrem'
         ]);
 
         DB::table('positions')->insert([
-            'sortName' => 'CB',
-            'fullName' => 'Center Back'
+            'sortName' => 'LI',
+            'fullName' => 'Left Inter'
         ]);
 
         DB::table('positions')->insert([
-            'sortName' => 'HD',
-            'fullName' => 'Half Defender'
+            'sortName' => 'RI',
+            'fullName' => 'Right Inter'
         ]);
 
         DB::table('positions')->insert([
-            'sortName' => 'OD',
-            'fullName' => 'Outside Defender'
+            'sortName' => 'PV',
+            'fullName' => 'Pivot'
         ]);
 
         DB::table('positions')->insert([
-            'sortName' => 'FD',
-            'fullName' => 'Forward Defender'
-        ]);
-
-        DB::table('positions')->insert([
-            'sortName' => 'LW',
-            'fullName' => 'Left Winger'
-        ]);
-
-        DB::table('positions')->insert([
-            'sortName' => 'RW',
-            'fullName' => 'Right Winger'
-        ]);
-
-        DB::table('positions')->insert([
-            'sortName' => 'CF',
-            'fullName' => 'Center Forward/Pivot'
+            'sortName' => 'PM',
+            'fullName' => 'Play Maker'
         ]);
     }
 }
