@@ -16,7 +16,7 @@ class CreateCampTrainsTable extends Migration
             $table->increments('id');
             $table->integer('adc_id')->unsigned();
             $table->foreign('adc_id')->references('id')->on('athlete_data__camps');
-            $table->date('TrainDate');
+            $table->date('date');
             $table->integer('position_id')->unsigned();
             $table->foreign('position_id')->references('id')->on('positions');
             $table->string('attackEval');

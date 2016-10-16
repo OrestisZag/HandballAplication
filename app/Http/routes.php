@@ -25,3 +25,4 @@ Route::resource('team', 'TeamsController');
 //Camp routes
 Route::resource('camp', 'CampsController');
 $this->get('camp/athleteEvaluation/{id}', ['uses' => 'CampsController@getAthleteCampEval', 'as' => 'camp.getAthleteCampEval']);
+$this->post('camp/athleteEvaluation', ['uses' => 'CampsController@postAthleteCampEval', 'as' => 'camp.storeAthleteEval']);

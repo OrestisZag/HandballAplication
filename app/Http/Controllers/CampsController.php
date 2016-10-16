@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AthleteData_Camp;
 use App\Camp;
+use App\CampTrain;
 use Illuminate\Http\Request;
 use Session;
 use App\Http\Requests;
@@ -130,13 +131,20 @@ class CampsController extends Controller
 
     /**
      * @param $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getAthleteCampEval($id) {
         $adc = AthleteData_Camp::find($id);
+        $campTrain = CampTrain::where('adc_id', $adc['id'])->first();
 
-//        dd($adc);
+        if (isset($campTrain)) {
+            return view('camps.showEval')->withTrain($campTrain);
+        } else {
+            return view('camps.createEval')->withAdc($adc);
+        }
+    }
 
-        return $adc;
+    public function postAthleteCampEval() {
+
     }
 }
