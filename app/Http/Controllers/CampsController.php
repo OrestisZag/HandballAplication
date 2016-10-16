@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AthleteData_Camp;
 use App\Camp;
 use App\CampTrain;
+use App\Position;
 use Illuminate\Http\Request;
 use Session;
 use App\Http\Requests;
@@ -131,20 +132,36 @@ class CampsController extends Controller
 
     /**
      * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return mixed
      */
     public function getAthleteCampEval($id) {
         $adc = AthleteData_Camp::find($id);
         $campTrain = CampTrain::where('adc_id', $adc['id'])->first();
 
         if (isset($campTrain)) {
-            return view('camps.showEval')->withTrain($campTrain);
+            return view('camps.showEval')->withTrain($campTrain)->withAdc($adc);
         } else {
-            return view('camps.createEval')->withAdc($adc);
+            $positions = Position::all();
+            return view('camps.createEval')->withAdc($adc)->withPositions($positions);
         }
     }
 
-    public function postAthleteCampEval() {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function postAthleteCampEval(Request $request) {
 
+        $campTrain = new CampTrain();
+        $campTrain->adc_id = $request->adc_id;
+        $campTrain->date = $request->date;
+        $campTrain->position_id = $request->position;
+        $campTrain->attackEval = $request->attackEval;
+        $campTrain->defenceEval = $request->defenceEval;
+        $campTrain->atDefEval = $request->attackEval + $request->defenceEval;
+        $campTrain->comments = $request->comments;
+        $campTrain->save();
+
+        return redirect()->route('camp.getAthleteCampEval', $campTrain->adc_id);
     }
 }

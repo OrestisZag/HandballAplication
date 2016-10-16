@@ -222,6 +222,7 @@
                 @endforeach
                 </tbody>
             </table>
+            <label class="text-center"><strong>***Click On Camp's Name to Evaluate Athlete's Presence***</strong></label>
         </div>
     </div>
 @endsection

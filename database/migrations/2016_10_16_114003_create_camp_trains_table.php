@@ -19,9 +19,9 @@ class CreateCampTrainsTable extends Migration
             $table->date('date');
             $table->integer('position_id')->unsigned();
             $table->foreign('position_id')->references('id')->on('positions');
-            $table->string('attackEval');
-            $table->string('defenceEval');
-            $table->string('atDefEval');
+            $table->integer('attackEval');
+            $table->integer('defenceEval');
+            $table->integer('atDefEval');
             $table->text('comments');
             $table->timestamps();
         });
