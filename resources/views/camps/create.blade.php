@@ -18,7 +18,7 @@
                 {{ Form::text('place', null, ['class' => 'form-control', 'required' => '']) }}
 
                 {{ Form::label('date', 'Date:') }}
-                {{ Form::date('date', null, ['class' => 'form-control', 'required' => '']) }}
+                {{ Form::text('date', null, ['class' => 'form-control', 'required' => '']) }}
 
                 {{ Form::submit('Add Camp', ['class' => 'btn btn-success btn-block space-top']) }}
             {!! Form::close() !!}
@@ -28,10 +28,10 @@
 
 @section('script')
     {!! Html::script('js/parsley.min.js') !!}
-    {{--<script>--}}
-        {{--$(function() {--}}
-            {{--$( "#date" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: "1920:2100"})--}}
-                    {{--.keydown(false);--}}
-        {{--});--}}
-    {{--</script>--}}
+    <script>
+        $(function() {
+            $( "#date" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: "1920:2100"})
+                    .keydown(false);
+        });
+    </script>
 @endsection

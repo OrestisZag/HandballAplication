@@ -13,4 +13,8 @@ class AthleteData_Camp extends Model
     public function camp() {
         return $this->belongsTo('App\Camp');
     }
+
+    public function campTrain() {
+        return $this->hasMany('App\CampTrain', 'adc_id');
+    }
 }

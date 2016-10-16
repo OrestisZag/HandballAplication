@@ -210,7 +210,7 @@
                 @foreach($athlete->athleteDataCamps as $camp)
                     <tr>
                         <td>
-                            {{ $camp->camp->title }}
+                            <a href="{{ route('camp.getAthleteCampEval', $camp->id) }}">{{ $camp->camp->title }}</a>
                         </td>
                         <td>
                             {{ $camp->camp->place }}

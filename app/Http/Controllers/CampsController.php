@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AthleteData_Camp;
 use App\Camp;
 use Illuminate\Http\Request;
 use Session;
@@ -48,7 +49,7 @@ class CampsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'place' => 'required',
-            'date' => 'required|Date'
+            'date' => 'required|date'
         ]);
 
         $camp = new Camp();
@@ -94,7 +95,21 @@ class CampsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'place' => 'required',
+            'date' => 'required|date'
+        ]);
+
+        $camp = Camp::find($id);
+        $camp->title = $request->title;
+        $camp->place = $request->place;
+        $camp->date = $request->date;
+        $camp->save();
+
+        Session::flash('success', 'Camp Updated Successfully');
+
+        return redirect()->route('camp.index');
     }
 
     /**
@@ -111,5 +126,17 @@ class CampsController extends Controller
         Session::flash('success', 'Camp Deleted Successfully');
 
         return redirect()->route('camp.index');
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function getAthleteCampEval($id) {
+        $adc = AthleteData_Camp::find($id);
+
+//        dd($adc);
+
+        return $adc;
     }
 }
