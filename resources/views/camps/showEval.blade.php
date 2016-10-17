@@ -4,8 +4,11 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-2 col-md-offset-5">
-            <a href="{{ route('athlete.show', $adc->athlete_id) }}" class="btn btn-block btn-primary">Back to Athlete's Profile</a>
+        <div class="col-sm-3 col-md-offset-3">
+            <a href="{{ route('camp.getEditAthleteCampEval', $train->id) }}" class="btn btn-block btn-warning">Edit <span class="glyphicon glyphicon-edit"></span></a>
+        </div>
+        <div class="col-sm-3">
+            <a href="{{ route('athlete.show', $adc->athlete_id) }}" class="btn btn-block btn-danger">Back to Athlete's Profile</a>
         </div>
     </div>
     <div class="row">

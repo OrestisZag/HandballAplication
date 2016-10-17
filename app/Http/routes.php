@@ -26,3 +26,5 @@ Route::resource('team', 'TeamsController');
 Route::resource('camp', 'CampsController');
 $this->get('camp/athleteEvaluation/{id}', ['uses' => 'CampsController@getAthleteCampEval', 'as' => 'camp.getAthleteCampEval']);
 $this->post('camp/athleteEvaluation', ['uses' => 'CampsController@postAthleteCampEval', 'as' => 'camp.storeAthleteEval']);
+$this->get('camp/{id}/editAthleteEvaluation', ['uses' => 'CampsController@getEditAthleteCampEval', 'as' => 'camp.getEditAthleteCampEval']);
+$this->put('camp/updateEvaluation/{id}', ['uses' => 'CampsController@updateAthleteEvaluation', 'as' => 'camp.updateAthleteEvaluation']);

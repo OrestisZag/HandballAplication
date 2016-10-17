@@ -148,9 +148,13 @@ class CampsController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postAthleteCampEval(Request $request) {
+
+        $this->validate($request, [
+            'date' => 'required|date'
+        ]);
 
         $campTrain = new CampTrain();
         $campTrain->adc_id = $request->adc_id;
@@ -161,6 +165,41 @@ class CampsController extends Controller
         $campTrain->atDefEval = $request->attackEval + $request->defenceEval;
         $campTrain->comments = $request->comments;
         $campTrain->save();
+
+        return redirect()->route('camp.getAthleteCampEval', $campTrain->adc_id);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getEditAthleteCampEval($id) {
+        $evaluation = CampTrain::find($id);
+        $positions = Position::all();
+        return view('camps.editEval')->withEvaluation($evaluation)->withPositions($positions);
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateAthleteEvaluation(Request $request, $id) {
+        $this->validate($request, [
+            'date' => 'required|date'
+        ]);
+
+        $campTrain = CampTrain::find($id);
+        $campTrain->adc_id = $request->adc_id;
+        $campTrain->date = $request->date;
+        $campTrain->position_id = $request->position;
+        $campTrain->attackEval = $request->attackEval;
+        $campTrain->defenceEval = $request->defenceEval;
+        $campTrain->atDefEval = $request->attackEval + $request->defenceEval;
+        $campTrain->comments = $request->comments;
+        $campTrain->save();
+
+        Session::flash('success', 'Athlete\'s Evaluation Updated');
 
         return redirect()->route('camp.getAthleteCampEval', $campTrain->adc_id);
     }
