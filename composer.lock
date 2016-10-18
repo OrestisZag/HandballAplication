@@ -4,9 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0d6e8cb88b1ea8e3c5c17d9029ed7111",
-    "content-hash": "bc80f2904ec0f08cfe21d3c5356e1b21",
+    "hash": "780ef10235193bfa18a710b92c005258",
+    "content-hash": "188758b78ab89dae9cfc9788cda348f0",
     "packages": [
+        {
+            "name": "barryvdh/laravel-dompdf",
+            "version": "v0.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-dompdf.git",
+                "reference": "9b8bd179262ad6b200a11edfe7b53516afcfc42a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/9b8bd179262ad6b200a11edfe7b53516afcfc42a",
+                "reference": "9b8bd179262ad6b200a11edfe7b53516afcfc42a",
+                "shasum": ""
+            },
+            "require": {
+                "dompdf/dompdf": "^0.7",
+                "illuminate/support": "5.1.x|5.2.x|5.3.x",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\DomPDF\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "A DOMPDF Wrapper for Laravel",
+            "keywords": [
+                "dompdf",
+                "laravel",
+                "pdf"
+            ],
+            "time": "2016-08-17 08:17:33"
+        },
         {
             "name": "barryvdh/laravel-ide-helper",
             "version": "v2.2.1",
@@ -277,6 +325,67 @@
             "time": "2015-11-06 14:35:42"
         },
         {
+            "name": "dompdf/dompdf",
+            "version": "v0.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dompdf/dompdf.git",
+                "reference": "5c98652b1a5beb7e3cc8ec35419b2828dd63ab14"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/5c98652b1a5beb7e3cc8ec35419b2828dd63ab14",
+                "reference": "5c98652b1a5beb7e3cc8ec35419b2828dd63ab14",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-gd": "*",
+                "ext-mbstring": "*",
+                "phenx/php-font-lib": "0.4.*",
+                "phenx/php-svg-lib": "0.1.*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "0.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dompdf\\": "src/"
+                },
+                "classmap": [
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Ménager",
+                    "email": "fabien.menager@gmail.com"
+                },
+                {
+                    "name": "Brian Sweeney",
+                    "email": "eclecticgeek@gmail.com"
+                },
+                {
+                    "name": "Gabriel Bull",
+                    "email": "me@gabrielbull.com"
+                }
+            ],
+            "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
+            "homepage": "https://github.com/dompdf/dompdf",
+            "time": "2016-05-11 00:36:29"
+        },
+        {
             "name": "jakub-onderka/php-console-color",
             "version": "0.1",
             "source": {
@@ -420,6 +529,95 @@
                 "tokenizer"
             ],
             "time": "2015-12-05 17:17:57"
+        },
+        {
+            "name": "khill/lavacharts",
+            "version": "3.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kevinkhill/lavacharts.git",
+                "reference": "c95cf815948db511c9c44270d50f7bc37861d81d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kevinkhill/lavacharts/zipball/c95cf815948db511c9c44270d50f7bc37861d81d",
+                "reference": "c95cf815948db511c9c44270d50f7bc37861d81d",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": "~1.14",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "mybuilder/phpunit-accelerator": "~1.1",
+                "phpunit/phpunit": "~4.5",
+                "satooshi/php-coveralls": "~1.0",
+                "squizlabs/php_codesniffer": "~2.5"
+            },
+            "suggest": {
+                "khill/datatableplus": "Adds extra features to DataTables such as csv and laravel collection parsing."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Khill\\Lavacharts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Hill",
+                    "email": "kevinkhill@gmail.com",
+                    "role": "Creator"
+                },
+                {
+                    "name": "deringer",
+                    "homepage": "https://github.com/deringer",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "stevebauman",
+                    "homepage": "https://github.com/stevebauman",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "rajivseelam",
+                    "homepage": "https://github.com/rajivseelam",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "tobias-kuendig",
+                    "homepage": "https://github.com/tobias-kuendig",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "Stonos",
+                    "homepage": "https://github.com/Stonos",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "MicahKV",
+                    "email": "micah138@yahoo.com",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "SendDerek",
+                    "homepage": "https://github.com/SendDerek",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "PHP wrapper library for the Google Chart API",
+            "homepage": "http://lavacharts.com",
+            "keywords": [
+                "charts",
+                "google",
+                "graphs"
+            ],
+            "time": "2016-04-28 14:43:39"
         },
         {
             "name": "laravel/framework",
@@ -607,20 +805,20 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.28",
+            "version": "1.0.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "a9663643ff2d16d7f66ed1e0d3212c5491bc9044"
+                "reference": "b732cc946c48cf102ddffd41ffcd54901a28ccdb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a9663643ff2d16d7f66ed1e0d3212c5491bc9044",
-                "reference": "a9663643ff2d16d7f66ed1e0d3212c5491bc9044",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/b732cc946c48cf102ddffd41ffcd54901a28ccdb",
+                "reference": "b732cc946c48cf102ddffd41ffcd54901a28ccdb",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "php": ">=5.6.0"
             },
             "conflict": {
                 "league/flysystem-sftp": "<1.0.6"
@@ -686,7 +884,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2016-10-07 12:20:37"
+            "time": "2016-10-17 23:14:19"
         },
         {
             "name": "monolog/monolog",
@@ -955,6 +1153,74 @@
                 "random"
             ],
             "time": "2016-03-18 20:34:03"
+        },
+        {
+            "name": "phenx/php-font-lib",
+            "version": "0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PhenX/php-font-lib.git",
+                "reference": "b8af0cacdc3cbf1e41a586fcb78f506f4121a088"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PhenX/php-font-lib/zipball/b8af0cacdc3cbf1e41a586fcb78f506f4121a088",
+                "reference": "b8af0cacdc3cbf1e41a586fcb78f506f4121a088",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "FontLib\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Ménager",
+                    "email": "fabien.menager@gmail.com"
+                }
+            ],
+            "description": "A library to read, parse, export and make subsets of different types of font files.",
+            "homepage": "https://github.com/PhenX/php-font-lib",
+            "time": "2015-05-06 20:02:39"
+        },
+        {
+            "name": "phenx/php-svg-lib",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PhenX/php-svg-lib.git",
+                "reference": "b419766515b3426c6da74b0e29e93d71c4f17099"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PhenX/php-svg-lib/zipball/b419766515b3426c6da74b0e29e93d71c4f17099",
+                "reference": "b419766515b3426c6da74b0e29e93d71c4f17099",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Svg\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Ménager",
+                    "email": "fabien.menager@gmail.com"
+                }
+            ],
+            "description": "A library to read, parse and export to PDF SVG files.",
+            "homepage": "https://github.com/PhenX/php-svg-lib",
+            "time": "2015-05-06 18:49:49"
         },
         {
             "name": "psr/log",

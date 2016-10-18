@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.2.45 on 2016-10-14.
+ * Generated for Laravel 5.2.45 on 2016-10-18.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12258,6 +12258,260 @@ namespace {
          */
         public static function componentCall($method, $parameters){
             return \Collective\Html\HtmlBuilder::componentCall($method, $parameters);
+        }
+        
+    }
+
+
+    class PDF extends \Barryvdh\DomPDF\Facade{
+        
+        /**
+         * Get the DomPDF instance
+         *
+         * @return \Barryvdh\DomPDF\Dompdf 
+         * @static 
+         */
+        public static function getDomPDF(){
+            return \Barryvdh\DomPDF\PDF::getDomPDF();
+        }
+        
+        /**
+         * Set the paper size (default A4)
+         *
+         * @param string $paper
+         * @param string $orientation
+         * @return $this 
+         * @static 
+         */
+        public static function setPaper($paper, $orientation = 'portrait'){
+            return \Barryvdh\DomPDF\PDF::setPaper($paper, $orientation);
+        }
+        
+        /**
+         * Show or hide warnings
+         *
+         * @param bool $warnings
+         * @return $this 
+         * @static 
+         */
+        public static function setWarnings($warnings){
+            return \Barryvdh\DomPDF\PDF::setWarnings($warnings);
+        }
+        
+        /**
+         * Load a HTML string
+         *
+         * @param string $string
+         * @param string $encoding Not used yet
+         * @return static 
+         * @static 
+         */
+        public static function loadHTML($string, $encoding = null){
+            return \Barryvdh\DomPDF\PDF::loadHTML($string, $encoding);
+        }
+        
+        /**
+         * Load a HTML file
+         *
+         * @param string $file
+         * @return static 
+         * @static 
+         */
+        public static function loadFile($file){
+            return \Barryvdh\DomPDF\PDF::loadFile($file);
+        }
+        
+        /**
+         * Load a View and convert to HTML
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @param string $encoding Not used yet
+         * @return static 
+         * @static 
+         */
+        public static function loadView($view, $data = array(), $mergeData = array(), $encoding = null){
+            return \Barryvdh\DomPDF\PDF::loadView($view, $data, $mergeData, $encoding);
+        }
+        
+        /**
+         * Output the PDF as a string.
+         *
+         * @return string The rendered PDF as string
+         * @static 
+         */
+        public static function output(){
+            return \Barryvdh\DomPDF\PDF::output();
+        }
+        
+        /**
+         * Save the PDF to a file
+         *
+         * @param $filename
+         * @return static 
+         * @static 
+         */
+        public static function save($filename){
+            return \Barryvdh\DomPDF\PDF::save($filename);
+        }
+        
+        /**
+         * Make the PDF downloadable by the user
+         *
+         * @param string $filename
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */
+        public static function download($filename = 'document.pdf'){
+            return \Barryvdh\DomPDF\PDF::download($filename);
+        }
+        
+        /**
+         * Return a response with the PDF to show in the browser
+         *
+         * @param string $filename
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */
+        public static function stream($filename = 'document.pdf'){
+            return \Barryvdh\DomPDF\PDF::stream($filename);
+        }
+        
+    }
+
+
+    class Lava extends \Khill\Lavacharts\Laravel\LavachartsFacade{
+        
+        /**
+         * Create a new DataTable
+         * 
+         * If the additional DataTablePlus package is available, then one will
+         * be created, otherwise a standard DataTable is returned.
+         *
+         * @since 3.0.0
+         * @param string $timezone
+         * @return \Khill\Lavacharts\DataTables\DataTable 
+         * @static 
+         */
+        public static function DataTable($timezone = null){
+            return \Khill\Lavacharts\Lavacharts::DataTable($timezone);
+        }
+        
+        /**
+         * Create a new Dashboard
+         *
+         * @since 3.0.0
+         * @param string $label
+         * @return \Khill\Lavacharts\DataTables\DataTable 
+         * @static 
+         */
+        public static function Dashboard($label){
+            return \Khill\Lavacharts\Lavacharts::Dashboard($label);
+        }
+        
+        /**
+         * Create a new ControlWrapper from a Filter
+         *
+         * @since 3.0.0
+         * @uses \Khill\Lavacharts\Values\ElementId
+         * @param \Khill\Lavacharts\Dashboards\Filters\Filter $filter Filter to wrap
+         * @param string $elementId HTML element ID to output the control.
+         * @return \Khill\Lavacharts\Dashboards\ControlWrapper 
+         * @static 
+         */
+        public static function ControlWrapper($filter, $elementId){
+            return \Khill\Lavacharts\Lavacharts::ControlWrapper($filter, $elementId);
+        }
+        
+        /**
+         * Create a new ChartWrapper from a Chart
+         *
+         * @since 3.0.0
+         * @uses \Khill\Lavacharts\Values\ElementId
+         * @param \Khill\Lavacharts\Charts\Chart $chart Chart to wrap
+         * @param string $elementId HTML element ID to output the control.
+         * @return \Khill\Lavacharts\Dashboards\ChartWrapper 
+         * @static 
+         */
+        public static function ChartWrapper($chart, $elementId){
+            return \Khill\Lavacharts\Lavacharts::ChartWrapper($chart, $elementId);
+        }
+        
+        /**
+         * Renders Charts or Dashboards into the page
+         * 
+         * Given a type, label, and HTML element id, this will output
+         * all of the necessary javascript to generate the chart or dashboard.
+         *
+         * @access public
+         * @since 2.0.0
+         * @uses \Khill\Lavacharts\Values\Label
+         * @uses \Khill\Lavacharts\Values\ElementId
+         * @param string $type Type of object to render.
+         * @param string $label Label of the object to render.
+         * @param string $elementId HTML element id to render into.
+         * @param mixed $divDimensions Set true for div creation, or pass an array with height & width
+         * @return string 
+         * @static 
+         */
+        public static function render($type, $label, $elementId, $divDimensions = false){
+            return \Khill\Lavacharts\Lavacharts::render($type, $label, $elementId, $divDimensions);
+        }
+        
+        /**
+         * Outputs the link to the Google JSAPI
+         *
+         * @access public
+         * @since 2.3.0
+         * @return string Google Chart API and lava.js script blocks
+         * @static 
+         */
+        public static function jsapi(){
+            return \Khill\Lavacharts\Lavacharts::jsapi();
+        }
+        
+        /**
+         * Checks to see if the given chart or dashboard exists in the volcano storage.
+         *
+         * @access public
+         * @since 2.4.2
+         * @uses \Khill\Lavacharts\Values\Label
+         * @param string $type Type of object to check.
+         * @param string $label Label of the object to check.
+         * @return boolean 
+         * @static 
+         */
+        public static function exists($type, $label){
+            return \Khill\Lavacharts\Lavacharts::exists($type, $label);
+        }
+        
+        /**
+         * Fetches an existing Chart or Dashboard from the volcano storage.
+         *
+         * @access public
+         * @since 3.0.0
+         * @uses \Khill\Lavacharts\Values\Label
+         * @param string $type Type of Chart or Dashboard.
+         * @param string $label Label of the Chart or Dashboard.
+         * @return mixed 
+         * @static 
+         */
+        public static function fetch($type, $label){
+            return \Khill\Lavacharts\Lavacharts::fetch($type, $label);
+        }
+        
+        /**
+         * Stores a existing Chart or Dashboard into the volcano storage.
+         *
+         * @access public
+         * @since 3.0.0
+         * @param \Khill\Lavacharts\Chart|\Khill\Lavacharts\Dashboard $lavaObj Chart or Dashboard.
+         * @return boolean 
+         * @static 
+         */
+        public static function store($lavaObj){
+            return \Khill\Lavacharts\Lavacharts::store($lavaObj);
         }
         
     }

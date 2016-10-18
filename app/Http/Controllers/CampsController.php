@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\AthleteData;
 use App\AthleteData_Camp;
 use App\Camp;
 use App\CampTrain;
 use App\Position;
 use Illuminate\Http\Request;
+use Khill\Lavacharts\Lavacharts;
 use Session;
 use App\Http\Requests;
+use Barryvdh\DomPDF\PDF;
 
 class CampsController extends Controller
 {
@@ -137,9 +140,23 @@ class CampsController extends Controller
     public function getAthleteCampEval($id) {
         $adc = AthleteData_Camp::find($id);
         $campTrain = CampTrain::where('adc_id', $adc['id'])->first();
+        $athlete = AthleteData::find($adc->athlete_id);
 
         if (isset($campTrain)) {
-            return view('camps.showEval')->withTrain($campTrain)->withAdc($adc);
+            $lava = new Lavacharts();
+            $evaluations = $lava->DataTable();
+
+            $evaluations->addStringColumn('Player Evaluation')
+                        ->addNumberColumn('Rank')
+                        ->addRow(['Attack', $campTrain->attackEval])
+                        ->addRow(['Defence', $campTrain->defenceEval])
+                        ->addRow(['Total', $campTrain->atDefEval]);
+
+            $lava->BarChart('Evaluation', $evaluations);
+
+            $fullName = $athlete->lastName.' '.$athlete->firstName;
+
+            return view('camps.showEval', ['lava' => $lava])->withTrain($campTrain)->withAdc($adc)->withName($fullName);
         } else {
             $positions = Position::all();
             return view('camps.createEval')->withAdc($adc)->withPositions($positions);
@@ -202,5 +219,12 @@ class CampsController extends Controller
         Session::flash('success', 'Athlete\'s Evaluation Updated');
 
         return redirect()->route('camp.getAthleteCampEval', $campTrain->adc_id);
+    }
+
+    public function generatePDF($train, $adc, $name) {
+        $data = [$train, $adc, $name];
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadView('camps.showEval', $data);
+        return $pdf->stream();
     }
 }
