@@ -4,7 +4,8 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6 col-md-offset-4">
+            <a href="{{ route('team.index') }}" class="btn btn-primary pull-right">Back To Teams</a>
             <h1>{{ $team->name }}</h1>
             <label>Level:</label>
             {{ $team->level }}<br>
@@ -18,7 +19,6 @@
             {{ $team->email }}<br>
             <label>Website:</label>
             {{ $team->website }}<br>
-            <a href="{{ route('team.index') }}">Back To Teams</a>
         </div>
     </div>
 @endsection
