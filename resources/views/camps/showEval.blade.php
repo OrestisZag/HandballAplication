@@ -13,7 +13,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6 col-md-offset-3 space-top">
-            <a href="{{ route('camp.exportToPdf', [$train, $adc, $name]) }}" class="btn btn-block btn-danger">Export To PDF</a>
+            <a href="{{ route('camp.exportToPdf', $athlete->id) }}" class="btn btn-block btn-danger">Export To PDF</a>
         </div>
     </div>
     <div class="row">

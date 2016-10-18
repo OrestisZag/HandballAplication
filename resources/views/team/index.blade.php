@@ -34,8 +34,8 @@
                             <td>{{ $team->level }}</td>
                             <td>{{ $team->place }}</td>
                             <td>
-                                <a href="{{ route('team.show', $team->id) }}"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                <a href="{{ route('team.edit', $team->id) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="{{ route('team.show', $team->id) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                <a href="{{ route('team.edit', $team->id) }}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit"></span></a>
                             </td>
                         </tr>
                     @endforeach

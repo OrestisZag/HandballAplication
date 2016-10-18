@@ -41,8 +41,8 @@
                                     @endif
                                 @endforeach
                             <td>
-                                <a href="{{ route('athlete.show', $athlete->id) }}"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                <a href="{{ route('athlete.edit', $athlete->id) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="{{ route('athlete.show', $athlete->id) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                <a href="{{ route('athlete.edit', $athlete->id) }}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit"></span></a>
                             </td>
                         </tr>
                     @endforeach

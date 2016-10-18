@@ -7,6 +7,7 @@ use App\AthleteData_Camp;
 use App\Camp;
 use App\CampTrain;
 use App\Position;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Khill\Lavacharts\Lavacharts;
 use Session;
@@ -141,6 +142,7 @@ class CampsController extends Controller
         $adc = AthleteData_Camp::find($id);
         $campTrain = CampTrain::where('adc_id', $adc['id'])->first();
         $athlete = AthleteData::find($adc->athlete_id);
+        $athleteData = AthleteData_Camp::where('camp_id', $adc['camp_id'])->first();
 
         if (isset($campTrain)) {
             $lava = new Lavacharts();
@@ -156,7 +158,7 @@ class CampsController extends Controller
 
             $fullName = $athlete->lastName.' '.$athlete->firstName;
 
-            return view('camps.showEval', ['lava' => $lava])->withTrain($campTrain)->withAdc($adc)->withName($fullName);
+            return view('camps.showEval', ['lava' => $lava])->withTrain($campTrain)->withAdc($adc)->withName($fullName)->withAthlete($athleteData);
         } else {
             $positions = Position::all();
             return view('camps.createEval')->withAdc($adc)->withPositions($positions);
@@ -221,10 +223,35 @@ class CampsController extends Controller
         return redirect()->route('camp.getAthleteCampEval', $campTrain->adc_id);
     }
 
-    public function generatePDF($train, $adc, $name) {
-        $data = [$train, $adc, $name];
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function generatePDF($id) {
+        $adc = AthleteData_Camp::find($id);
+        $campTrain = CampTrain::where('adc_id', $adc['id'])->first();
+        $athlete = AthleteData::find($adc->athlete_id);
+
+        $lava = new Lavacharts();
+        $evaluations = $lava->DataTable();
+
+        $evaluations->addStringColumn('Player Evaluation')
+            ->addNumberColumn('Rank')
+            ->addRow(['Attack', $campTrain->attackEval])
+            ->addRow(['Defence', $campTrain->defenceEval])
+            ->addRow(['Total', $campTrain->atDefEval]);
+
+        $lava->BarChart('Evaluation', $evaluations);
+        $complete = $lava->render('BarChart', 'Evaluation', 'chart-div');
+
+        $fullName = $athlete->lastName.' '.$athlete->firstName;
+
+        $data = ['name' => $fullName, 'adc' => $adc, 'train' => $campTrain, 'lava' => $complete];
+        $view = \View::make('pdf.campAthleteEval', $data);
         $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadView('camps.showEval', $data);
-        return $pdf->stream();
+//        $pdf->loadView('pdf.campAthleteEval', $data);
+//        dd($pdf->strai oeam());
+//        dd($view);
+        return $view;
     }
 }

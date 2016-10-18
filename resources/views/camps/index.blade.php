@@ -34,8 +34,8 @@
                             <td>{{$camp->place}}</td>
                             <td>{{ $camp->date }}</td>
                             <td>
-                                <a href="{{ route('camp.show', $camp->id) }}"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                <a href="{{ route('camp.edit', $camp->id) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="{{ route('camp.show', $camp->id) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                <a href="{{ route('camp.edit', $camp->id) }}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit"></span></a>
                             </td>
                         </tr>
                     @endforeach

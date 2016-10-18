@@ -16,6 +16,10 @@ Route::get('/', function () {
     return view('pages.welcome');
 });
 
+Route::get('about', function () {
+    return view('pages.about');
+});
+
 //Athlete routes
 Route::resource('athlete', 'AthletesController');
 
@@ -28,4 +32,4 @@ $this->get('camp/athleteEvaluation/{id}', ['uses' => 'CampsController@getAthlete
 $this->post('camp/athleteEvaluation', ['uses' => 'CampsController@postAthleteCampEval', 'as' => 'camp.storeAthleteEval']);
 $this->get('camp/{id}/editAthleteEvaluation', ['uses' => 'CampsController@getEditAthleteCampEval', 'as' => 'camp.getEditAthleteCampEval']);
 $this->put('camp/updateEvaluation/{id}', ['uses' => 'CampsController@updateAthleteEvaluation', 'as' => 'camp.updateAthleteEvaluation']);
-$this->get('camp/evaluationToPDF', ['uses' => 'CampsController@generatePDF', 'as' => 'camp.exportToPdf']);
+$this->get('camp/evaluationToPDF/{id}', ['uses' => 'CampsController@generatePDF', 'as' => 'camp.exportToPdf']);
