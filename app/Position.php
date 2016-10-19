@@ -13,4 +13,8 @@ class Position extends Model
     public function campTrain() {
         return $this->hasMany('App\CampTrain', 'position_id');
     }
+
+    public function athletePosition() {
+        return $this->hasMany('App\AthletePosition', 'position_id');
+    }
 }
