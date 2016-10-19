@@ -33,3 +33,6 @@ $this->post('camp/athleteEvaluation', ['uses' => 'CampsController@postAthleteCam
 $this->get('camp/{id}/editAthleteEvaluation', ['uses' => 'CampsController@getEditAthleteCampEval', 'as' => 'camp.getEditAthleteCampEval']);
 $this->put('camp/updateEvaluation/{id}', ['uses' => 'CampsController@updateAthleteEvaluation', 'as' => 'camp.updateAthleteEvaluation']);
 $this->get('camp/evaluationToPDF/{id}', ['uses' => 'CampsController@generatePDF', 'as' => 'camp.exportToPdf']);
+
+//Match routes
+Route::resource('match', 'MatchesController');

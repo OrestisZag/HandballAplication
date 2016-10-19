@@ -17,6 +17,7 @@
                 <li class="{{ Request::is('athlete') ? "active" : "" }}"><a href="{{ route('athlete.index') }}">Athletes</a></li>
                 <li class="{{ Request::is('team') ? "active" : "" }}"><a href="{{ route('team.index') }}">Teams</a></li>
                 <li class="{{ Request::is('camp') ? "active" : "" }}"><a href="{{ route('camp.index') }}">Camps</a></li>
+                <li class="{{ Request::is('match') ? "active" : "" }}"><a href="{{ route('match.index') }}">Matches</a></li>
                 <li class="{{ Request::is('about') ? "active" : "" }}"><a href="about">About</a></li>
                 {{--<li class="dropdown">--}}
                     {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>--}}
@@ -32,7 +33,7 @@
                 {{--</li>--}}
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
+                {{--<li><a href="#">Link</a></li>--}}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
                     <ul class="dropdown-menu">
