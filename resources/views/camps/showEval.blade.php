@@ -25,8 +25,7 @@
                 <li class="list-group-item text-center"><strong>Attack Evaluation: </strong>{{ $train->attackEval }}</li>
                 <li class="list-group-item text-center"><strong>Defence Evaluation: </strong>{{ $train->defenceEval }}</li>
                 <li class="list-group-item text-center"><strong>Attack + Defence Evaluation: </strong>{{ $train->atDefEval }}</li>
-                <li class="list-group-item text-center"><strong>Comments: </strong><textarea id="text" rows="5" cols="25">
-                    {{ $train->comments }}</textarea></li>
+                <li class="list-group-item text-center"><strong>Comments: </strong><div class="panel-body">{{ $train->comments }}</div>
             </ul>
         </div>
     </div>
@@ -37,10 +36,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('script')
-    <script>
-        $('#text').keydown(false);
-    </script>
 @endsection
