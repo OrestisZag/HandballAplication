@@ -34,6 +34,16 @@
                 {{ Form::number('weight', null, ['class' => 'form-control input-sm', 'step' => '0.1', 'required' => '',
                    'min' => '30', 'max' => '150']) }}
 
+                {{ Form::label('position', 'Position: *') }}
+                <select name="positions[]" title="positions[]" class="form-control input-sm">
+                    @foreach($positions as $position)
+                        <option value="{{ $position->id }}">{{ $position->fullName }}, {{$position->sortName}}</option>
+                    @endforeach
+                </select>
+
+                <div id="inputPosition"></div>
+                <div onclick="addPositions()" class="btn btn-warning btn-block space-top">Add Positions</div>
+
                 {{ Form::label('mobile', 'Mobile Phone:') }}
                 {{ Form::tel('mobile', null, ['class' => 'form-control input-sm', 'minlength' => '10',
                    'maxlength' => '15']) }}
@@ -181,6 +191,20 @@
             $('.select2-team').select2({
                 maximumSelectionLength: 1
             });
+        }
+
+        var counter = 0;
+        function addPositions() {
+            var pos =
+                    '<br><select class="form-control input-sm" name="positions[]" title="positions[]">' +
+                    '@foreach($positions as $position)
+                            <option value="{{ $position->id }}">{{ $position->fullName }}'+', '+'{{ $position->sortName }}</option> ' +
+                    '@endforeach '+
+                    '</select>';
+            if(counter < 2) {
+                document.getElementById( 'inputPosition' ).insertAdjacentHTML( 'beforeend', pos );
+            }
+            counter++;
         }
 
         $(function() {

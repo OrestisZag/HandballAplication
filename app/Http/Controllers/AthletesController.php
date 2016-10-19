@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AthleteData_Camp;
 use App\AthleteData_Team;
+use App\Position;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\AthleteData;
@@ -42,7 +43,8 @@ class AthletesController extends Controller
         $athletes = AthleteData::all();
         $teams = Team::all();
         $camps = Camp::all();
-        return view('athletes.create')->withAthletes($athletes)->withTeams($teams)->withCamps($camps);
+        $positions = Position::all();
+        return view('athletes.create')->withAthletes($athletes)->withTeams($teams)->withCamps($camps)->withPositions($positions);
     }
 
     /**
