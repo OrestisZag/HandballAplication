@@ -1,27 +1,34 @@
-# Laravel PHP Framework
+#Run Instructions
+###Before Project Download:
+Requirements: php5.6 or greater, MySql, Composer.
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Xampp or php and mysql separately must be installed. Download Xampp from [here](https://www.apachefriends.org/download.html) or php from [here](http://php.net/downloads.php) and mysql from [here](https://dev.mysql.com/downloads/installer/).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Composer must be installed. To download composer click [here](https://getcomposer.org/download/).
+###After Project Download:
+Create .env file in project folder. Then copy .env.example content and paste it in .env.
+Now you have to create a database. 
+####For Windows users:
+Open Xampp and run MySql. Then click Admin to open PhpMyAdmin. Click New in db tree to create a new database. 
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Then go to .env file and in DB_DATABASE=typeYourDbName DB_USERNAME=typePhpMyAdminUserName DB_PASSWORD=typePhpMyAdminPassword
+####For Linux users:
+Open a terminal and run:
 
-## Official Documentation
+mysql -u root -p
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+CREATE DATABASE yourDbName;
 
-## Contributing
+Then go to .env file and in DB_DATABASE=typeYourDbName DB_USERNAME=typeMySqlUserName DB_PASSWORD=typeMySqlPassword
+###Project Setup:
+Open a cmd or a terminal go to project folder and run:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+composer update
 
-## Security Vulnerabilities
+composer dump-auto
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+php artisan key:generate
 
-## License
+It will generate a key like this: base64:D9LjuA5MyVDM9al/+gelRZplXyM41w8cqNPJr3vw+Bg= Copy and paste in .env APP_KEY=
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Run **php artisan serve** to run project on Laravel's virtual server. Open a browser and type: **http://localhost:8000/** 
