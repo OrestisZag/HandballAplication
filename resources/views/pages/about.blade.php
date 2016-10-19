@@ -15,11 +15,11 @@
             <label>Last Name: </label><strong> Avgeri</strong><br>
             <label>First Name: </label><strong> Konstantina</strong><br>
             <label>AEM: </label><strong> 3414</strong><br><br>
-            <p class="text-center">Current website is our Thesis project for TEI of Central Macedonia.</p>
-            <p class="text-center">We would like to thank our supervisor Dr. Alkiviadis Tsimpiris,
-                for the confidence he showed us and for his valuable advices. Also we would like to thank
-                all of our teachers here in TEI of Central Macedonia for their
-                persistence in teaching us.</p>
+            <p class="text-center">Current website is our Thesis project for Technological Educational Institute
+                of Central Macedonia.</p>
+            <p class="text-center">We would like to thank our supervisor Dr. Tsimpiris Alkividis,
+                for the confidence he showed us and for his valuable advices and Mr. Kranakis Georgios for his
+                guidance.</p>
         </div>
     </div>
 @endsection
