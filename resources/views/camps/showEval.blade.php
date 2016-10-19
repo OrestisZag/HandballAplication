@@ -11,11 +11,11 @@
             <a href="{{ route('athlete.show', $adc->athlete_id) }}" class="btn btn-block btn-primary">Back to Athlete's Profile</a>
         </div>
     </div>
-    {{--<div class="row">--}}
-        {{--<div class="col-sm-6 col-md-offset-3 space-top">--}}
-            {{--<a href="{{ route('camp.exportToPdf', $athlete->id) }}" class="btn btn-block btn-danger">Export To PDF</a>--}}
-        {{--</div>--}}
-    {{--</div>--}}
+    <div class="row">
+        <div class="col-sm-6 col-md-offset-3 space-top">
+            <a href="{{ route('camp.exportToPdf', $athlete->id) }}" class="btn btn-block btn-danger">Export To PDF</a>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6 col-md-offset-3 space-top">
             <ul class="list-group">

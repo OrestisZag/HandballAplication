@@ -26,8 +26,8 @@
     </div>
 @endsection
 
-{{--@section('script')--}}
-    {{--<script>--}}
-        {{--$('#text').keydown(false);--}}
-    {{--</script>--}}
-{{--@endsection--}}
+@section('script')
+    <script>
+        $('#text').keydown(false);
+    </script>
+@endsection
