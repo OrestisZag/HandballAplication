@@ -1,5 +1,8 @@
 @extends('main')
 
+<?php $matchName = $match->home.'-'.$match->away?>
+@section('title', "| $matchName")
+
 @section('content')
     <div class="row">
         <div class="col-md-6 col-md-offset-4">
