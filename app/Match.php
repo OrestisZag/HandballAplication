@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Match extends Model
 {
     use SoftDeletes;
+
+    public function athleteSkillMatch() {
+        return $this->hasMany('App\AthleteSkillMatch', 'match_id');
+    }
 }
