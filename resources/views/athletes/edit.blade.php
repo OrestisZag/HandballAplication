@@ -117,7 +117,7 @@
 
                 {{ Form::label('address', 'Address:*') }}
                 {{ Form::text('address', null, ['class' => 'form-control input-sm', 'required' => '',
-                   'minlength' => '4', 'maxlength' => '40']) }}
+                   'minlength' => '4', 'maxlength' => '255']) }}
 
                 {{ Form::label('postalCode', 'Postal Code:') }}
                 {{ Form::text('postalCode', null, ['class' => 'form-control input-sm', 'maxlength' => '10']) }}

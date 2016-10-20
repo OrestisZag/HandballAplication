@@ -33,7 +33,11 @@
                         <tr>
                             <td>{{ $athlete->lastName }}</td>
                             <td>{{ $athlete->firstName }}</td>
-                            <td></td>
+                            <td>
+                                @foreach($athlete->athletePosition as $pos)
+                                    {{ $pos->position->sortName }}
+                                @endforeach
+                            </td>
                             <td>
                                 @foreach($athlete->athleteDataTeams as $team)
                                     @if($team->currentTeam == 1)
