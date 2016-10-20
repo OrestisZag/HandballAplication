@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(teamSeeder::class);
         $this->call(campSeeder::class);
         $this->call(positionSeeder::class);
-//        $this->call(SkillSeeder::class);
+        $this->call(SkillSeeder::class);
         $this->call(MatchesSeeder::class);
     }
 }
