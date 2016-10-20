@@ -4,7 +4,15 @@
 
 @section('content')
     <h1>{{ $athlete->lastName }} {{ $athlete->firstName }}</h1>
-    <a href="{{ route('athlete.index') }}" class="btn btn-primary">Back To Athletes</a>
+    <h4>Position:</h4>
+    <strong>1st Position: </strong> {{ $ap[0]->position->fullName }}
+    @if(isset($ap[1]))
+        <strong>2nd Position: </strong> {{ $ap[1]->position->fullName }}
+    @endif
+    @if(isset($ap[2]))
+        <strong>3rd Position: </strong> {{ $ap[2]->position->fullName }}
+    @endif
+    <a href="{{ route('athlete.index') }}" class="btn btn-primary pull-right">Back To Athletes</a>
     <div class="row">
         <div class="col-md-3 space-top">
             @if($athlete->photo == null)

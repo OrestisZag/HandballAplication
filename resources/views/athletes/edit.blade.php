@@ -33,6 +33,58 @@
                 {{ Form::number('weight', null, ['class' => 'form-control input-sm', 'step' => '0.1', 'required' => '',
                    'min' => '30', 'max' => '150']) }}
 
+                {{ Form::label('position', 'Position: *') }}
+                @if(isset($ap[2]))
+                    <select name="positions[]" title="positions[]" class="form-control input-sm">
+                        @foreach($positions as $position)
+                            <option value="{{ $position->id }}" {{ $position->id == $ap[0]->position->id ? 'selected' : '' }}>{{ $position->fullName }}, {{$position->sortName}}</option>
+                        @endforeach
+                    </select><br>
+                    <select name="positions[]" title="positions[]" class="form-control input-sm">
+                        @foreach($positions as $position)
+                            <option value="{{ $position->id }}" {{ $position->id == $ap[1]->position->id ? 'selected' : '' }}>{{ $position->fullName }}, {{$position->sortName}}</option>
+                        @endforeach
+                    </select><br>
+                    <select name="positions[]" title="positions[]" class="form-control input-sm">
+                        @foreach($positions as $position)
+                            @foreach($athlete->athletePosition as $athletePos)
+                                <option value="{{ $position->id }}" {{ $position->id == $ap[2]->position->id ? 'selected' : '' }}>{{ $position->fullName }}, {{$position->sortName}}</option>
+                            @endforeach
+                        @endforeach
+                    </select><br>
+                    {{--<div id="inputPosition"></div>--}}
+                    {{--<div onclick="addPositions(0)" class="btn btn-warning btn-block space-top">Add Positions</div>--}}
+                @elseif(isset($ap[1]))
+                    <select name="positions[]" title="positions[]" class="form-control input-sm">
+                        @foreach($positions as $position)
+                            <option value="{{ $position->id }}" {{ $position->id == $ap[0]->position->id ? 'selected' : '' }}>{{ $position->fullName }}, {{$position->sortName}}</option>
+                        @endforeach
+                    </select><br>
+                    <select name="positions[]" title="positions[]" class="form-control input-sm">
+                        @foreach($positions as $position)
+                            <option value="{{ $position->id }}" {{ $position->id == $ap[1]->position->id ? 'selected' : '' }}>{{ $position->fullName }}, {{$position->sortName}}</option>
+                        @endforeach
+                    </select>
+                    <div id="inputPosition"></div>
+                    <div onclick="addPositions(1)" class="btn btn-warning btn-block space-top">Add Positions</div>
+                @elseif(isset($ap[0]))
+                    <select name="positions[]" title="positions[]" class="form-control input-sm">
+                        @foreach($positions as $position)
+                            <option value="{{ $position->id }}" {{ $position->id == $ap[0]->position->id ? 'selected' : '' }}>{{ $position->fullName }}, {{$position->sortName}}</option>
+                        @endforeach
+                    </select>
+                    <div id="inputPosition"></div>
+                    <div onclick="addPositions(2)" class="btn btn-warning btn-block space-top">Add Positions</div>
+                @else
+                    <select name="positions[]" title="positions[]" class="form-control input-sm">
+                        @foreach($positions as $position)
+                            <option value="{{ $position->id }}">{{ $position->fullName }}, {{$position->sortName}}</option>
+                        @endforeach
+                    </select>
+                    <div id="inputPosition"></div>
+                    <div onclick="addPositions(2)" class="btn btn-warning btn-block space-top">Add Positions</div>
+                @endif
+
                 {{ Form::label('mobile', 'Mobile Phone:') }}
                 {{ Form::tel('mobile', null, ['class' => 'form-control input-sm', 'minlength' => '10',
                    'maxlength' => '15']) }}
@@ -94,7 +146,7 @@
                     {{ Form::label('photo', 'Upload New Athlete\'s photo:') }}
                     {{ Html::image("athletePhoto/$athlete->id.png", null, ['width' => '200', 'height' => '280'])}}
                 @endif
-                {{ Form::file('photo') }}
+                {{ Form::file('photo', ['class' => 'btn btn-primary btn-block']) }}
 
                 {{ Form::label('current', 'Athlete\'s Current Team:') }}
                 @foreach($athlete->athleteDataTeams as $team)
@@ -102,6 +154,7 @@
                         {{ $team->team->name }} <strong>From: </strong>{{ $team->signed }}
                     @endif
                 @endforeach
+                <br>
                 {{ Form::label('teams', 'New Athlete\'s Current Team:') }}
                 <select class="form-control input-sm select2-team" name="teams" title="team" multiple="multiple">
                     @foreach($teams as $team)
@@ -232,6 +285,20 @@
             $('.select2-team').select2({
                 maximumSelectionLength: 1
             });
+        }
+
+        var counter = 0;
+        function addPositions(max) {
+            var pos =
+                    '<br><select class="form-control input-sm" name="positions[]" title="positions[]">' +
+                    '@foreach($positions as $position)
+                            <option value="{{ $position->id }}">{{ $position->fullName }}'+', '+'{{ $position->sortName }}</option> ' +
+                    '@endforeach '+
+                    '</select>';
+            if(counter < max) {
+                document.getElementById( 'inputPosition' ).insertAdjacentHTML( 'beforeend', pos );
+            }
+            counter++;
         }
 
         $(function() {

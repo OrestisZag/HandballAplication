@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AthleteData_Camp;
 use App\AthleteData_Team;
+use App\AthletePosition;
 use App\Position;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -61,6 +62,7 @@ class AthletesController extends Controller
             'birthday' => 'required|date',
             'height' => 'numeric|min:0.5|max:2.50',
             'weight' => 'numeric|min:30|max:150',
+            'positions' => 'required',
             'mobile' => 'mobile|min:10|max:15',
             'telephone1' => 'telephone|min:10|max:15',
             'telephone2' => 'telephone|min:10|max:15',
@@ -149,6 +151,13 @@ class AthletesController extends Controller
             }
         }
 
+        foreach ($request->positions as $position) {
+            $athletePosition = new AthletePosition();
+            $athletePosition->athlete_id = $athlete->id;
+            $athletePosition->position_id = $position;
+            $athletePosition->save();
+        }
+
         Session::flash('success', 'Player info added successfully!');
 
         return redirect()->route('athlete.show', $athlete->id);
@@ -163,7 +172,8 @@ class AthletesController extends Controller
     public function show($id)
     {
         $athlete = AthleteData::find($id);
-        return view('athletes.show')->withAthlete($athlete);
+        $ap = AthletePosition::where('athlete_id', $id)->get();
+        return view('athletes.show')->withAthlete($athlete)->withAp($ap);
     }
 
     /**
@@ -176,13 +186,15 @@ class AthletesController extends Controller
     {
         $athlete = AthleteData::find($id);
         $teams = Team::all();
+        $positions = Position::all();
+        $ap = AthletePosition::where('athlete_id', $id)->get();
         $camps = Camp::all();
         $camps2 = array();
         foreach ($camps as $camp) {
             $camps2[$camp->id] = $camp->title.', '.date('Y', strtotime($camp->date));
         }
 
-        return view('athletes.edit')->withAthlete($athlete)->withTeams($teams)->withCamps($camps2);
+        return view('athletes.edit')->withAthlete($athlete)->withTeams($teams)->withCamps($camps2)->withPositions($positions)->withAp($ap);
     }
 
     /**
@@ -289,6 +301,17 @@ class AthletesController extends Controller
                 $athleteCamp->camp_id = $camp;
                 $athleteCamp->save();
             }
+        }
+
+        $allAthletePos = AthletePosition::where('athlete_id', $athlete->id)->get();
+        foreach ($allAthletePos as $del) {
+            $del->delete();
+        }
+        foreach ($request->positions as $position) {
+            $athletePosition = new AthletePosition();
+            $athletePosition->athlete_id = $athlete->id;
+            $athletePosition->position_id = $position;
+            $athletePosition->save();
         }
 
         Session::flash('success', 'Player info updated successfully!');

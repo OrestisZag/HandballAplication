@@ -101,7 +101,7 @@
                 {{ Form::text('IDNumber', null, ['class' => 'form-control input-sm', 'maxlength' => '10']) }}
 
                 {{ Form::label('photo', 'Upload Athlete\'s photo:') }}
-                {{ Form::file('photo') }}
+                {{ Form::file('photo', ['class' => 'btn btn-primary btn-block']) }}
 
                 {{ Form::label('teams', 'Athlete\'s Current Team:') }}
                 <select class="form-control input-sm select2-team" name="teams" title="teams" multiple="multiple">
