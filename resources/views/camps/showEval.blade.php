@@ -2,6 +2,10 @@
 
 @section('title', '| Camp Evaluation')
 
+@section('style')
+    {{ Html::style('css/chart-column.css') }}
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-sm-3 col-md-offset-3">
@@ -29,11 +33,41 @@
             </ul>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div id="chart-div">
-                {!! $lava->render('BarChart', 'Evaluation', 'chart-div') !!}
-            </div>
+    <div class="css_bar_graph">
+
+        <!-- y_axis labels -->
+        <ul class="y_axis">
+            <li>10</li><li>8</li><li>6</li><li>4</li><li>2</li><li>0</li>
+        </ul>
+
+        <!-- x_axis labels -->
+        <ul class="x_axis">
+            <li>Attack</li><li>Defense</li><li>Tottal</li>
+        </ul>
+
+        <!-- graph -->
+        <div class="graph">
+            <!-- grid -->
+            <ul class="grid">
+                <li><!-- 100 --></li>
+                <li><!-- 80 --></li>
+                <li><!-- 60 --></li>
+                <li><!-- 40 --></li>
+                <li><!-- 20 --></li>
+                <li class="bottom"><!-- 0 --></li>
+            </ul>
+
+            <!-- bars -->
+            <!-- 250px = 100% -->
+            <ul>
+                <li class="bar nr_1 red" style="height:  {{ 250/10*$train->attackEval }}px;"><div class="top"></div><div class="bottom"></div><span>{{ $train->attackEval }}</span></li>
+                <li class="bar nr_2 orange" style="height: {{ 250/10*$train->defenceEval }}px;"><div class="top"></div><div class="bottom"></div><span>{{ $train->defenceEval }}</span></li>
+                <li class="bar nr_3 blue" style="height: {{ 250/10*$train->atDefEval }}px;"><div class="top"></div><div class="bottom"></div><span>{{ $train->atDefEval }}</span></li>
+            </ul>
         </div>
+
+        <!-- graph label -->
+        <div class="label"><span>Graph: </span>Athlete's evaluation</div>
+
     </div>
 @endsection
