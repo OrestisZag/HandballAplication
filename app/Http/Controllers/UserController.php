@@ -20,15 +20,20 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Request $request
+     * @return mixed
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderBy('name','asc')->paginate(10);
+        $users = User::where(function ($query) use ($request) {
+            if ($term = $request->get('term')) {
+                $query->orwhere('name', 'like', '%' .$term. '%');
+                $query->orwhere('email', 'like', '%' .$term. '%');
+                $query->orwhere('role', 'like', '%' .$term. '%');
+            }
+        })->orderBy('name', 'asc')->paginate(10);
 
-        return view('user.index')->with('users' , $users);
+        return view('user.index')->with('users', $users);
     }
 
     /**
@@ -39,7 +44,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = $this->model->find($id)->first();
+        $user = $this->model->find($id);
 
         return view('user.show')->with('user',$user);
     }
@@ -53,16 +58,33 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
         $oldUser = $this->model->find($id);
+        //$oldUser->update($request->except(['_token','_method']));
+        $oldUser->name = $request->name;
+        $oldUser->email = $request->email;
+        $oldUser->role = $request->role;
+        $oldUser->password = bcrypt($request->password);
+        $oldUser->save();
 
-        $oldUser->update($request->except(['_token','_method']));
-
-        return view('user.show')->with('user' , $this->model->find($id));
+        return redirect()->route('user.show', $this->model->find($id));
     }
 
     public function create()
     {
         return view('user.create');
+    }
+
+    public function edit($id)
+    {
+        $user = $this->model->find($id);
+
+        return view('user.edit')->withUser($user);
     }
 
     public function store(Request $request)
@@ -80,6 +102,13 @@ class UserController extends Controller
             'password' => bcrypt($request['password']),
         ]);
 
-        return view('user.index');
+        return redirect()->route('user.index');
+    }
+
+    public function destroy($id) {
+        $user =  $this->model->find($id);
+        $user->delete();
+
+        return redirect()->route('user.index');
     }
 }

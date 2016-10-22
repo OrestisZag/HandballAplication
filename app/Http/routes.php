@@ -53,11 +53,11 @@ $this->group(['middleware' => 'auth'], function () {
 
     //if not working just move this outside the last bracket
     $this->group(['middleware' => 'admin'], function () {
-        $this->get('user',['uses' => 'UserController@index', 'as' => 'user.index']);
-        $this->get('user/{id}',['uses' => 'UserController@show', 'as' => 'user.show']);
-        $this->put('user/{id}',['uses' => 'UserController@update', 'as' => 'user.update']);
-        $this->put('user/create',['uses' => 'UserController@create', 'as' => 'user.create']);
-        $this->post('user',['uses' => 'UserController@store', 'as' => 'user.store']);
-//        Route::resource('user', 'UserController');
+//        $this->get('user',['uses' => 'UserController@index', 'as' => 'user.index']);
+//        $this->get('user/{id}',['uses' => 'UserController@show', 'as' => 'user.show']);
+//        $this->put('user/{id}',['uses' => 'UserController@update', 'as' => 'user.update']);
+//        $this->put('user/create',['uses' => 'UserController@create', 'as' => 'user.create']);
+//        $this->post('user',['uses' => 'UserController@store', 'as' => 'user.store']);
+        Route::resource('user', 'UserController');
     });
 });
