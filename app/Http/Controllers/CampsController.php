@@ -248,10 +248,7 @@ class CampsController extends Controller
 
         $data = ['name' => $fullName, 'adc' => $adc, 'train' => $campTrain, 'lava' => $complete];
         $view = \View::make('pdf.campAthleteEval', $data);
-        $pdf = \App::make('dompdf.wrapper');
-//        $pdf->loadView('pdf.campAthleteEval', $data);
-//        dd($pdf->strai oeam());
-//        dd($view);
+
         return $view;
     }
 }
