@@ -36,3 +36,5 @@ $this->get('camp/evaluationToPDF/{id}', ['uses' => 'CampsController@generatePDF'
 
 //Match routes
 Route::resource('match', 'MatchesController');
+
+Route::resource('evaluation', 'EvaluationController');
