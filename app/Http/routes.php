@@ -57,6 +57,7 @@ $this->group(['middleware' => 'auth'], function () {
         $this->get('user/{id}',['uses' => 'UserController@show', 'as' => 'user.show']);
         $this->put('user/{id}',['uses' => 'UserController@update', 'as' => 'user.update']);
         $this->put('user/create',['uses' => 'UserController@create', 'as' => 'user.create']);
+        $this->post('user',['uses' => 'UserController@store', 'as' => 'user.store']);
 //        Route::resource('user', 'UserController');
     });
 });
