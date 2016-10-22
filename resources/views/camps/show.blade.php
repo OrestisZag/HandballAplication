@@ -12,7 +12,19 @@
             {{ $camp->place }}<br>
             <label>Date:</label>
             {{ $camp->date }}
+        </div>
+        <div class="col-md-6 col-md-offset-4">
+            {{--@foreach($athletes as $athlete)--}}
+                {{--{{ $athlete->lastName }} {{ $athlete->firstName }}--}}
+            {{--@endforeach--}}
 
+            @foreach($camps as $trains)
+                @foreach($trains as $train)
+                    @if($train->position_id == 1)
+                        {{ $train->attackEval }}
+                    @endif
+                @endforeach
+            @endforeach
         </div>
     </div>
 @endsection

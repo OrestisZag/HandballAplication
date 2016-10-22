@@ -14,8 +14,10 @@ class CreateCampTrainsTable extends Migration
     {
         Schema::create('camp_trains', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('adc_id')->unsigned();
-            $table->foreign('adc_id')->references('id')->on('athlete_data__camps');
+            $table->integer('adc_id')->unsigned(); //athlete_d
+            $table->foreign('adc_id')->references('athlete_id')->on('athlete_data__camps');//athlete_d
+            $table->integer('camp_id')->unsigned();
+            $table->foreign('camp_id')->references('id')->on('camps');
             $table->date('date');
             $table->integer('position_id')->unsigned();
             $table->foreign('position_id')->references('id')->on('positions');
