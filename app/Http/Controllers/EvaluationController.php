@@ -35,10 +35,14 @@ class EvaluationController extends Controller
         return view('evaluation.edit')->with('entity', $entity);
     }
 
-    public function show($evalId)
+    public function show(array $evalId)
     {
-        $one = $this->model->find($evalId,['*']);
-        return view('evaluation.show')->with('entity', $one);
+        $all = [];
+        foreach ($evalId as $id) {
+            array_push($all,$this->model->find($id,['*']));
+        }
+
+        return view('evaluation.show')->with('entities', $all);
     }
 
     public function store(Request $request)
@@ -54,5 +58,15 @@ class EvaluationController extends Controller
         $oldModel->update($request->except(['_token', '_method']));
 
         return view('evaluation.show')->with('entity', $this->model->find($id));
+    }
+
+    public function getIdByValues($athleteId, $matchId, $skillId)
+    {
+        $id = $this->model->where([
+            'athlete_id'=>$athleteId,
+            'match_id'=>$matchId,
+            'skill_id'=>$skillId])->first()->id;
+
+        return $id;
     }
 }

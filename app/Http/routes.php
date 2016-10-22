@@ -40,3 +40,5 @@ Route::resource('match', 'MatchesController');
 Route::resource('evaluation', 'EvaluationController');
 
 $this->get('matches/asArray/',['uses' => 'MatchesController@getMatchesAsArray', 'as' => 'matches.array']);
+
+$this->get('evaluation/{athleteId}/{matchId}/{skillId}', ['uses' => 'EvaluationController@getIdByValues', 'as' => 'evaluation.getId']);
