@@ -129,4 +129,8 @@ class MatchesController extends Controller
 
         return redirect()->route('match.index');
     }
+
+    public function getMatchesAsArray() {
+        return Match::all();
+    }
 }

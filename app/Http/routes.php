@@ -20,19 +20,40 @@ Route::get('about', function () {
     return view('pages.about');
 });
 
-//Athlete routes
-Route::resource('athlete', 'AthletesController');
+$this->get('login', ['as' => 'auth.login', 'uses' => 'AuthController@getLogin']);
+$this->post('login', ['as' => 'auth.login', 'uses' => 'AuthController@postLogin']);
+$this->get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@logout']);
 
-//Team routes
-Route::resource('team', 'TeamsController');
+$this->group(['middleware' => 'auth'], function () {
 
-//Camp routes
-Route::resource('camp', 'CampsController');
-$this->get('camp/athleteEvaluation/{id}', ['uses' => 'CampsController@getAthleteCampEval', 'as' => 'camp.getAthleteCampEval']);
-$this->post('camp/athleteEvaluation', ['uses' => 'CampsController@postAthleteCampEval', 'as' => 'camp.storeAthleteEval']);
-$this->get('camp/{id}/editAthleteEvaluation', ['uses' => 'CampsController@getEditAthleteCampEval', 'as' => 'camp.getEditAthleteCampEval']);
-$this->put('camp/updateEvaluation/{id}', ['uses' => 'CampsController@updateAthleteEvaluation', 'as' => 'camp.updateAthleteEvaluation']);
-$this->get('camp/evaluationToPDF/{id}', ['uses' => 'CampsController@generatePDF', 'as' => 'camp.exportToPdf']);
+    //Athlete routes
+    Route::resource('athlete', 'AthletesController');
 
-//Match routes
-Route::resource('match', 'MatchesController');
+    //Team routes
+    Route::resource('team', 'TeamsController');
+
+    //Camp routes
+    Route::resource('camp', 'CampsController');
+    $this->get('camp/athleteEvaluation/{id}', ['uses' => 'CampsController@getAthleteCampEval', 'as' => 'camp.getAthleteCampEval']);
+    $this->post('camp/athleteEvaluation', ['uses' => 'CampsController@postAthleteCampEval', 'as' => 'camp.storeAthleteEval']);
+    $this->get('camp/{id}/editAthleteEvaluation', ['uses' => 'CampsController@getEditAthleteCampEval', 'as' => 'camp.getEditAthleteCampEval']);
+    $this->put('camp/updateEvaluation/{id}', ['uses' => 'CampsController@updateAthleteEvaluation', 'as' => 'camp.updateAthleteEvaluation']);
+    $this->get('camp/evaluationToPDF/{id}', ['uses' => 'CampsController@generatePDF', 'as' => 'camp.exportToPdf']);
+
+    //Match routes
+    Route::resource('match', 'MatchesController');
+
+    Route::resource('evaluation', 'EvaluationController');
+
+    $this->get('matches/asArray/',['uses' => 'MatchesController@getMatchesAsArray', 'as' => 'matches.array']);
+
+    $this->get('evaluation/{athleteId}/{matchId}/{skillId}', ['uses' => 'EvaluationController@getIdByValues', 'as' => 'evaluation.getId']);
+
+    //if not working just move this outside the last bracket
+    $this->group(['middleware' => 'admin'], function () {
+        $this->get('register', ['as' => 'auth.register','uses' => 'AuthController@showRegistrationForm']);
+        $this->post('register', ['as' => 'auth.register','uses' => 'AuthController@register']);
+
+        Route::resource('user', 'UserController');
+    });
+});

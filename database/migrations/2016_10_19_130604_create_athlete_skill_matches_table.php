@@ -20,6 +20,7 @@ class CreateAthleteSkillMatchesTable extends Migration
             $table->foreign('skill_id')->references('id')->on('skills');
             $table->integer('match_id')->unsigned();
             $table->foreign('match_id')->references('id')->on('matches');
+            $table->integer('evaluation');
             $table->timestamps();
         });
     }
