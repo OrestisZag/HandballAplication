@@ -30,6 +30,7 @@ class UserController extends Controller
 
         return view('user.index')->with('users' , $users);
     }
+
     /**
      * Display the specified resource.
      *
@@ -59,4 +60,26 @@ class UserController extends Controller
         return view('user.show')->with('user' , $this->model->find($id));
     }
 
+    public function create()
+    {
+        return view('user.create');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+
+        User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
+        ]);
+
+        return view('user.index');
+    }
 }

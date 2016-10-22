@@ -20,9 +20,11 @@ Route::get('about', function () {
     return view('pages.about');
 });
 
-$this->get('login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@getLogin']);
-$this->post('login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@postLogin']);
-$this->get('logout', ['as' => 'auth.logout', 'uses' => 'Auth\AuthController@logout']);
+$this->group(['namespace' => 'Auth'], function () {
+    $this->get('login', ['as' => 'auth.login', 'uses' => 'AuthController@getLogin']);
+    $this->post('login', ['as' => 'auth.login', 'uses' => 'AuthController@postLogin']);
+    $this->get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@logout']);
+});
 
 $this->group(['middleware' => 'auth'], function () {
 
@@ -51,9 +53,10 @@ $this->group(['middleware' => 'auth'], function () {
 
     //if not working just move this outside the last bracket
     $this->group(['middleware' => 'admin'], function () {
-        $this->get('register', ['as' => 'auth.register','uses' => 'Auth\AuthController@showRegistrationForm']);
-        $this->post('register', ['as' => 'auth.register','uses' => 'Auth\AuthController@register']);
-
-        Route::resource('user', 'UserController');
+        $this->get('user',['uses' => 'UserController@index', 'as' => 'user.index']);
+        $this->get('user/{id}',['uses' => 'UserController@show', 'as' => 'user.show']);
+        $this->put('user/{id}',['uses' => 'UserController@update', 'as' => 'user.update']);
+        $this->put('user/create',['uses' => 'UserController@create', 'as' => 'user.create']);
+//        Route::resource('user', 'UserController');
     });
 });
