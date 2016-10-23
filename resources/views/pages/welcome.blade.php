@@ -2,14 +2,28 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-12 row">
             <div class="text-center">
-                <h1><span class="glyphicon glyphicon-wrench"></span></h1>
-                <p class="text-center"><strong>Website under construction.</strong><br> You can go to the <strong>
-                    Menu</strong> dropdown on top right to see some of the features that are working till now.
-                    Sorry for the inconvenience more features will be added in the near future.
-                </p>
+
+                <div class="slideshow">
+                    {{ Html::image('img\handball3.jpg',null,['class'=>'placeHolder','width:'=>'500','height'=>'450']) }}
+                    <div class="layer1"></div>
+                    <div class="layer2"></div>
+                    <div class="layer3"></div>
+                    <div class="slideOverlay">{{ Html::image('img\logo1.jpg') }}</div>
+                </div>
+
+
             </div>
         </div>
     </div>
 @endsection
+
+@section('script')
+ <script>
+
+ </script>
+
+@endsection
+
+
