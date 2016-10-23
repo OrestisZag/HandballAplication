@@ -237,9 +237,30 @@
                     @endforeach
                     </tbody>
                 </table>
-
                 {{ Form::label('camps', 'Add more camps that athlete took part:') }}
                 {{ Form::select('camps[]', $camps, null, ['class' => 'form-control select2-multi', 'multiple'=>'multiple']) }}
+
+                {{ Form::label('events', 'Events that athlete took part:') }}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($athlete->athleteEvent as $event)
+                        <tr>
+                            <td>{{ $event->event->name }}</td>
+                            <td>{{ $event->event->category->name }}</td>
+                            <td>{{ $event->event->date }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                {{ Form::label('events', 'Add more events that athlete took part:') }}
+                {{ Form::select('events[]', $events, null, ['class' => 'form-control select2-multi', 'multiple'=>'multiple']) }}
 
                 {{ Form::label('comments', 'Comments:', ['class' => 'space-top']) }}
                 {{ Form::textarea('comments', null, ['class' => 'form-control input-sm', 'maxlength' => '500']) }}

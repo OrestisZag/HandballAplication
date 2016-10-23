@@ -151,6 +151,13 @@
                     @endforeach
                 </select>
 
+                {{ Form::label('events', 'Events that athlete took part:') }}
+                <select class="form-control select2-multi" name="events[]" title="events[]" multiple="multiple">
+                    @foreach($events as $event)
+                        <option value="{{ $event->id }}">{{ $event->name }}, {{ date('Y', strtotime($event->date)) }}</option>
+                    @endforeach
+                </select>
+
                 {{ Form::label('comments', 'Comments:', ['class' => 'space-top']) }}
                 {{ Form::textarea('comments', null, ['class' => 'form-control', 'maxlength' => '500']) }}
         {{--</div>--}}

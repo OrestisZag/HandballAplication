@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\AthleteData_Camp;
 use App\AthleteData_Team;
+use App\AthleteEvent;
 use App\AthletePosition;
 use App\Position;
+use App\Event;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\AthleteData;
@@ -41,11 +43,12 @@ class AthletesController extends Controller
      */
     public function create()
     {
+        $events = Event::all();
         $athletes = AthleteData::all();
         $teams = Team::all();
         $camps = Camp::all();
         $positions = Position::all();
-        return view('athletes.create')->withAthletes($athletes)->withTeams($teams)->withCamps($camps)->withPositions($positions);
+        return view('athletes.create')->withAthletes($athletes)->withTeams($teams)->withCamps($camps)->withPositions($positions)->withEvents($events);
     }
 
     /**
@@ -151,6 +154,15 @@ class AthletesController extends Controller
             }
         }
 
+        if (isset($request->events)) {
+            foreach ($request->events as $event) {
+                $athleteEvent = new AthleteEvent();
+                $athleteEvent->athlete_id = $athlete->id;
+                $athleteEvent->event_id = $event;
+                $athleteEvent->save();
+            }
+        }
+
         foreach ($request->positions as $position) {
             $athletePosition = new AthletePosition();
             $athletePosition->athlete_id = $athlete->id;
@@ -184,6 +196,7 @@ class AthletesController extends Controller
      */
     public function edit($id)
     {
+
         $athlete = AthleteData::find($id);
         $teams = Team::all();
         $positions = Position::all();
@@ -193,8 +206,13 @@ class AthletesController extends Controller
         foreach ($camps as $camp) {
             $camps2[$camp->id] = $camp->title.', '.date('Y', strtotime($camp->date));
         }
-
-        return view('athletes.edit')->withAthlete($athlete)->withTeams($teams)->withCamps($camps2)->withPositions($positions)->withAp($ap);
+        $events = Event::all();
+        $events2 = [];
+        foreach ($events as $event)
+        {
+            $events2[$event->id] = $event->name.', '.date('Y', strtotime($event->date));
+        }
+        return view('athletes.edit')->withAthlete($athlete)->withTeams($teams)->withCamps($camps2)->withPositions($positions)->withAp($ap)->withEvents($events2);
     }
 
     /**
@@ -300,6 +318,15 @@ class AthletesController extends Controller
                 $athleteCamp->athlete_id = $athlete->id;
                 $athleteCamp->camp_id = $camp;
                 $athleteCamp->save();
+            }
+        }
+
+        if (isset($request->events)) {
+            foreach ($request->events as $event) {
+                $athleteEvent = new AthleteEvent();
+                $athleteEvent->athlete_id = $athlete->id;
+                $athleteEvent->event_id = $event;
+                $athleteEvent->save();
             }
         }
 

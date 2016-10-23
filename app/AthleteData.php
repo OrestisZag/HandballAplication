@@ -24,4 +24,9 @@ class AthleteData extends Model
     public function athletePosition() {
         return $this->hasMany('App\AthletePosition', 'athlete_id');
     }
+
+    public function athleteEvent()
+    {
+        return $this->hasMany('App\AthleteEvent', 'athlete_id');
+    }
 }

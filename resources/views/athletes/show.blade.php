@@ -233,4 +233,30 @@
             <label class="text-center"><strong>***Click On Camp's Name to Evaluate Athlete's Presence***</strong></label>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-4">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($athlete->athleteEvent as $event)
+                    <tr>
+                        <td>
+                            <a href="{{ route('event.show', $event->id) }}">{{ $event->event->name }}</a>
+                        </td>
+                        <td>
+                            {{ $event->event->category->name }}
+                        </td>
+                        <td>
+                            {{ $event->event->date }}
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
 @endsection

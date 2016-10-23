@@ -13,4 +13,9 @@ class Event extends Model
     {
         return $this->belongsTo('App\Category');
     }
+
+    public function athleteEvent()
+    {
+        return $this->hasMany('App\AthleteEvent', 'event_id');
+    }
 }
