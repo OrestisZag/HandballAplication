@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             {!! Form::open(['route' => 'camp.storeAthleteEval', 'class' => 'form', 'data-parsley-validate' => '']) !!}
-                {{ Form::hidden('adc_id', "$adc->id") }}
+                {{ Form::hidden('adc_id', "$adc->athlete_id") }}
                 {{ Form::hidden('camp_id', "$adc->camp_id") }}
 
                 {{ Form::label('date', 'Practice Date:') }}

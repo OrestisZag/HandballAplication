@@ -87,12 +87,11 @@ class CampsController extends Controller
     {
         $camp = Camp::find($id);
         $athletesCamp = AthleteData_Camp::where('camp_id', $camp['id'])->get();
-
         $camptrain = [];
         $athletes = [];
         foreach($athletesCamp as $athleteCamp) {
             array_push($athletes,AthleteData::find($athleteCamp->athlete_id));
-            array_push($camptrain,$this->model->where(['camp_id' => $id , 'adc_id' => $athleteCamp->id])->get());
+            array_push($camptrain,$this->model->where(['camp_id' => $id] , ['adc_id' => $athleteCamp->id])->get());
         }
 
             return view('camps.show')->with('camp',$camp)
@@ -172,7 +171,6 @@ class CampsController extends Controller
 //                        ->addRow(['Attack', $campTrain->attackEval])
 //                        ->addRow(['Defence', $campTrain->defenceEval])
 //                        ->addRow(['Total', $campTrain->atDefEval]);
-//
 //            $lava->BarChart('Evaluation', $evaluations);
 
             $fullName = $athlete->lastName.' '.$athlete->firstName;

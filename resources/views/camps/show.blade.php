@@ -24,12 +24,14 @@
             {{ $camp->date }}
         </div>
         <div class="col-md-6 col-md-offset-4">
-            <h3>Participated Athletes</h3>
-            <ol>
-                @foreach($athletes as $athlete)
-                    <li><a href="{{ route('athlete.show', $athlete->id) }}">{{ $athlete->lastName }} {{ $athlete->firstName }}</a></li>
-                @endforeach
-            </ol>
+            @if($athletes != null)
+                <h3>Participated Athletes</h3>
+                <ol>
+                    @foreach($athletes as $athlete)
+                        <li><a href="{{ route('athlete.show', $athlete->id) }}">{{ $athlete->lastName }} {{ $athlete->firstName }}</a></li>
+                    @endforeach
+                </ol>
+            @endif
         </div>
     </div>
     <div class="row">
