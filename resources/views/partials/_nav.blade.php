@@ -18,6 +18,8 @@
                 <li class="{{ Request::is('athlete') ? "active" : "" }}"><a href="{{ route('athlete.index') }}">Athletes</a></li>
                 <li class="{{ Request::is('team') ? "active" : "" }}"><a href="{{ route('team.index') }}">Teams</a></li>
                 <li class="{{ Request::is('camp') ? "active" : "" }}"><a href="{{ route('camp.index') }}">Camps</a></li>
+                <li class="{{ Request::is('event') ? "active" : "" }}"><a href="{{ route('event.index') }}">Events</a></li>
+                <li class="{{ Request::is('category') ? "active" : "" }}"><a href="{{ route('category.index') }}">Categories</a></li>
                 <li class="{{ Request::is('match') ? "active" : "" }}"><a href="{{ route('match.index') }}">Matches</a></li>
                 <li class="{{ Request::is('evaluation') ? "active" : "" }}"><a href="{{ route('evaluation.index') }}">Evaluations</a></li>
                 @endif

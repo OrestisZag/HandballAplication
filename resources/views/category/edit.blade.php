@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', '| Edit Ctegory')
+@section('title', '| Edit Category')
 
 @section('style')
     {!! Html::style('css/parsley.css') !!}

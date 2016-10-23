@@ -37,6 +37,9 @@ $this->group(['middleware' => 'auth'], function () {
     //Category routes
     Route::resource('category', 'CategoriesController');
 
+    //Event routes
+    Route::resource('event', 'EventsController');
+
     //Camp routes
     Route::resource('camp', 'CampsController');
     $this->get('camp/athleteEvaluation/{id}', ['uses' => 'CampsController@getAthleteCampEval', 'as' => 'camp.getAthleteCampEval']);
