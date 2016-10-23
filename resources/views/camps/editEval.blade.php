@@ -16,6 +16,7 @@
         <div class="col-md-4 col-md-offset-4 space-top">
             {!! Form::model($evaluation, ['route' => ['camp.updateAthleteEvaluation', $evaluation->id], 'class' => 'form', 'method' => 'PUT', 'data-parsley-validate' => '']) !!}
                 {{ Form::hidden('adc_id', "$evaluation->adc_id") }}
+                {{ Form::hidden('camp_id', "$evaluation->camp_id") }}
 
                 {{ Form::label('date', 'Practice Date:') }}
                 {{ Form::text('date', null, ['class' => 'form-control input-sm', 'required' => '']) }}

@@ -7,7 +7,6 @@ use App\AthleteData_Camp;
 use App\Camp;
 use App\CampTrain;
 use App\Position;
-use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Khill\Lavacharts\Lavacharts;
 use Session;
@@ -16,6 +15,16 @@ use Barryvdh\DomPDF\PDF;
 
 class CampsController extends Controller
 {
+    private $model;
+
+    /**
+     * CampsController constructor.
+     */
+    public function __construct()
+    {
+        $this->model = new CampTrain();
+    }
+
     /**
      * @param Request $request
      * @return mixed
@@ -72,12 +81,22 @@ class CampsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show($id)
     {
         $camp = Camp::find($id);
-        return view('camps.show')->withCamp($camp);
+        $athletesCamp = AthleteData_Camp::where('camp_id', $camp['id'])->get();
+
+        $camptrain = [];
+        $athletes = [];
+        foreach($athletesCamp as $athleteCamp) {
+            array_push($athletes,AthleteData::find($athleteCamp->athlete_id));
+            array_push($camptrain,$this->model->where(['camp_id' => $id] , ['adc_id' => $athleteCamp->id])->get());
+        }
+
+            return view('camps.show')->with('camp',$camp)
+                ->with('camps',$camptrain)->with('athletes',$athletes);
     }
 
     /**
@@ -145,20 +164,19 @@ class CampsController extends Controller
         $athleteData = AthleteData_Camp::where('camp_id', $adc['camp_id'])->first();
 
         if (isset($campTrain)) {
-            $lava = new Lavacharts();
-            $evaluations = $lava->DataTable();
-
-            $evaluations->addStringColumn('Player Evaluation')
-                        ->addNumberColumn('Rank')
-                        ->addRow(['Attack', $campTrain->attackEval])
-                        ->addRow(['Defence', $campTrain->defenceEval])
-                        ->addRow(['Total', $campTrain->atDefEval]);
-
-            $lava->BarChart('Evaluation', $evaluations);
+//            $lava = new Lavacharts();
+//            $evaluations = $lava->DataTable();
+//
+//            $evaluations->addStringColumn('Player Evaluation')
+//                        ->addNumberColumn('Rank')
+//                        ->addRow(['Attack', $campTrain->attackEval])
+//                        ->addRow(['Defence', $campTrain->defenceEval])
+//                        ->addRow(['Total', $campTrain->atDefEval]);
+//            $lava->BarChart('Evaluation', $evaluations);
 
             $fullName = $athlete->lastName.' '.$athlete->firstName;
 
-            return view('camps.showEval', ['lava' => $lava])->withTrain($campTrain)->withAdc($adc)->withName($fullName)->withAthlete($athleteData);
+            return view('camps.showEval')->withTrain($campTrain)->withAdc($adc)->withName($fullName)->withAthlete($athleteData);
         } else {
             $positions = Position::all();
             return view('camps.createEval')->withAdc($adc)->withPositions($positions);
@@ -177,6 +195,7 @@ class CampsController extends Controller
 
         $campTrain = new CampTrain();
         $campTrain->adc_id = $request->adc_id;
+        $campTrain->camp_id = $request->camp_id;
         $campTrain->date = $request->date;
         $campTrain->position_id = $request->position;
         $campTrain->attackEval = $request->attackEval;
@@ -208,8 +227,13 @@ class CampsController extends Controller
             'date' => 'required|date'
         ]);
 
-        $campTrain = CampTrain::find($id);
+        //dd($request);
+        $oldTrain = CampTrain::where(['adc_id' => $request->adc_id], ['camp_id' => $request->camp_id])->first();
+        $oldTrain->delete();
+//        dd();
+        $campTrain = new CampTrain();
         $campTrain->adc_id = $request->adc_id;
+        $campTrain->camp_id = $request->camp_id;
         $campTrain->date = $request->date;
         $campTrain->position_id = $request->position;
         $campTrain->attackEval = $request->attackEval;
@@ -232,26 +256,23 @@ class CampsController extends Controller
         $campTrain = CampTrain::where('adc_id', $adc['id'])->first();
         $athlete = AthleteData::find($adc->athlete_id);
 
-        $lava = new Lavacharts();
-        $evaluations = $lava->DataTable();
-
-        $evaluations->addStringColumn('Player Evaluation')
-            ->addNumberColumn('Rank')
-            ->addRow(['Attack', $campTrain->attackEval])
-            ->addRow(['Defence', $campTrain->defenceEval])
-            ->addRow(['Total', $campTrain->atDefEval]);
-
-        $lava->BarChart('Evaluation', $evaluations);
-        $complete = $lava->render('BarChart', 'Evaluation', 'chart-div');
+//        $lava = new Lavacharts();
+//        $evaluations = $lava->DataTable();
+//
+//        $evaluations->addStringColumn('Player Evaluation')
+//            ->addNumberColumn('Rank')
+//            ->addRow(['Attack', $campTrain->attackEval])
+//            ->addRow(['Defence', $campTrain->defenceEval])
+//            ->addRow(['Total', $campTrain->atDefEval]);
+//
+//        $lava->BarChart('Evaluation', $evaluations);
+//        $complete = $lava->render('BarChart', 'Evaluation', 'chart-div');
 
         $fullName = $athlete->lastName.' '.$athlete->firstName;
 
-        $data = ['name' => $fullName, 'adc' => $adc, 'train' => $campTrain, 'lava' => $complete];
+        $data = ['name' => $fullName, 'adc' => $adc, 'train' => $campTrain];
         $view = \View::make('pdf.campAthleteEval', $data);
-        $pdf = \App::make('dompdf.wrapper');
-//        $pdf->loadView('pdf.campAthleteEval', $data);
-//        dd($pdf->strai oeam());
-//        dd($view);
+
         return $view;
     }
 }
