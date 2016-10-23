@@ -95,23 +95,8 @@ class CampsController extends Controller
             array_push($camptrain,$this->model->where(['camp_id' => $id , 'adc_id' => $athleteCamp->id])->get());
         }
 
-        $gkat = 0;
-        $gkdef = 0;
-        $gktot = 0;
-        $allgk = 0;
-        foreach ($camptrain as $trains) {
-            foreach ($trains as $train) {
-                $allgk++;
-                if ($train->position_id == 1)
-                $gkat = ($gkat + $train->attackEval);
-                $gkdef = $gkdef + $train->defenceEval;
-                $gktot = $gktot + $train->atDefEval;
-            }
-        }
-
-
-        return view('camps.show')->with('camp',$camp)
-            ->with('camps',$camptrain)->with('athletes',$athletes);
+            return view('camps.show')->with('camp',$camp)
+                ->with('camps',$camptrain)->with('athletes',$athletes);
     }
 
     /**
