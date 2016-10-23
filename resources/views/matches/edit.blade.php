@@ -9,7 +9,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <h1>Add New Match</h1>
+            <h1>Edit Match</h1>
             <a href="{{ route('match.index') }}" class="btn btn-primary btn-block">Back To Matches</a>
             {!! Form::model($match, ['route' => ['match.update', $match->id], 'data-parsley-validate' => '', 'class' => 'form', 'method' => 'PUT']) !!}
                 {{ Form::label('home', 'Home Team:', ['class' => 'space-top']) }}
