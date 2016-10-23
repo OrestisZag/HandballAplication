@@ -14,11 +14,13 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                @if(Auth::check())
                 <li class="{{ Request::is('athlete') ? "active" : "" }}"><a href="{{ route('athlete.index') }}">Athletes</a></li>
                 <li class="{{ Request::is('team') ? "active" : "" }}"><a href="{{ route('team.index') }}">Teams</a></li>
                 <li class="{{ Request::is('camp') ? "active" : "" }}"><a href="{{ route('camp.index') }}">Camps</a></li>
                 <li class="{{ Request::is('match') ? "active" : "" }}"><a href="{{ route('match.index') }}">Matches</a></li>
                 <li class="{{ Request::is('evaluation') ? "active" : "" }}"><a href="{{ route('evaluation.index') }}">Evaluations</a></li>
+                @endif
                 <li class="{{ Request::is('about') ? "active" : "" }}"><a href="about">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
