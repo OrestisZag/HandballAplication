@@ -87,6 +87,7 @@ class CampsController extends Controller
     {
         $camp = Camp::find($id);
         $athletesCamp = AthleteData_Camp::where('camp_id', $camp['id'])->get();
+
         $camptrain = [];
         $athletes = [];
         foreach($athletesCamp as $athleteCamp) {
