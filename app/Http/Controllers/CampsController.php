@@ -227,7 +227,11 @@ class CampsController extends Controller
             'date' => 'required|date'
         ]);
 
-        $campTrain = CampTrain::find($id);
+        //dd($request);
+        $oldTrain = CampTrain::where(['adc_id' => $request->adc_id], ['camp_id' => $request->camp_id])->first();
+        $oldTrain->delete();
+//        dd();
+        $campTrain = new CampTrain();
         $campTrain->adc_id = $request->adc_id;
         $campTrain->camp_id = $request->camp_id;
         $campTrain->date = $request->date;

@@ -77,7 +77,7 @@
 
         @if($gk != 0)
             <div class="col-md-3">
-                <h4 class="text-center">All Goalkeeper Evaluation</h4>
+                <h4 class="text-center">Average Goalkeeper Evaluation</h4>
                 <div class="css_bar_graph">
                     <!-- y_axis labels -->
                     <ul class="y_axis">
@@ -107,13 +107,13 @@
                         </ul>
                     </div>
                     <!-- graph label -->
-                    <label class="label"><span>Graph: </span>Goalkeeper evaluation</label>
+                    <label class="label"><span>Graph: </span>Average Goalkeeper Evaluation</label>
                 </div>
             </div>
         @endif
         @if($ex != 0)
             <div class="col-md-3 col-md-offset-1">
-                <h4 class="text-center">All Extrem Evaluation</h4>
+                <h4 class="text-center">Average Extrem Evaluation</h4>
                 <div class="css_bar_graph">
                     <!-- y_axis labels -->
                     <ul class="y_axis">
@@ -143,13 +143,13 @@
                         </ul>
                     </div>
                     <!-- graph label -->
-                    <label class="label"><span>Graph: </span>Extrem evaluation</label>
+                    <label class="label"><span>Graph: </span>Average Extrem Evaluation</label>
                 </div>
             </div>
         @endif
         @if($md != 0)
             <div class="col-md-3 col-md-offset-1">
-                <h4 class="text-center">All Midfielder Evaluation</h4>
+                <h4 class="text-center">Average Midfielder Evaluation</h4>
                 <div class="css_bar_graph">
                     <!-- y_axis labels -->
                     <ul class="y_axis">
@@ -179,7 +179,7 @@
                         </ul>
                     </div>
                     <!-- graph label -->
-                    <label class="label"><span>Graph: </span>Midfielders evaluation</label>
+                    <label class="label"><span>Graph: </span>Average Midfielders Evaluation</label>
                 </div>
             </div>
         @endif
@@ -200,7 +200,7 @@
         @endforeach
         @if($pv != 0)
             <div class="col-md-3 col-md-offset-2">
-                <h4 class="text-center">All Pivot Evaluation</h4>
+                <h4 class="text-center">Average Pivot Evaluation</h4>
                 <div class="css_bar_graph">
                     <!-- y_axis labels -->
                     <ul class="y_axis">
@@ -230,13 +230,13 @@
                         </ul>
                     </div>
                     <!-- graph label -->
-                    <label class="label"><span>Graph: </span>Pivot Evaluation</label>
+                    <label class="label"><span>Graph: </span>Average Pivot Evaluation</label>
                 </div>
             </div>
         @endif
         @if($gk != 0 || $ex != 0 || $md != 0 || $pv != 0)
             <div class="col-md-3 col-md-offset-1">
-                <h4 class="text-center">All Athlete Evaluation</h4>
+                <h4 class="text-center">Average Athlete Evaluation</h4>
                 <div class="css_bar_graph">
                     <!-- y_axis labels -->
                     <ul class="y_axis">
@@ -266,7 +266,7 @@
                         </ul>
                     </div>
                     <!-- graph label -->
-                    <label class="label"><span>Graph: </span>Pivot Evaluation</label>
+                    <label class="label"><span>Graph: </span>Average Athlete Evaluation</label>
                 </div>
             </div>
         @endif
