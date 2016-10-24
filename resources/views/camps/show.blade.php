@@ -76,7 +76,7 @@
         @endforeach
 
         @if($gk != 0)
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <h4 class="text-center">Average Goalkeeper Evaluation</h4>
                 <div class="css_bar_graph">
                     <!-- y_axis labels -->
@@ -112,7 +112,7 @@
             </div>
         @endif
         @if($ex != 0)
-            <div class="col-md-3 col-md-offset-1">
+            <div class="col-md-6">
                 <h4 class="text-center">Average Extrem Evaluation</h4>
                 <div class="css_bar_graph">
                     <!-- y_axis labels -->
@@ -147,8 +147,10 @@
                 </div>
             </div>
         @endif
+        </div>
+        <div class="row list-group-item">
         @if($md != 0)
-            <div class="col-md-3 col-md-offset-1">
+            <div class="col-md-6">
                 <h4 class="text-center">Average Midfielder Evaluation</h4>
                 <div class="css_bar_graph">
                     <!-- y_axis labels -->
@@ -183,8 +185,6 @@
                 </div>
             </div>
         @endif
-    </div>
-    <div class="row list-group-item" style="background: #fcfcfc">
         <?php $pv = 0; $pvat = 0; $pvdef = 0; $pvAtDef = 0;?>
         @foreach($camps as $trains)
             @foreach($trains as $train)
@@ -199,7 +199,7 @@
             @endforeach
         @endforeach
         @if($pv != 0)
-            <div class="col-md-3 col-md-offset-2">
+            <div class="col-md-6">
                 <h4 class="text-center">Average Pivot Evaluation</h4>
                 <div class="css_bar_graph">
                     <!-- y_axis labels -->
@@ -234,8 +234,10 @@
                 </div>
             </div>
         @endif
+        </div>
+        <div class="row list-group-item" style="background: #f9f9f9">
         @if($gk != 0 || $ex != 0 || $md != 0 || $pv != 0)
-            <div class="col-md-3 col-md-offset-1">
+            <div class="col-md-12">
                 <h4 class="text-center">Average Athlete Evaluation</h4>
                 <div class="css_bar_graph">
                     <!-- y_axis labels -->
@@ -270,7 +272,7 @@
                 </div>
             </div>
         @endif
-    </div>
+        </div>
 </div>
 @endsection
 
