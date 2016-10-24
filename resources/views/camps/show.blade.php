@@ -34,7 +34,7 @@
             @endif
         </div>
     </div>
-    <div class="row">
+    <div class="row list-group-item" style="background: #f9f9f9">
         <?php $gk = 0; $gkat = 0; $gkdef = 0; $gkAtDef = 0;?>
         @foreach($camps as $trains)
             @foreach($trains as $train)
@@ -184,7 +184,7 @@
             </div>
         @endif
     </div>
-    <div class="row">
+    <div class="row list-group-item" style="background: #fcfcfc">
         <?php $pv = 0; $pvat = 0; $pvdef = 0; $pvAtDef = 0;?>
         @foreach($camps as $trains)
             @foreach($trains as $train)
@@ -271,13 +271,13 @@
             </div>
         @endif
     </div>
-<div>
+</div>
 @endsection
 
-    @section('script')
+@section('script')
         <script>
             $("#pdf-content").css("background-color", "white");
-            var doc = new jsPDF('l', 'mm', [450, 390]);
+            var doc = new jsPDF('p', 'mm', [297, 210]);
 
             $('#cmd').click(function () {
                 doc.addHTML($('#pdf-content'), function() {

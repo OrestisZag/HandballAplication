@@ -10,6 +10,6 @@
 
 {!! Html::script('js/zlib.js') !!}
 {!! Html::script('js/png.js') !!}
-{!! Html::script('js/addImage.js') !!}
+{!! Html::script('js/addimage.js') !!}
 {!! Html::script('js/png_support.js') !!}
 {!! Html::script('js/html2canvas.js') !!}
