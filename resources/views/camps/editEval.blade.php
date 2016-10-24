@@ -9,7 +9,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <a href="{{ route('camp.getAthleteCampEval', $evaluation->adc_id) }}" class="btn btn-primary btn-block">Back To Athlete's Evaluation</a>
+            <a href="{{ route('camp.getAthleteCampEval', [$evaluation->adc_id,$evaluation->camp_id]) }}" class="btn btn-primary btn-block">Back To Athlete's Evaluation</a>
         </div>
     </div>
     <div class="row">
