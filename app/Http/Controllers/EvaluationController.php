@@ -69,4 +69,12 @@ class EvaluationController extends Controller
 
         return $id;
     }
+
+    public function getAllMatchesAndAthletes()
+    {
+        $athAll = AthleteData::all();
+        $matchAll = Match::all();
+
+        return view('evaluation.info')->with('athletes', $athAll)->with('matches' , $matchAll);
+    }
 }

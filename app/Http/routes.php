@@ -57,7 +57,8 @@ $this->group(['middleware' => 'auth'], function () {
 
     $this->get('evaluation/{athleteId}/{matchId}/{skillId}', ['uses' => 'EvaluationController@getIdByValues', 'as' => 'evaluation.getId']);
 
-    //if not working just move this outside the last bracket
+    $this->get('evaluation/info',['uses' => 'EvaluationController@getAllMatchesAndAthletes', 'as' => 'evaluation.info']);
+
     $this->group(['middleware' => 'admin'], function () {
 //        $this->get('user',['uses' => 'UserController@index', 'as' => 'user.index']);
 //        $this->get('user/{id}',['uses' => 'UserController@show', 'as' => 'user.show']);
