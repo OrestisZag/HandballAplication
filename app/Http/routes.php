@@ -51,9 +51,10 @@ $this->group(['middleware' => 'auth'], function () {
     //Match routes
     Route::resource('match', 'MatchesController');
 
-    Route::resource('evaluation', 'EvaluationController', ['except' => ['create']]);
+    Route::resource('evaluation', 'EvaluationController', ['except' => ['create','update']]);
 
     $this->post('evaluation/create' , ['uses' => 'EvaluationController@create', 'as' => 'evaluation.create']);
+    $this->put('evaluation/update' , ['uses' => 'EvaluationController@update', 'as' => 'evaluation.update']);
 
     $this->get('matches/asArray/',['uses' => 'MatchesController@getMatchesAsArray', 'as' => 'matches.array']);
 

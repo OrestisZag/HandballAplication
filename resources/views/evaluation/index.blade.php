@@ -23,20 +23,15 @@
                             <td>{{ $entity['date'] }} </td>
 
                             <td>
-                                <a href="#" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="{{ route('evaluation.show', $entity['evalId']) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                <a href="{{ route('evaluation.edit', $entity['evalId']) }}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit"></span></a>
                             </td>
                             </tr>
-{{--                        @foreach($entity-> as $athlete)--}}
-                        {{--@endforeach--}}
-
                 @endforeach
                 </tbody>
             </table>
             <div class="text-center">
-{{--                {!! $entities->render() !!}--}}
                 {{ $entities->links() }}
-                {{--{!! $entities->links() !!}--}}
             </div>
         </div>
     </div>

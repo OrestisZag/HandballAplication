@@ -67,22 +67,62 @@ class EvaluationController extends Controller
         return $paginator;
     }
 
-    public function edit($id)
+    public function edit($evalId)
     {
-        $split = explode('.',$id);
+        $split = explode('.',$evalId);
 
-        $item = $this->model->where('athlete_id',$split[0])->where('match_id',$split[1]);
+        $items = $this->model->where('athlete_id',$split[0])->where('match_id',$split[1])->get();
 
-        return view('evaluation.edit')->with('entity', $item);
+        $returnValues = [];
+
+        foreach ($items as $item){
+            $sk = Skill::find($item->skill_id);
+            $row = [
+                'Skill' => $sk->title,
+                'SkillGroup' => $sk->SkillGroup,
+                'Evaluation' => $item->evaluation,
+                'raw' => $item,
+            ];
+
+            array_push($returnValues,$row);
+        }
+
+        return view('evaluation.edit')->with('entities', $returnValues);
     }
 
     public function show($evalId)
     {
         $split = explode('.',$evalId);
 
-        $item = $this->model->where('athlete_id',$split[0])->where('match_id',$split[1]);
+        $items = $this->model->where('athlete_id',$split[0])->where('match_id',$split[1])->get();
 
-        return view('evaluation.show')->with('entities', $item);
+        $returnValues = [];
+
+        foreach ($items as $item){
+            $sk = Skill::find($item->skill_id);
+            $row = [
+                'Skill' => $sk->title,
+                'SkillGroup' => $sk->SkillGroup,
+                'Evaluation' => $item->evaluation,
+                'raw' => $item,
+            ];
+
+            array_push($returnValues,$row);
+        }
+
+        $i = 0;
+        $avg = 0;
+
+        foreach ($returnValues as $value) {
+            if(!($value['SkillGroup'] === 'ΚΟΙΝΩΝΙΚΑ ΣΤΟΙΧΕΙΑ')) {
+                $i++;
+                $avg += $value['Evaluation'];
+            }
+        }
+
+        $avg = $avg / $i;
+
+        return view('evaluation.show')->with('entities', $returnValues)->with('avg',$avg);
     }
 
     public function store(Request $request)
@@ -104,15 +144,24 @@ class EvaluationController extends Controller
             array_push($models, $newModel);
         }
 
-        return view('evaluation.show')->with('entities', $models);
+        return redirect()->route('evaluation.index');
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $oldModel = $this->model->find($id);
-        $oldModel->update($request->except(['_token', '_method']));
+        $models = [];
 
-        return view('evaluation.show')->with('entity', $this->model->find($id));
+        foreach ($request->skill as $id => $value) {
+            $oldModel = AthleteSkillMatch::find($id);
+
+            $oldModel->evaluation = $value;
+
+            $oldModel->save();
+
+            array_push($models, $oldModel);
+        }
+
+        return redirect()->route('evaluation.index');
     }
 
     public function create(Request $request)
