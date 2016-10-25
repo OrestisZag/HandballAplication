@@ -51,7 +51,9 @@ $this->group(['middleware' => 'auth'], function () {
     //Match routes
     Route::resource('match', 'MatchesController');
 
-    Route::resource('evaluation', 'EvaluationController');
+    Route::resource('evaluation', 'EvaluationController', ['except' => ['create']]);
+
+    $this->post('evaluation/create' , ['uses' => 'EvaluationController@create', 'as' => 'evaluation.create']);
 
     $this->get('matches/asArray/',['uses' => 'MatchesController@getMatchesAsArray', 'as' => 'matches.array']);
 
@@ -60,11 +62,6 @@ $this->group(['middleware' => 'auth'], function () {
     $this->get('evaluation/info',['uses' => 'EvaluationController@getAllMatchesAndAthletes', 'as' => 'evaluation.info']);
 
     $this->group(['middleware' => 'admin'], function () {
-//        $this->get('user',['uses' => 'UserController@index', 'as' => 'user.index']);
-//        $this->get('user/{id}',['uses' => 'UserController@show', 'as' => 'user.show']);
-//        $this->put('user/{id}',['uses' => 'UserController@update', 'as' => 'user.update']);
-//        $this->put('user/create',['uses' => 'UserController@create', 'as' => 'user.create']);
-//        $this->post('user',['uses' => 'UserController@store', 'as' => 'user.store']);
         Route::resource('user', 'UserController');
     });
 });

@@ -60,6 +60,14 @@ class EvaluationController extends Controller
         return view('evaluation.show')->with('entity', $this->model->find($id));
     }
 
+    public function create($athleteId, $matchId, $positionId)
+    {
+        return view('evaluation.create')
+            ->with('athleteID',$athleteId)
+            ->with('matchID',$matchId)
+            ->with('positionID',$positionId);
+    }
+
     public function getIdByValues($athleteId, $matchId, $skillId)
     {
         $id = $this->model->where([
