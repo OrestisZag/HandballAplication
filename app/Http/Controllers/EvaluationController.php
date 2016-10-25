@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\AthleteData;
+use App\AthletePosition;
 use App\AthleteSkillMatch;
 use App\Match;
+use App\Skill;
 use Illuminate\Http\Request;
 use Session;
 use App\Http\Requests;
@@ -62,10 +64,12 @@ class EvaluationController extends Controller
 
     public function create($athleteId, $matchId, $positionId)
     {
+        $skillz = Skill::where('position_id',$positionId);
+
         return view('evaluation.create')
             ->with('athleteID',$athleteId)
             ->with('matchID',$matchId)
-            ->with('positionID',$positionId);
+            ->with('skill',$skillz);
     }
 
     public function getIdByValues($athleteId, $matchId, $skillId)
@@ -83,6 +87,15 @@ class EvaluationController extends Controller
         $athAll = AthleteData::all();
         $matchAll = Match::all();
 
-        return view('evaluation.info')->with('athletes', $athAll)->with('matches' , $matchAll);
+        $athPos = [];
+        foreach($athAll as $athlete){
+            $id = $athlete->id;
+            $athPos[$id] = AthletePosition::where('athlete_id',$id)->get();
+        }
+
+        return view('evaluation.info')
+            ->with('athletes', $athAll)
+            ->with('matches' , $matchAll)
+            ->with('positions',$athPos);
     }
 }
