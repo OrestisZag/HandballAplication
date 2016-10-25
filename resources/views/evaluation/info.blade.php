@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-7 col-md-offset-3">
             <h1>Evaluation Info</h1>
-            {{ Form::open(['route' => 'evaluation.create', 'data-parsley-validate' => '', 'class' => 'form']) }}
+            {!! Form::open(['route' => 'evaluation.create', 'data-parsley-validate' => '', 'class' => 'form']) !!}
                 {{ Form::label('athlete', 'Choose Athlete:', ['class' => 'space-top']) }}
                 <select name="athlete" title="athlete" class="select2-athlete form-control input-sm" multiple="multiple">
                     @foreach($athletes as $athlete)
@@ -33,7 +33,7 @@
                 </select>
 
                 {{ Form::submit('Continue', ['class' => 'btn btn-primary btn-block space-top']) }}
-            {{ Form::close() }}
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection
