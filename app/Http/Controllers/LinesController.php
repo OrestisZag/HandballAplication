@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use App\AthleteData;
 use App\AthleteSkillMatch;
-use App\Http\Requests\Request;
+use Illuminate\Http\Request;
 use App\Lines;
 use App\Skill;
 
@@ -17,25 +17,29 @@ class LinesController extends Controller
         $all = AthleteData::all();
 
         $output = [];
+
         foreach ($all as $athlete) {
             $skill = AthleteSkillMatch::where(['athlete_id' => $athlete->id])->get();
-            $value = [];
 
-            if (!($skill == null)) {
+            if (!$skill->isEmpty()) {
+                $value = [];
+
                 $value['FirstName'] = $athlete->firstName;
                 $value['LastName'] = $athlete->lastName;
                 $value['Id'] = $athlete->id;
                 $value['raw'] = $athlete;
+
+                array_push($output, $value);
             }
 
-            array_push($output, $value);
         }
-        return view('line.create');
+
+        return view('line.create')->with('entities', $output);
     }
 
     public function index()
     {
-        $all = Lines::all();
+        $all = Lines::orderBy('id', 'desc')->paginate(10);
 
         return view('line.index')->with('entities', $all);
     }
@@ -90,7 +94,7 @@ class LinesController extends Controller
 
         $returnValue['comments'] = $line->comments;
 
-        return view('line.show')->with('entity',$returnValue);
+        return view('line.show')->with('entity', $returnValue);
     }
 
     public function store(Request $request)
