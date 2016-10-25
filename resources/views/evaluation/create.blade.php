@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-7 col-md-3">
-            {!! Form::open(['route' => 'evaluation.store']) !!}
+            {!! Form::open(['route' => 'evaluation.store', 'class' => 'form']) !!}
                 <table class="table">
                     <thead>
                         <tr>
@@ -20,7 +20,7 @@
                                 <td>{{ $sepSkill->SkillGroup }}</td>
                                 <td>{{ $sepSkill->title }} </td>
                                 <td>
-                                    <select name="skill['{{$sepSkill->id}}']" title="evaluation">
+                                    <select name="skill[{{$sepSkill->id}}]" title="evaluation">
                                         @for($i = 1; $i <= 5; $i++)
                                             <option value="{{ $i }}">{{ $i }}</option>
                                         @endfor
