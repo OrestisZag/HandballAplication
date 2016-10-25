@@ -6,6 +6,7 @@ use App\AthleteData;
 use App\AthletePosition;
 use App\AthleteSkillMatch;
 use App\Match;
+use App\Position;
 use App\Skill;
 use Illuminate\Http\Request;
 use Session;
@@ -87,15 +88,11 @@ class EvaluationController extends Controller
         $athAll = AthleteData::all();
         $matchAll = Match::all();
 
-        $athPos = [];
-        foreach($athAll as $athlete){
-            $id = $athlete->id;
-            $athPos[$id] = AthletePosition::where('athlete_id',$id)->get();
-        }
+        $pos = Position::all();
 
         return view('evaluation.info')
             ->with('athletes', $athAll)
             ->with('matches' , $matchAll)
-            ->with('positions',$athPos);
+            ->with('positions',$pos);
     }
 }
