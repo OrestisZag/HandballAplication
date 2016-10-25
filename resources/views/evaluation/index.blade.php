@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-7 col-md-offset-3">
-            <a href="#" class="btn btn-primary center-block">Create New Athlete's Evaluation</a>
+            <a href="{{ route('evaluation.info') }}" class="btn btn-primary center-block">Create New Athlete's Evaluation</a>
             <table class="table">
                 <thead>
                 <tr>

@@ -78,13 +78,14 @@ class EvaluationController extends Controller
         return view('evaluation.show')->with('entity', $this->model->find($id));
     }
 
-    public function create($athleteId, $matchId, $positionId)
+    public function create(Request $request)
     {
-        $skillz = Skill::where('position_id',$positionId);
+
+        $skillz = Skill::where('position_id',$request->position);
 
         return view('evaluation.create')
-            ->with('athleteID',$athleteId)
-            ->with('matchID',$matchId)
+            ->with('athleteID',$request->athlete)
+            ->with('matchID',$request->match)
             ->with('skill',$skillz);
     }
 
