@@ -33,7 +33,7 @@ class EvaluationController extends Controller
 
         $output = [];
         foreach ($all as $each) {
-            $str = $each->athlete_id . $each->match_id;
+            $str = $each->athlete_id .'.'. $each->match_id;
 
             if (!array_key_exists($str, $output)) {
                 $subValues =
@@ -43,7 +43,7 @@ class EvaluationController extends Controller
                         'home' => Match::where(['id' => $each->match_id])->first()->home,
                         'away' => Match::where(['id' => $each->match_id])->first()->away,
                         'date' => Match::where(['id' => $each->match_id])->first()->date,
-                        'evalId' => $all->id,
+                        'evalId' => $str,
                     ];
 
                 $output[$str] = $subValues;
@@ -66,16 +66,21 @@ class EvaluationController extends Controller
 
         return $paginator;
     }
+
     public function edit($id)
     {
-        $entity = $this->model->find($id, ['*']);
+        $split = explode('.',$id);
 
-        return view('evaluation.edit')->with('entity', $entity);
+        $item = $this->model->where('athlete_id',$split[0])->where('match_id',$split[1]);
+
+        return view('evaluation.edit')->with('entity', $item);
     }
 
     public function show($evalId)
     {
-        $item = $this->model->find($evalId, ['*']);
+        $split = explode('.',$evalId);
+
+        $item = $this->model->where('athlete_id',$split[0])->where('match_id',$split[1]);
 
         return view('evaluation.show')->with('entities', $item);
     }
