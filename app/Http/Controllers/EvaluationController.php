@@ -73,14 +73,11 @@ class EvaluationController extends Controller
         return view('evaluation.edit')->with('entity', $entity);
     }
 
-    public function show(array $evalId)
+    public function show($evalId)
     {
-        $all = [];
-        foreach ($evalId as $id) {
-            array_push($all, $this->model->find($id, ['*']));
-        }
+        $item = $this->model->find($evalId, ['*']);
 
-        return view('evaluation.show')->with('entities', $all);
+        return view('evaluation.show')->with('entities', $item);
     }
 
     public function store(Request $request)
