@@ -23,7 +23,7 @@ class EvaluationController extends Controller
 
     public function index()
     {
-        $all = $this->model->all(['*']);
+        $all = $this->model->paginate(10);
 
         return view('evaluation.index')->with('entities',$all);
     }

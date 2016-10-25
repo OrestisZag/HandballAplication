@@ -1,10 +1,11 @@
 @extends('main')
 
-@section('title', '| Athletes Evaluations')
+@section('title', '| Athlete Evaluations')
 
 @section('content')
     <div class="row">
         <div class="col-md-7 col-md-offset-3">
+            <a href="#" class="btn btn-primary center-block">Create New Athlete's Evaluation</a>
             <table class="table">
                 <thead>
                 <tr>
@@ -17,22 +18,20 @@
                 <tbody>
                 @foreach($entities as $entity)
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ $entity->athleteData->lastName }} {{ $entity->athleteData->firstName }}</td>
+                        <td>{{ $entity->matches->home }} - {{ $entity->matches->away }}</td>
+                        <td>{{ $entity->matches->date }}</td>
                         <td>
-                            {{--<a href="{{ route('athlete.show', $entity->id) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span></a>--}}
-                            {{--<a href="{{ route('athlete.edit', $entity->id) }}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit"></span></a>--}}
+                            <a href="#" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span></a>
+                            <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit"></span></a>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
             <div class="text-center">
-                {{--{{ $entities->links() }}--}}
+                {{ $entities->links() }}
             </div>
-        </div>
-    </div>
         </div>
     </div>
 @endsection
