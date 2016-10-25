@@ -62,6 +62,8 @@ $this->group(['middleware' => 'auth'], function () {
 
     $this->get('evaluation/info/all',['uses' => 'EvaluationController@getAllMatchesAndAthletes', 'as' => 'evaluation.info']);
 
+    Route::resource('line', 'LinesController',['except' => ['edit','destroy','update']]);
+
     $this->group(['middleware' => 'admin'], function () {
         Route::resource('user', 'UserController');
     });
