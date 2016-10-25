@@ -50,22 +50,22 @@ class EvaluationController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
-    
         $athleteId = $request->athleteId;
         $matchId = $request->matchId;
 
         $models = [];
-        foreach($request->id as $id) {
+        foreach($request->id as $id => $value) {
             $newModel = $this->model->create([
                'athlete_id' => $athleteId,
                 'match_id' => $matchId,
-                'skill_id' => $id->skillId,
-                'evaluation' => $id->evaluation
+                'skill_id' => $id,
+                'evaluation' => $value
             ]);
 
             array_push($models,$newModel);
         }
+
+        dd($models);
 
         return view('evaluation.show')->with('entities', $models);
     }
