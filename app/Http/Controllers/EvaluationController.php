@@ -43,6 +43,7 @@ class EvaluationController extends Controller
                         'home' => Match::where(['id' => $each->match_id])->first()->home,
                         'away' => Match::where(['id' => $each->match_id])->first()->away,
                         'date' => Match::where(['id' => $each->match_id])->first()->date,
+                        'evalId' => $all->id,
                     ];
 
                 $output[$str] = $subValues;
