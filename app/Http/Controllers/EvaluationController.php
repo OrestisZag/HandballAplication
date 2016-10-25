@@ -81,7 +81,7 @@ class EvaluationController extends Controller
     public function create(Request $request)
     {
 
-        $skillz = Skill::where('position_id',$request->position);
+        $skillz = Skill::where('position_id',$request->position)->get();
 
         return view('evaluation.create')
             ->with('athleteID',$request->athlete)
