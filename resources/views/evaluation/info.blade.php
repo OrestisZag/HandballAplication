@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', '| Athlete Evaluation')
+@section('title', '| Create Evaluation')
 
 @section('style')
     {!! Html::style('css/select2.min.css') !!}
@@ -8,7 +8,8 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-7 col-md-offset-3">
+        <div class="col-md-4 col-md-offset-4">
+            <a href="{{ route('evaluation.index') }}" class="btn-block btn-primary btn">Back To Evaluations</a>
             <h1>Evaluation Info</h1>
             {!! Form::open(['route' => 'evaluation.create', 'data-parsley-validate' => '', 'class' => 'form']) !!}
                 {{ Form::label('athlete', 'Choose Athlete:', ['class' => 'space-top']) }}
@@ -25,14 +26,14 @@
                     @endforeach
                 </select>
 
-                {{ Form::label('match', 'Choose the match that you want to evaluate him for:') }}
+                {{ Form::label('match', 'Choose a match that you want to evaluate him for:') }}
                 <select name="match" title="match" class="select2-match form-control input-sm" multiple="multiple">
                     @foreach($matches as $match)
                         <option value="{{ $match->id }}">{{ $match->home }} - {{ $match->away }}, {{ date('Y', strtotime($match->date)) }}</option>
                     @endforeach
                 </select>
 
-                {{ Form::submit('Continue', ['class' => 'btn btn-primary btn-block space-top']) }}
+                {{ Form::submit('Continue', ['class' => 'btn btn-success btn-block space-top']) }}
             {!! Form::close() !!}
         </div>
     </div>

@@ -22,6 +22,7 @@
                 <li class="{{ Request::is('category') ? "active" : "" }}"><a href="{{ route('category.index') }}">Categories</a></li>
                 <li class="{{ Request::is('match') ? "active" : "" }}"><a href="{{ route('match.index') }}">Matches</a></li>
                 <li class="{{ Request::is('evaluation') ? "active" : "" }}"><a href="{{ route('evaluation.index') }}">Evaluations</a></li>
+                <li class="{{ Request::is('line') ? "active" : "" }}"><a href="{{ route('line.index') }}">Lines</a></li>
                 @endif
                 <li class="{{ Request::is('about') ? "active" : "" }}"><a href="about">About</a></li>
             </ul>

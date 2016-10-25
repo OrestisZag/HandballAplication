@@ -39,7 +39,7 @@ class LinesController extends Controller
 
     public function index()
     {
-        $all = Lines::orderBy('id', 'desc')->paginate(10);
+        $all = Lines::orderBy('id', 'asc')->paginate(10);
 
         return view('line.index')->with('entities', $all);
     }
