@@ -59,7 +59,7 @@ $this->group(['middleware' => 'auth'], function () {
 
     $this->get('evaluation/{athleteId}/{matchId}/{skillId}', ['uses' => 'EvaluationController@getIdByValues', 'as' => 'evaluation.getId']);
 
-    $this->get('evaluation/info',['uses' => 'EvaluationController@getAllMatchesAndAthletes', 'as' => 'evaluation.info']);
+    $this->get('evaluation/info/all',['uses' => 'EvaluationController@getAllMatchesAndAthletes', 'as' => 'evaluation.info']);
 
     $this->group(['middleware' => 'admin'], function () {
         Route::resource('user', 'UserController');
