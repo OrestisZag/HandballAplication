@@ -71,6 +71,7 @@ class CampsController extends Controller
         $camp->title = $request->title;
         $camp->place = $request->place;
         $camp->date = $request->date;
+        $camp->save();
 
         Session::flash('success', 'Camp created successfully');
 
