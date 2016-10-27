@@ -19,7 +19,7 @@
                 @foreach($entities as $entity)
                             <tr>
                                 <td class="text-center">{{ $entity['athleteLastName'] }} {{ $entity['athleteFirstName'] }}</td>
-                                <td class="text-center">{{ $entity['home'] }} - {{ $entity['home'] }}</td>
+                                <td class="text-center">{{ $entity['home'] }} - {{ $entity['away'] }}</td>
                                 <td class="text-center">{{ $entity['date'] }} </td>
 
                                 <td>
