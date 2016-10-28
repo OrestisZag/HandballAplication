@@ -9,7 +9,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <h1>Edit Category</h1>
+            <h1>Edit Event</h1>
             <a href="{{ route('event.index') }}" class="btn btn-primary btn-block">Back To Events</a>
             {!! Form::model($event, ['route' => ['event.update', $event->id], 'data-parsley-validate' => '', 'class' => 'form', 'method' => 'PUT']) !!}
                 {{ Form::label('name', 'Event:', ['class' => 'space-top']) }}
