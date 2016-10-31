@@ -7,7 +7,7 @@
         <div class="col-md-7 col-md-offset-4">
             {!! Form::open(['route' => 'event.index', 'method' => 'GET', 'role' => 'search', 'class' => 'navbar-form']) !!}
             <div class="input-group text-center">
-                {{ Form::text('term', Request::get('term'), ['class' => 'form-control', 'placeholder' => 'Search by Category']) }}
+                {{ Form::text('term', Request::get('term'), ['class' => 'form-control', 'placeholder' => 'Search by Event']) }}
                 <span class="input-group-btn">
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
