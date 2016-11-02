@@ -238,7 +238,7 @@
         <div class="row list-group-item" style="background: #f9f9f9">
         @if($gk != 0 || $ex != 0 || $md != 0 || $pv != 0)
             <div class="col-md-12">
-                <h4 class="text-center">Average Athlete Evaluation</h4>
+                <h4 class="text-center">Average Athletes Evaluation</h4>
                 <div class="css_bar_graph">
                     <!-- y_axis labels -->
                     <ul class="y_axis">
@@ -268,7 +268,7 @@
                         </ul>
                     </div>
                     <!-- graph label -->
-                    <label class="label"><span>Graph: </span>Average Athlete Evaluation</label>
+                    <label class="label"><span>Graph: </span>Average Athletes Evaluation</label>
                 </div>
             </div>
         @endif

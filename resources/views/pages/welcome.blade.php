@@ -10,7 +10,7 @@
                     <div class="layer1"></div>
                     <div class="layer2"></div>
                     <div class="layer3"></div>
-                    <div class="slideOverlay">{{ Html::image('img\logo1.jpg') }}</div>
+                    <div class="slideOverlay">{{ Html::image('img\logo_teiser.png') }}</div>
                 </div>
 
 
