@@ -20,7 +20,7 @@ Open a terminal and run:
 CREATE DATABASE yourDbName;
 
 Then go to .env file and in DB_DATABASE=typeYourDbName DB_USERNAME=typeMySqlUserName DB_PASSWORD=typeMySqlPassword
-###Project Setup:
+### Project Setup:
 Go to **bootstrap directory** and create **cache** directory.
 
 Open a cmd or a terminal go to project folder and run:
